@@ -1,0 +1,4 @@
+rootProject.name = 'Meeting'
+include 'service'
+include 'admin'
+include 'mobile'
