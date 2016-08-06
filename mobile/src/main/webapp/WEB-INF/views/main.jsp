@@ -13,10 +13,47 @@
     <jsp:include page="../common/menu.jsp"></jsp:include>
     <!-- Page Content -->
     <div id="content" class="grey-blue login">
-        <jsp:include page="../common/toolbar.jsp"></jsp:include>
+        <jsp:include page="../common/toolbar.jsp">
+            <jsp:param name="title" value="个人中心"></jsp:param>
+        </jsp:include>
         <!-- Main Content -->
         <div class="animated fadeinup">
 
+            <h1>HelloWorld</h1>
+            <h1>HelloWorld</h1>
+            <h1>HelloWorld</h1>
+            <h1>HelloWorld</h1>
+            <h1>HelloWorld</h1>
+            <h1>HelloWorld</h1>
+            <h1>HelloWorld</h1>
+            <h1>HelloWorld</h1>
+            <h1>HelloWorld</h1>
+            <h1>HelloWorld</h1>
+            <h1>HelloWorld</h1>
+            <h1>HelloWorld</h1>
+            <h1>HelloWorld</h1>
+            <h1>HelloWorld</h1>
+            <h1>HelloWorld</h1>
+            <h1>HelloWorld</h1>
+            <h1>HelloWorld</h1>
+            <h1>HelloWorld</h1>
+            <h1>HelloWorld</h1>
+            <h1>HelloWorld</h1>
+            <h1>HelloWorld</h1>
+            <h1>HelloWorld</h1>
+            <h1>HelloWorld</h1>
+            <h1>HelloWorld</h1>
+            <h1>HelloWorld</h1>
+            <h1>HelloWorld</h1>
+            <h1>HelloWorld</h1>
+            <h1>HelloWorld</h1>
+            <h1>HelloWorld</h1>
+            <h1>HelloWorld</h1>
+            <h1>HelloWorld</h1>
+            <h1>HelloWorld</h1>
+            <h1>HelloWorld</h1>
+            <h1>HelloWorld</h1>
+            <h1>HelloWorld</h1>
             <h1>HelloWorld</h1>
         </div>
 

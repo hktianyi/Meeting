@@ -10,7 +10,7 @@
 <script src="${_PATH}/static/plugins/swiper.min.js"></script>
 <script src="${_PATH}/static/plugins/jquery.mixitup.min.js"></script>
 <script src="${_PATH}/static/plugins/masonry.min.js"></script>
-<script src="${_PATH}/static/plugins/chart.min.js"></script>
+<%--<script src="${_PATH}/static/plugins/chart.min.js"></script>--%>
 <script src="${_PATH}/static/plugins/functions.js"></script>
 <script src="${_PATH}/static/plugins/layer/layer.js" type="text/javascript"></script>
 <script src="${_PATH}/static/plugins/layer/extend/layer.ext.js" type="text/javascript"></script>
