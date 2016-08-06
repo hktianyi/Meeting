@@ -6,27 +6,24 @@
 <html>
 <!--<![endif]-->
 <head>
-  <%@include file="../common/common.jsp" %>
+    <%@include file="../common/common.jsp" %>
 </head>
 <body>
 <div class="m-scene" id="main">
+    <jsp:include page="../common/menu.jsp"></jsp:include>
+    <!-- Page Content -->
+    <div id="content" class="grey-blue login">
+        <jsp:include page="../common/toolbar.jsp"></jsp:include>
+        <!-- Main Content -->
+        <div class="animated fadeinup">
 
-  <!-- Page Content -->
-  <div id="content" class="grey-blue login">
-
-    <!-- Toolbar -->
-    <div id="toolbar" class="tool-login primary-color animated fadeindown">
-      <a href="javascript:history.back()" class="open-left">
-        <i class="ion-android-arrow-back"></i>
-      </a>
-    </div>
-
-    <h1>HelloWorld</h1>
+            <h1>HelloWorld</h1>
+        </div>
 
 
-  </div> <!-- End of Page Content -->
+    </div> <!-- End of Page Content -->
 
 </div> <!-- End of Page Container -->
-<%@include file="../common/footer.jsp"%>
+<%@include file="../common/footer.jsp" %>
 </body>
 </html>
