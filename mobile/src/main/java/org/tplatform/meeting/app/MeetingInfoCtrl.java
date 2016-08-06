@@ -1,5 +1,6 @@
 package org.tplatform.meeting.app;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -7,6 +8,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.tplatform.common.BaseCtrl;
 import org.tplatform.meeting.entity.MeetingImg;
 import org.tplatform.meeting.entity.MeetingInfo;
+import org.tplatform.meeting.service.MeetingImgService;
+import org.tplatform.meeting.service.MeetingInfoService;
+import org.tplatform.meeting.service.MeetingScheduleService;
 
 /**
  * Created by wzl on 2016/8/6.
@@ -14,6 +18,14 @@ import org.tplatform.meeting.entity.MeetingInfo;
 @Controller
 @RequestMapping("/meeting")
 public class MeetingInfoCtrl extends BaseCtrl {
+
+
+    @Autowired
+    private MeetingInfoService meetingInfoService;
+    @Autowired
+    private MeetingImgService meetingImgService;
+    @Autowired
+    private MeetingScheduleService meetingScheduleService;
 
     /**
      * 会议列表

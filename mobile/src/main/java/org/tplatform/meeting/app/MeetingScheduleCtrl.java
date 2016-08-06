@@ -1,5 +1,6 @@
 package org.tplatform.meeting.app;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -7,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.tplatform.common.BaseCtrl;
 import org.tplatform.meeting.entity.MeetingInfo;
 import org.tplatform.meeting.entity.MeetingSchedule;
+import org.tplatform.meeting.service.MeetingScheduleService;
 
 /**
  * Created by wzl on 2016/8/6.
@@ -14,6 +16,9 @@ import org.tplatform.meeting.entity.MeetingSchedule;
 @Controller
 @RequestMapping("/meetingSchedule")
 public class MeetingScheduleCtrl extends BaseCtrl {
+
+    @Autowired
+    private MeetingScheduleService meetingScheduleService;
 
     /**
      * 会议日程列表
