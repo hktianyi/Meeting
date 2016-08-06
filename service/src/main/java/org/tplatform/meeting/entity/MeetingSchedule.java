@@ -6,13 +6,12 @@ import org.tplatform.core.entity.BaseEntity;
 import javax.persistence.Table;
 
 /**
- * 会议基本信息
+ * 会议日程信息
  * Created by wzl on 2016/8/6.
  */
 @Data
-@Table(name = "t_meeting_info")
-public class MeetingInfo extends BaseEntity {
-
+@Table(name = "t_meeting_schedule")
+public class MeetingSchedule extends BaseEntity {
 
 
 }
