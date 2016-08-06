@@ -47,7 +47,14 @@
 <%@include file="../common/footer.jsp"%>
 <script>
   function submit() {
-    $("#form").submit();
+    var username = $("#login").val();
+    var pwd = $("#login-psw").val();
+    if (isNotNull(username) && isNotNull(pwd)){
+      $("#form").submit();
+    }else{
+      alert("请输入用户名和密码！");
+    }
+
   }
   $(function () {
     var errorMsg = "${errorMsg}";
