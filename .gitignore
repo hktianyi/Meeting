@@ -2,6 +2,7 @@
 bin
 out
 build
+classes
 target
 *.class
 

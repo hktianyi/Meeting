@@ -1,6 +1,5 @@
 package org.tplatform.config;
 
-import com.alibaba.druid.support.http.StatViewServlet;
 import org.springframework.web.WebApplicationInitializer;
 import org.springframework.web.context.support.AnnotationConfigWebApplicationContext;
 import org.springframework.web.filter.CharacterEncodingFilter;
@@ -58,9 +57,5 @@ public class WebAppConfig implements WebApplicationInitializer {
     authenticationFilter.setInitParameter("urlRegex", "^/(login|static)+.*$");
     authenticationFilter.addMappingForServletNames(EnumSet.of(DispatcherType.REQUEST), true, GlobalConstant.SYSTEM_SERVLET_NAME_SPRINGMVC);
 
-    // druid数据源监控
-    ServletRegistration.Dynamic druid = servletContext.addServlet(GlobalConstant.SYSTEM_SERVLET_NAME_DRUIDSTATVIEW, new StatViewServlet());
-    druid.addMapping("/sysInfo/druid/*");
-    springMvc.setLoadOnStartup(2);
   }
 }
