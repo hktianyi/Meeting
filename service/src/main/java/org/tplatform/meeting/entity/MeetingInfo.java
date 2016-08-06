@@ -13,6 +13,31 @@ import javax.persistence.Table;
 @Table(name = "t_meeting_info")
 public class MeetingInfo extends BaseEntity {
 
+    /**
+     * 活动名称
+     */
+    private String name;
+    /**
+     * 活动地址
+     */
+    private String address;
+    /**
+     * 活动举办开始时间
+     */
+    private String startTime;
+    /**
+     * 活动举办结束时间
+     */
+    private String endTime;
+    /**
+     * 活动类型
+     * {@link org.tplatform.meeting.entity.MeetingTypeEnum}
+     */
+    private String meetingType;
 
+    /**
+     * 活动简介
+     */
+    private String introduction;
 
 }
