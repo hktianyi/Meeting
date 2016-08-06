@@ -70,10 +70,10 @@ public class MeetingInfoCtrl extends BaseCtrl {
      * @param model
      * @return
      */
-    @RequestMapping(value = "/new", method = RequestMethod.POST)
+    @RequestMapping(value = "/new", method = RequestMethod.GET)
     public String initNew(ModelMap model){
 
-        return null;
+        return "/meeting/add.jsp";
     }
 
     /**
