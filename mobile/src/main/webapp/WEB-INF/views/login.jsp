@@ -12,7 +12,7 @@
 <div class="m-scene" id="main">
 
   <!-- Page Content -->
-  <div id="content" class="grey-blue login">
+  <div id="content" class="page">
 
     <!-- Toolbar -->
     <div id="toolbar" class="tool-login primary-color animated fadeindown">
