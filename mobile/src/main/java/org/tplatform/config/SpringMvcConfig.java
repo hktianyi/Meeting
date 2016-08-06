@@ -36,72 +36,72 @@ import java.util.Properties;
 @Configuration
 @EnableWebMvc
 @ComponentScan(basePackages = {"org.tplatform"}, basePackageClasses = {Controller.class, ControllerAdvice.class},
-    includeFilters = {@ComponentScan.Filter(type = FilterType.REGEX, pattern = ".*.app.*")})
+		includeFilters = {@ComponentScan.Filter(type = FilterType.REGEX, pattern = ".*.app.*")})
 //@ImportResource("classpath:dubbo-consumer.xml")
 public class SpringMvcConfig extends WebMvcConfigurerAdapter {
 
-  // 视图解析器
-  @Bean
-  public InternalResourceViewResolver internalResourceViewResolver() {
-    InternalResourceViewResolver internalResourceViewResolver = new InternalResourceViewResolver();
-    internalResourceViewResolver.setPrefix("/WEB-INF/views/");
-    internalResourceViewResolver.setOrder(1);
-    return internalResourceViewResolver;
-  }
+	// 视图解析器
+	@Bean
+	public InternalResourceViewResolver internalResourceViewResolver() {
+		InternalResourceViewResolver internalResourceViewResolver = new InternalResourceViewResolver();
+		internalResourceViewResolver.setPrefix("/WEB-INF/views/");
+		internalResourceViewResolver.setOrder(1);
+		return internalResourceViewResolver;
+	}
 
-  // 文件上传
-  @Bean
-  public MultipartResolver multipartResolver() {
-    CommonsMultipartResolver commonsMultipartResolver = new CommonsMultipartResolver();
-    commonsMultipartResolver.setDefaultEncoding("UTF-8");
-    commonsMultipartResolver.setMaxUploadSize(10485760000L);
-    commonsMultipartResolver.setMaxInMemorySize(40960);
-    return commonsMultipartResolver;
-  }
+	// 文件上传
+	@Bean
+	public MultipartResolver multipartResolver() {
+		CommonsMultipartResolver commonsMultipartResolver = new CommonsMultipartResolver();
+		commonsMultipartResolver.setDefaultEncoding("UTF-8");
+		commonsMultipartResolver.setMaxUploadSize(10485760000L);
+		commonsMultipartResolver.setMaxInMemorySize(40960);
+		return commonsMultipartResolver;
+	}
 
-  // 统一异常处理
-  @Bean
-  public PlatformMappingExceptionResolver platformMappingExceptionResolver() {
-    PlatformMappingExceptionResolver platformMappingExceptionResolver = new PlatformMappingExceptionResolver();
+	// 统一异常处理
+	@Bean
+	public PlatformMappingExceptionResolver platformMappingExceptionResolver() {
+		PlatformMappingExceptionResolver platformMappingExceptionResolver = new PlatformMappingExceptionResolver();
 //    platformMappingExceptionResolver.setDefaultErrorView("/404.jsp");
 //    platformMappingExceptionResolver.setExceptionAttribute("e");
-    Properties properties = new Properties();
-    properties.put("java.lang.RuntimeException", "/404.jsp");
-    platformMappingExceptionResolver.setExceptionMappings(properties);
-    return platformMappingExceptionResolver;
-  }
+		Properties properties = new Properties();
+		properties.put("java.lang.RuntimeException", "/404.jsp");
+		platformMappingExceptionResolver.setExceptionMappings(properties);
+		return platformMappingExceptionResolver;
+	}
 
-  // 静态资源映射器
-  @Override
-  public void configureDefaultServletHandling(DefaultServletHandlerConfigurer configurer) {
-    configurer.enable();
-  }
+	// 静态资源映射器
+	@Override
+	public void configureDefaultServletHandling(DefaultServletHandlerConfigurer configurer) {
+		configurer.enable();
+	}
 
-  // 解决Spring MVC @ResponseBody返回中文字符串乱码问题
-  @Override
-  public void configureMessageConverters(List<HttpMessageConverter<?>> converters) {
-    StringHttpMessageConverter stringHttpMessageConverter = new StringHttpMessageConverter();
-    List<MediaType> list = new ArrayList<>();
-    list.add(MediaType.valueOf("text/plain;charset=GBK"));
-    stringHttpMessageConverter.setSupportedMediaTypes(list);
-  }
+	// 解决Spring MVC @ResponseBody返回中文字符串乱码问题
+	@Override
+	public void configureMessageConverters(List<HttpMessageConverter<?>> converters) {
+		StringHttpMessageConverter stringHttpMessageConverter = new StringHttpMessageConverter();
+		List<MediaType> list = new ArrayList<>();
+		list.add(MediaType.valueOf("text/plain;charset=GBK"));
+		stringHttpMessageConverter.setSupportedMediaTypes(list);
+	}
 
-  // 拦截器
-  @Override
-  public void addInterceptors(InterceptorRegistry registry) {
-    super.addInterceptors(registry);
-  }
+	// 拦截器
+	@Override
+	public void addInterceptors(InterceptorRegistry registry) {
+		super.addInterceptors(registry);
+	}
 
-  // 异常处理
-  @Override
-  public void configureHandlerExceptionResolvers(List<HandlerExceptionResolver> exceptionResolvers) {
-    ExceptionHandlerExceptionResolver exceptionHandlerExceptionResolver = new ExceptionHandlerExceptionResolver();
-  }
+	// 异常处理
+	@Override
+	public void configureHandlerExceptionResolvers(List<HandlerExceptionResolver> exceptionResolvers) {
+		ExceptionHandlerExceptionResolver exceptionHandlerExceptionResolver = new ExceptionHandlerExceptionResolver();
+	}
 
-  @InitBinder
-  public void initBinder(WebDataBinder binder) {
-    SimpleDateFormat sdf = new SimpleDateFormat();
-    binder.registerCustomEditor(Date.class, new CustomDateEditor(sdf, true));
-  }
+	@InitBinder
+	public void initBinder(WebDataBinder binder) {
+		SimpleDateFormat sdf = new SimpleDateFormat();
+		binder.registerCustomEditor(Date.class, new CustomDateEditor(sdf, true));
+	}
 
 }

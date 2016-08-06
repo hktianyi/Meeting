@@ -26,6 +26,8 @@
 <link href="${_PATH}/static/css/swiper.css" rel="stylesheet" type="text/css">
 <link href="${_PATH}/static/css/swipebox.min.css" rel="stylesheet" type="text/css">
 <link href="${_PATH}/static/css/style.css" rel="stylesheet" type="text/css">
+<!-- BEGIN THEME LAYOUT STYLES -->
+<link href="${_PATH}/static/css/layout.min.css" rel="stylesheet" type="text/css" />
 <!-- END THEME LAYOUT STYLES -->
 <%--<link rel="shortcut icon" href="${_PATH}/favicon.ico" type="image/x-icon" />--%>
 <script src="${_PATH}/static/plugins/jquery-2.2.2.min.js" type="text/javascript"></script>
