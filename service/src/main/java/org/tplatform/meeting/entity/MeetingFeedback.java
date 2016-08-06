@@ -31,5 +31,9 @@ public class MeetingFeedback extends BaseEntity {
      */
     private String backTicket;
 
+    // 用餐
+    private String dinner;
+    // 活动
+    private String activity;
 
 }

@@ -20,7 +20,7 @@
         <i class="ion-android-arrow-back"></i>
       </a>
     </div>
-    <form action="/login" method="post">
+    <form action="${_PATH }/login" method="post">
       <!-- Main Content -->
       <div class="login-form animated fadeinup delay-2 z-depth-1">
 
