@@ -3,6 +3,7 @@ package org.tplatform.member.entity;
 import lombok.Data;
 import org.tplatform.core.entity.BaseEntity;
 
+import javax.persistence.Column;
 import javax.persistence.Table;
 
 /**
@@ -11,4 +12,15 @@ import javax.persistence.Table;
 @Data
 @Table(name = "t_member")
 public class Member extends BaseEntity {
+
+	public String userName;
+
+	public String userPwd;
+
+	public String realName;
+
+	public String mobile;
+
+	public String email;
+
 }

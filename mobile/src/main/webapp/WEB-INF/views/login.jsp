@@ -7,7 +7,6 @@
 <!--<![endif]-->
 <head>
   <%@include file="../common/common.jsp" %>
-  <link href="${_PATH}/static/pages/login/login.min.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 <div class="m-scene" id="main">
@@ -21,26 +20,28 @@
         <i class="ion-android-arrow-back"></i>
       </a>
     </div>
+    <form action="/login" method="post">
+      <!-- Main Content -->
+      <div class="login-form animated fadeinup delay-2 z-depth-1">
 
-    <!-- Main Content -->
-    <div class="login-form animated fadeinup delay-2 z-depth-1">
+        <h1>登录</h1>
+        <div class="input-field">
+          <i class="ion-android-contact prefix"></i>
+          <input class="validate" id="login" type="text" placeholder="请输入用户名" name="username">
+          <label for="login">用户名</label>
+        </div>
 
-      <h1>Login</h1>
-      <div class="input-field">
-        <i class="ion-android-contact prefix"></i>
-        <input class="validate" id="login" type="text">
-        <label for="login">Username</label>
-      </div>
+        <div class="input-field" style="margin-bottom:20px;">
+          <i class="ion-android-lock prefix"></i>
+          <input class="validate" id="login-psw" type="password" placeholder="请输入密码" name="password">
+          <label for="login-psw">密码</label>
+        </div>
+        <input type="submit" class="waves-effect waves-light btn-large accent-color width-100 m-b-20 animated bouncein delay-4" value="登录">
+        <%--<a class="waves-effect waves-light btn-large accent-color width-100 m-b-20 animated bouncein delay-4" href="index.html">登录</a>--%>
+        <span>没有帐户? <a class="primary-text" href="signup.html">注册</a></span>
+      </div><!-- End of Main Contents -->
+    </form>
 
-      <div class="input-field" style="margin-bottom:20px;">
-        <i class="ion-android-lock prefix"></i>
-        <input class="validate" id="login-psw" type="password">
-        <label for="login-psw">Password</label>
-      </div>
-
-      <a class="waves-effect waves-light btn-large accent-color width-100 m-b-20 animated bouncein delay-4" href="index.html">Login</a>
-      <span>Don't have an account? <a class="primary-text" href="signup.html">Sign Up</a></span>
-    </div><!-- End of Main Contents -->
 
 
   </div> <!-- End of Page Content -->
