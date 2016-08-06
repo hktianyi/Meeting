@@ -58,6 +58,7 @@ public class LoginCtrl {
 			session.setAttribute(GlobalConstant.SESSION_USER_KEY,member);
 			if (StringUtil.isNotEmpty(loginTo)) {
 				session.removeAttribute(GlobalConstant.SESSION_LOSE_TO_PAGE_KEY);
+				modelMap.put("errorMsg", "");
 				return InternalResourceViewResolver.REDIRECT_URL_PREFIX + loginTo;
 			} else {
 				return InternalResourceViewResolver.REDIRECT_URL_PREFIX + "main";
