@@ -38,12 +38,12 @@ public class MeetingInfoCtrl extends BaseCtrl {
      * @param model
      * @return
      */
-    @RequestMapping(value = "/list", method = RequestMethod.POST)
+    @RequestMapping(value = "/list", method = RequestMethod.GET)
     public String list(String keywords,String meetingType , String startTime,
                        String endTime,String orderBy,String orderType, ModelMap model){
 
 
-        return null;
+        return "/meeting/list.jsp";
     }
 
     /**
@@ -52,7 +52,7 @@ public class MeetingInfoCtrl extends BaseCtrl {
      * @param model
      * @return
      */
-    @RequestMapping(value = "/detail", method = RequestMethod.POST)
+    @RequestMapping(value = "/detail", method = RequestMethod.GET)
     public String detail(Long meetingId,ModelMap model){
 
         //基本信息
