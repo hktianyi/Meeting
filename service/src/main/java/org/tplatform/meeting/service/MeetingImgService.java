@@ -11,4 +11,5 @@ import org.tplatform.meeting.entity.MeetingImg;
 public class MeetingImgService extends BaseService<MeetingImg> {
 
 
+
 }
