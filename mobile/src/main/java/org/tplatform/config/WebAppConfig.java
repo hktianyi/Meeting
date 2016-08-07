@@ -54,7 +54,7 @@ public class WebAppConfig implements WebApplicationInitializer {
 
     // 权限过滤
     FilterRegistration.Dynamic authenticationFilter = servletContext.addFilter("authenticationFilter", new AuthenticationFilter());
-    authenticationFilter.setInitParameter("urlRegex", "^/(login|static|signup)+.*$");
+    authenticationFilter.setInitParameter("urlRegex", "^/(login|static|signup|wx|favicon\\.ico)+.*$");
     authenticationFilter.addMappingForServletNames(EnumSet.of(DispatcherType.REQUEST), true, GlobalConstant.SYSTEM_SERVLET_NAME_SPRINGMVC);
 
   }

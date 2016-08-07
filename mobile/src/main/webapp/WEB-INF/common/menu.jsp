@@ -29,7 +29,7 @@
   </li>
   <li><a href="news.html" class="no-child">活动通知</a></li>
   <li><a href="contact.html" class="no-child">消息推送</a></li>
-  <li><a href="news.html" class="no-child">用户反馈</a></li>
+  <li><a href="${_PATH}/feedback" class="no-child">用户反馈</a></li>
   <li><a href="tel:18511696693" class="no-child">联系我们</a></li>
   <li><a href="${_PATH}/logout" class="no-child">退出登录</a></li>
 </ul>

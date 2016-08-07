@@ -1,0 +1,35 @@
+group 'org.tplatform'
+version '1.0-SNAPSHOT'
+
+apply plugin: 'java'
+apply plugin: 'spring-boot'
+
+sourceCompatibility = 1.8
+
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:1.4.0.RELEASE")
+    }
+}
+
+//jar {
+//    manifest {
+//        attributes("Main-Class" : "Main",
+//                "Class-Path": configurations.compile.collect { it.getName() }.join(' '))
+//    }
+//}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+//    compile project(':service')
+    compile(
+            "org.javassist:javassist:3.20.0-GA",
+            "com.foxinmy:weixin4j-server:1.1.8"
+    )
+}

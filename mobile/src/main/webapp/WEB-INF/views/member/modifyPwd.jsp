@@ -38,7 +38,7 @@
                     <input class="validate" name="confirmPwd" type="password" id="confirmPwd">
                     <label for="confirmPwd">确认密码</label>
                 </div>
-                <a class="waves-effect waves-light btn-large primary-color width-100" href="javascript:submit()" id="button">修改</a>
+                <a class="waves-effect waves-light btn-large primary-color width-100 animated bouncein delay-6" href="javascript:submit()" id="button">修改</a>
             </div>
 
         </div>

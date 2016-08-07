@@ -1,14 +1,11 @@
 <%@ page pageEncoding="UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%
-  String title = request.getParameter("title");
-%>
 <!-- Toolbar -->
 <div id="toolbar" class="primary-color">
   <div class="open-left" id="open-left" data-activates="slide-out-left">
     <i class="ion-android-menu"></i>
   </div>
-  <span class="title"><%=title%></span>
+  <span class="title">${param.title}</span>
   <%--<div class="open-right" id="open-right" data-activates="slide-out">--%>
     <%--<i class="ion-android-person"></i>--%>
   <%--</div>--%>
