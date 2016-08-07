@@ -21,7 +21,7 @@
         </div>
 
         <!-- Main Content -->
-        <form id="form" method="post" action="/singup">
+        <form id="form" method="post" action="${_PATH}/singup">
             <div class="signup-form animated fadeinup delay-2 z-depth-1">
 
                 <h1>注册</h1>
@@ -43,7 +43,7 @@
                     <label for="confirmPwd">请再次输入密码</label>
                 </div>
                 <a class="waves-effect waves-light btn-large accent-color width-100 m-b-20 animated bouncein delay-4" href="javascript:submit();">注册</a>
-                <span>已有帐号? <a class="primary-text" href="/login">登录</a></span>
+                <span>已有帐号? <a class="primary-text" href="${_PATH}/login">登录</a></span>
             </div><!-- End of Main Contents -->
         </form>
     </div> <!-- End of Page Content -->
