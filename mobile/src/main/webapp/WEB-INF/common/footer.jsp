@@ -18,5 +18,10 @@
 <script src="${_PATH}/static/plugins/jquery-validation/jquery.validate.min.js"></script>
 <script type="text/javascript">
 
-
+    function isNotNull(str) {
+        if (null == str || '' == str || undefined == str || 'undefined' == str){
+            return false;
+        }
+        return true;
+    }
 </script>

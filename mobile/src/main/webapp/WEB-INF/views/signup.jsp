@@ -27,20 +27,20 @@
                 <h1>注册</h1>
                 <div class="input-field">
                     <i class="ion-android-contact prefix"></i>
-                    <input class="validate" name="userName" type="text" id="userName">
-                    <label for="userName">请输入用户名</label>
+                    <input class="validate" name="userName" type="text" id="userName" des="用户名">
+                    <label for="userName">用户名</label>
                 </div>
 
                 <div class="input-field" style="margin-bottom:20px;">
                     <i class="ion-android-lock prefix"></i>
                     <input class="validate" name="userPwd" type="password" id="userPwd">
-                    <label for="userPwd">请输入密码</label>
+                    <label for="userPwd">密码</label>
                 </div>
 
                 <div class="input-field" style="margin-bottom:20px;">
                     <i class="ion-android-done prefix"></i>
                     <input class="validate" name="confirmPwd" type="password" id="confirmPwd">
-                    <label for="confirmPwd">请再次输入密码</label>
+                    <label for="confirmPwd">确认密码</label>
                 </div>
                 <a class="waves-effect waves-light btn-large accent-color width-100 m-b-20 animated bouncein delay-4" href="javascript:submit();">注册</a>
                 <span>已有帐号? <a class="primary-text" href="${_PATH}/login">登录</a></span>
@@ -69,23 +69,23 @@
             next.html(error[0].innerText);
         },
         success: function (element) {
+            console.log(element);
             var next = element.next(1);
             next.html('');
         },
-        focusInvalid: false, //当为false时，验证无效时，没有焦点响应
         onkeyup: true,
         submitHandler: function (form) {
             form.submit();
         },
         rules: {
-            userName: {required: true, rangelength: [6, 20],remote:{type:"post",url:_PATH+"/validUserName",data:{userName:function(){return $("#userName").val()}}}},
-            userPwd: {required: true, rangelength: [6, 20]},
+            userName: {required: true, rangelength: [5, 20],remote:{type:"post",url:${_PATH}+"/validUserName",data:{userName:function(){return $("#userName").val()}}}},
+            userPwd: {required: true, rangelength: [8, 20]},
             confirmPwd: {required: true, equalTo: "#userPwd"}
         },
         messages: {
             userName: {required: "请输入用户名", rangelength: $.validator.format("请输入{0}到{1}位字符串"),remote:"用户名已存在"},
             userPwd: {
-                required: "请输入密码", rangelength: $.validator.format("请输入{0}到{1}位字符串")
+                required: "请输入密码", rangelength: $.validator.format("请输入{0}到{1}位密码")
             },
             confirmPwd: {
                 required: "请再次输入密码",

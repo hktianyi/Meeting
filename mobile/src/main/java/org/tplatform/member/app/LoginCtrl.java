@@ -56,9 +56,10 @@ public class LoginCtrl {
 			// 登录跳转
 			String loginTo = String.valueOf(session.getAttribute(GlobalConstant.SESSION_LOSE_TO_PAGE_KEY));
 			session.setAttribute(GlobalConstant.SESSION_USER_KEY,member);
+			modelMap.remove("errorMsg");
 			if (StringUtil.isNotEmpty(loginTo)) {
 				session.removeAttribute(GlobalConstant.SESSION_LOSE_TO_PAGE_KEY);
-				modelMap.put("errorMsg", "");
+
 				return InternalResourceViewResolver.REDIRECT_URL_PREFIX + loginTo;
 			} else {
 				return InternalResourceViewResolver.REDIRECT_URL_PREFIX + "main";
@@ -78,7 +79,7 @@ public class LoginCtrl {
 	public String main(ModelMap modelMap) {
 //		modelMap.put("title", "微信会议");
 //		modelMap.put("body", "/index.jsp");
-		return "/main.jsp";
+		return "/meeting/list.jsp";
 	}
 
 	/**

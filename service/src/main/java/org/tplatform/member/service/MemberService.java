@@ -6,6 +6,7 @@ import org.tplatform.core.fsm.StatusEnum;
 import org.tplatform.impl.BaseService;
 import org.tplatform.member.entity.Member;
 import org.tplatform.member.mapper.MemberMapper;
+import tk.mybatis.mapper.entity.Example;
 
 import java.util.List;
 
@@ -28,5 +29,18 @@ public class MemberService extends BaseService<Member> {
 			return false;
 		}
 		return true;
+	}
+
+	public int updateMember(Member member){
+		int result = memberMapper.updateByPrimaryKeySelective(member);
+		return result;
+	}
+
+	public boolean updatePwd(Long id, String userPwd) {
+		int result = memberMapper.updatePwd(id, userPwd);
+		if (result == 1)
+			return true;
+		else
+			return false;
 	}
 }
