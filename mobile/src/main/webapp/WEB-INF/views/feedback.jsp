@@ -8,9 +8,16 @@
 <head>
     <%@include file="../common/common.jsp" %>
     <style type="text/css">
+        label.error.active {
+            left: 150px;
+            color: red !important;
+        }
         label.error {
             left: 150px;
-            color: red;
+            color: red !important;
+        }
+        label.active {
+        	color: #2196f3 !important;
         }
     </style>
 </head>
@@ -32,7 +39,7 @@
                     <h4 class="center">活动反馈</h4>
                     <div>
                         <div class="input-field animated fadeinright">
-                            <input id="comeType" name="comeType" type="text" class="validate">
+                            <input id="comeType" name="comeType" type="text">
                             <label for="comeType">来时交通工具类型</label>
                         </div>
                         <div class="input-field animated fadeinright delay-1">
