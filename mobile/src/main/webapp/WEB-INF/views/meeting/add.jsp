@@ -25,7 +25,10 @@
     <div id="content" class="page">
 
         <!-- Toolbar -->
-        <jsp:include page="../../common/toolbar.jsp"></jsp:include>
+        <jsp:include page="../../common/toolbar.jsp">
+            <jsp:param name="title" value="添加会议"></jsp:param>
+            <jsp:param name="isCommnoBanner" value="0"></jsp:param>
+        </jsp:include>
 
         <!-- Main Content -->
         <div class="animated fadeinup">

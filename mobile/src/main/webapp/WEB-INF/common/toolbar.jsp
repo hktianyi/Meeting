@@ -8,7 +8,7 @@
   <div class="open-left" id="open-left" data-activates="slide-out-left">
     <i class="ion-android-menu"></i>
   </div>
-  <span class="title"><%=title%>${param.isCommnoBanner}</span>
+  <span class="title"><%=title%></span>
   <%--<div class="open-right" id="open-right" data-activates="slide-out">--%>
     <%--<i class="ion-android-person"></i>--%>
   <%--</div>--%>

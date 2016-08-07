@@ -20,77 +20,65 @@
 
         <!-- Toolbar -->
         <jsp:include page="../../common/toolbar.jsp">
-            <jsp:param name="title" value="活动列表"></jsp:param>
+            <jsp:param name="title" value="会议列表"></jsp:param>
+            <jsp:param name="isCommnoBanner" value="0"></jsp:param>
         </jsp:include>
 
         <!-- Main Content -->
         <div class="animated fadeinup">
-
-            <div class="news-main animated fadein delay-1">
-                <img alt="" src="../static/img/2.jpg">
-                <a href="article.html">
-                    <div class="opacity-overlay-black">
+            <c:if test="${empty dataList}">
+                    <p>无会议记录</p>
+            </c:if>
+            <c:if test="${not empty dataList}">
+                <c:forEach begin="0" end="0" var="item"  items="${dataList}">
+                    <div class="news-main animated fadein delay-1">
+                        <img alt="" src="../static/img/2.jpg">
+                        <a href="article.html">
+                            <div class="opacity-overlay-black">
+                            </div>
+                        </a>
+                        <div class="top-news animated fadeinright delay-1">
+                            <a href="article.html" >
+                                <h4 class="top-news-title">
+                                    ${item.name}
+                                </h4>
+                                <p style="margin-left: 20px; margin-right: 20px;">
+                                        ${item.introduction}
+                                </p>
+                                <p style="margin-left: 20px; margin-right: 20px;">
+                                        ${item.address}
+                                </p>
+                            </a>
+                            <span class="top-news-channel">${item.startTime}-${item.endTime}</span> <span class="top-news-category">未开始</span>
+                            <div class="clr">
+                            </div>
+                        </div>
                     </div>
-                </a>
 
-                <div class="top-news animated fadeinright delay-1">
-                    <h4 class="top-news-title">
-                        <a href="article.html">A wonderful serenity has taken possession of me</a>
-                    </h4>
-                    <span class="top-news-channel">CNN - 10 min ago</span> <span class="top-news-category">SCIENCE</span>
-                    <div class="clr">
-                    </div>
+                </c:forEach>
+
+                <div>
+                    <c:forEach begin="1"  var="item"  items="${dataList}">
+                        <div class="single-news animated fadeinright delay-2">
+                            <a href="article.html">
+                                <h4 class="single-news-title">
+                                   ${item.name}
+                                </h4>
+                                <p>
+                                   ${item.introduction}
+                                </p>
+                                <p>
+                                   ${item.address}
+                                </p>
+                            </a>
+                            <span class="single-news-channel">${item.startTime}-${item.endTime}</span>
+                            <span class="single-news-category">结束</span>
+                            <div class="clr">
+                            </div>
+                        </div>
+                    </c:forEach>
                 </div>
-            </div>
-
-            <div>
-                <div class="single-news animated fadeinright delay-2">
-                    <h4 class="single-news-title">
-                        <a href="article.html">That I neglect my talents</a>
-                    </h4>
-                    <span class="single-news-channel">technet.com - 1 min ago</span> <span class="single-news-category">TECH</span>
-                    <div class="clr">
-                    </div>
-                </div>
-
-                <div class="single-news animated fadeinright delay-3">
-                    <h4 class="single-news-title">
-                        <a href="article.html">Feeling the charm of existence</a>
-                    </h4>
-                    <span class="single-news-channel">cooking.com - 3h ago</span> <span class="single-news-category">RECIPE</span>
-                    <div class="clr">
-                    </div>
-                </div>
-
-                <div class="single-news animated fadeinright delay-4">
-                    <h4 class="single-news-title">
-                        <a href="article.html">So absorbed in the exquisite sense</a>
-                    </h4>
-                    <span class="single-news-channel">theearth.com - 7h ago</span> <span class="single-news-category">ENVIROMENT</span>
-                    <div class="clr">
-                    </div>
-                </div>
-
-                <div class="single-news animated fadeinright delay-5">
-                    <h4 class="single-news-title">
-                        <a href="article.html">I am so happy my dear friend</a>
-                    </h4>
-                    <span class="single-news-channel">topgym.com - Yesterday</span> <span class="single-news-category">FITNESS</span>
-                    <div class="clr">
-                    </div>
-                </div>
-
-                <div class="single-news animated fadeinright delay-6">
-                    <h4 class="single-news-title">
-                        <a href="article.html">The bliss of souls like mine</a>
-                    </h4>
-                    <span class="single-news-channel">fitness.com - Yesterday</span> <span class="single-news-category">BEAUTY</span>
-                    <div class="clr">
-                    </div>
-                </div>
-
-            </div>
-
+            </c:if>
             <!-- Footer -->
             <jsp:include page="../../common/pageFooter.jsp"></jsp:include>
 
