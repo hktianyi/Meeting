@@ -61,7 +61,7 @@ public class MeetingInfoCtrl extends BaseCtrl {
 
         //会议日程列表
 
-        return null;
+        return "/meeting/detail.jsp";
     }
 
 

@@ -8,10 +8,26 @@
 <head>
     <%@include file="../../common/common.jsp" %>
     <style type="text/css">
-   /*     .input-field{margin-top: 2rem;}*/
-        .input-field label{left: 0rem; top: 1.2rem; font-size: 1.2rem;}
+        .input-field{margin-top: 2rem;}
+        .input-field label{left: 0rem; top: 1.2rem;}
         .input-field label.active{font-size: 1.2rem;}
-        .input-field input{text-indent: 10px;}
+        .input-field .valueStyle{
+            text-indent: 10px;
+            background-color: transparent;
+            border: none;
+            border-bottom: 1px solid #9e9e9e;
+            border-radius: 0;
+            outline: none;
+            width: 100%;
+            font-size: 1rem;
+            margin: 0 0 15px 0;
+            box-shadow: none;
+            -webkit-box-sizing: content-box;
+            -moz-box-sizing: content-box;
+            box-sizing: content-box;
+            transition: all .3s;
+            padding: 1rem 0;
+            word-break: break-word;}
     </style>
 </head>
 <body>
@@ -42,32 +58,41 @@
                     <!-- Form Inputs -->
                     <div class="form-inputs">
                         <div class="input-field animated fadeinright">
-                            <input id="first_name" type="text" class="validate">
-                            <label for="first_name">活动地址</label>
+                            <p class="valueStyle">
+                                北京海淀区苏州街国际大酒店
+                            </p>
+                            <label class="active">活动地址</label>
                         </div>
                         <div class="input-field animated fadeinright delay-1">
-                            <input id="last_name" type="text" class="validate">
-                            <label for="last_name">活动开始时间</label>
-                        </div>
-                        <div class="input-field animated fadeinright delay-2">
-                            <input id="email" type="email">
-                            <label for="email">活动结束时间</label>
+                            <p class="valueStyle">
+                                2016.09.02—2016.09.03
+                            </p>
+                            <label class="active">活动时间</label>
                         </div>
                         <div class="input-field animated fadeinright delay-4">
-                            <input id="city" type="text" class="validate">
-                            <label for="city">活动类型</label>
+                            <p class="valueStyle">
+                                培训会议
+                            </p>
+                            <label class="active">活动类型</label>
                         </div>
                         <div class="input-field animated fadeinright delay-4">
-                            <input id="free" type="text" class="validate">
-                            <label for="free">活动费用</label>
+                            <p class="valueStyle">
+                                免费
+                            </p>
+                            <label class="active">活动费用</label>
                         </div>
                         <div class="input-field animated fadeinright delay-5">
-                            <textarea class="materialize-textarea" id="textarea1"></textarea>
-                            <label for="textarea1">活动简介</label>
+                            <p class="valueStyle">
+                                此活动内部培训内部培训内部培训内部培训内部培训内部培训内部培训内部培训内
+                                部培训内部培训内部培训内部培训内部培训内部培训
+                                部培训内部培训内部培训内部培训内部培训内部培训
+                                部培训内部培训内部培训内部培训内部培训内部培训
+                                部培训内部培训内部培训内部培训内部培训内部培训
+                                部培训内部培训内部培训内部培训内部培训内部培训
+
+                            </p>
+                            <label class="active">活动简介</label>
                         </div>
-                        <a class="waves-effect waves-light btn-large primary-color width-100 animated bouncein delay-6" href="index.html">
-                            提交
-                        </a>
                     </div>
                 </div>
 
@@ -147,6 +172,12 @@
                         </div>
                     </div>
                 </div>
+                 <div style="padding: 20px 40px;">
+                     <a class="waves-effect waves-light btn-large primary-color width-100 animated bouncein delay-6" href="index.html">
+                         参加活动
+                     </a>
+                 </div>
+
             </div>
             <!-- Footer -->
             <jsp:include page="../../common/pageFooter.jsp"></jsp:include>
