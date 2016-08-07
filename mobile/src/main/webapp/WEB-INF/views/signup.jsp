@@ -6,46 +6,94 @@
 <html>
 <!--<![endif]-->
 <head>
-  <%@include file="../common/common.jsp" %>
-  <link href="${_PATH}/static/pages/login/login.min.css" rel="stylesheet" type="text/css"/>
+    <%@include file="../common/common.jsp" %>
 </head>
 <body>
 <div class="m-scene" id="main">
+    <!-- Page Content -->
+    <div id="content" class="grey-blue signup">
 
-  <!-- Page Content -->
-  <div id="content" class="grey-blue login">
+        <!-- Toolbar -->
+        <div id="toolbar" class="tool-signup primary-color animated fadeindown">
+            <a href="javascript:history.back()" class="open-left">
+                <i class="ion-android-arrow-back"></i>
+            </a>
+        </div>
 
-    <!-- Toolbar -->
-    <div id="toolbar" class="tool-login primary-color animated fadeindown">
-      <a href="javascript:history.back()" class="open-left">
-        <i class="ion-android-arrow-back"></i>
-      </a>
-    </div>
+        <!-- Main Content -->
+        <form id="form" method="post" action="/singup">
+            <div class="signup-form animated fadeinup delay-2 z-depth-1">
 
-    <!-- Main Content -->
-    <div class="login-form animated fadeinup delay-2 z-depth-1">
+                <h1>注册</h1>
+                <div class="input-field">
+                    <i class="ion-android-contact prefix"></i>
+                    <input class="validate" name="userName" type="text" id="userName">
+                    <label for="userName">请输入用户名</label>
+                </div>
 
-      <h1>登录</h1>
-      <div class="input-field">
-        <i class="ion-android-contact prefix"></i>
-        <input class="validate" id="login" type="text" placeholder="请输入用户名">
-        <label for="login">用户名</label>
-      </div>
+                <div class="input-field" style="margin-bottom:20px;">
+                    <i class="ion-android-lock prefix"></i>
+                    <input class="validate" name="userPwd" type="password" id="userPwd">
+                    <label for="userPwd">请输入密码</label>
+                </div>
 
-      <div class="input-field" style="margin-bottom:20px;">
-        <i class="ion-android-lock prefix"></i>
-        <input class="validate" id="login-psw" type="password" placeholder="请输入密码">
-        <label for="login-psw">密码</label>
-      </div>
-
-      <a class="waves-effect waves-light btn-large accent-color width-100 m-b-20 animated bouncein delay-4" href="index.html">登录</a>
-      <span>没有帐户? <a class="primary-text" href="/signup.html">注册</a></span>
-    </div><!-- End of Main Contents -->
-
-
-  </div> <!-- End of Page Content -->
+                <div class="input-field" style="margin-bottom:20px;">
+                    <i class="ion-android-done prefix"></i>
+                    <input class="validate" name="confirmPwd" type="password" id="confirmPwd">
+                    <label for="confirmPwd">请再次输入密码</label>
+                </div>
+                <a class="waves-effect waves-light btn-large accent-color width-100 m-b-20 animated bouncein delay-4" href="javascript:submit();">注册</a>
+                <span>已有帐号? <a class="primary-text" href="/login">登录</a></span>
+            </div><!-- End of Main Contents -->
+        </form>
+    </div> <!-- End of Page Content -->
 
 </div> <!-- End of Page Container -->
-<%@include file="../common/footer.jsp"%>
+<%@include file="../common/footer.jsp" %>
+
+<script>
+    function submit() {
+        $("#form").submit();
+    }
+
+    var validate = $("#form").validate({
+        debug: true,
+        submitHandler: function (form) {
+            form.submit();
+        },
+        onfocusout: function (element) {
+            $(element).valid();
+        },
+        errorPlacement: function (error, element) {
+            var next = element.next(1);
+            next.html(error[0].innerText);
+        },
+        success: function (element) {
+            var next = element.next(1);
+            next.html('');
+        },
+        focusInvalid: false, //当为false时，验证无效时，没有焦点响应
+        onkeyup: true,
+        submitHandler: function (form) {
+            form.submit();
+        },
+        rules: {
+            userName: {required: true, rangelength: [6, 20]},
+            userPwd: {required: true, rangelength: [6, 20]},
+            confirmPwd: {required: true, equalTo: "#userPwd"}
+        },
+        messages: {
+            userName: {required: "请输入用户名", rangeLength: jQuery.validator.format("请输入一个长度介于 {0} 和 {1} 之间的字符串")},
+            userPwd: {
+                required: "请输入密码", rangeLength: jQuery.validator.format("请输入一个长度介于 {0} 和 {1} 之间的字符串")
+            },
+            confirmPwd: {
+                required: "请再次输入密码",
+                equalTo: "两次输入不一致"
+            }
+        }
+    });
+
+</script>
 </body>
 </html>
