@@ -40,35 +40,43 @@
 
                 <div id="test1">
                     <!-- Form Inputs -->
+                    <form id="form" method="post" action="${_PATH}/meeting/add">
                     <div class="form-inputs">
                         <div class="input-field animated fadeinright">
-                            <input id="first_name" type="text" class="validate">
-                            <label for="first_name">活动地址</label>
+                            <input id="name"  name="name" type="text" class="validate">
+                            <label for="name">活动名称</label>
+                        </div>
+                        <div class="input-field animated fadeinright">
+                            <input id="address" name="address" type="text" class="validate">
+                            <label for="address">活动地址</label>
                         </div>
                         <div class="input-field animated fadeinright delay-1">
-                            <input id="last_name" type="text" class="validate">
-                            <label for="last_name">活动开始时间</label>
+                            <input id="startTime" name="startTime" type="text" class="validate">
+                            <label for="startTime">活动开始时间</label>
                         </div>
                         <div class="input-field animated fadeinright delay-2">
-                            <input id="email" type="email">
-                            <label for="email">活动结束时间</label>
+                            <input id="endTime" name="endTime" type="text">
+                            <label for="endTime">活动结束时间</label>
                         </div>
                         <div class="input-field animated fadeinright delay-4">
-                            <input id="city" type="text" class="validate">
-                            <label for="city">活动类型</label>
+                            <input id="meetingType" name="meetingType" type="text" class="validate">
+                            <label for="meetingType">活动类型</label>
                         </div>
                         <div class="input-field animated fadeinright delay-4">
-                            <input id="free" type="text" class="validate">
+                            <input id="free" name="free" type="text" class="validate">
                             <label for="free">活动费用</label>
                         </div>
                         <div class="input-field animated fadeinright delay-5">
-                            <textarea class="materialize-textarea" id="textarea1"></textarea>
-                            <label for="textarea1">活动简介</label>
+                            <textarea class="materialize-textarea" id="introduction" name="introduction"></textarea>
+                            <label for="introduction">活动简介</label>
                         </div>
-                        <a class="waves-effect waves-light btn-large primary-color width-100 animated bouncein delay-6" href="index.html">
+                        <a class="waves-effect waves-light btn-large primary-color width-100 animated bouncein delay-6"
+                           href="javascript:submit();">
                             提交
                         </a>
+
                     </div>
+                  </form>
                 </div>
 
                 <div id="test2">
@@ -158,5 +166,54 @@
 </div> <!-- End of Page Container -->
 
 <%@include file="../../common/footer.jsp" %>
+<%--<script type="text/javascript" src="${_PATH}/static/plugins/custom/meeting.js"></script>--%>
+<script type="text/javascript">
+    function submit(){
+        $("#form").submit();
+    }
+    validate();
+    var lableMap = {};
+    function validate(){
+        var validate = $("#form").validate({
+            debug: true,
+            submitHandler: function (form) {
+                form.submit();
+            },
+            errorPlacement: function (error, element) {
+                var next = element.next(1);
+                if(!lableMap[ $(element).attr("name")])
+                    lableMap[ $(element).attr("name")] = next.html();
+
+                next.html(error[0].innerText);
+            },
+            success: function (element) {
+                var next = element.next(1);
+               // console.log($(element).attr("name"));
+                next.html('');
+            },
+            focusInvalid: false, //当为false时，验证无效时，没有焦点响应
+            onkeyup: true,
+            rules: {
+                name: {required: true, rangelength: [6, 20]},
+                address:{required: true, rangelength: [6, 64]},
+                startTime:{required: true},
+                endTime:{required: true},
+                meetingType:{required: true},
+                free:{required: true},
+                introduction:{required: true}
+            },
+            messages: {
+                name: {required: "请输入名称", rangelength: $.validator.format("请输入{0}到{1}位字符串")},
+                address:{required: "请输入地址", rangelength: $.validator.format("请输入{0}到{1}位字符串")},
+                startTime:{required: "开始时间不能为空",},
+                endTime:{required: "结束时间不能为空",},
+                meetingType:{required: "请选择会议类型",},
+                free:{required: "请输入费用",},
+                introduction:{required: "请输入会议简介",}
+            }
+        });
+    }
+
+</script>
 </body>
 </html>
