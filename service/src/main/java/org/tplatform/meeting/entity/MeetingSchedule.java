@@ -13,6 +13,7 @@ import javax.persistence.Table;
 @Table(name = "t_meeting_schedule")
 public class MeetingSchedule extends BaseEntity {
 
+    private Long meetingId;
     /**
      * 日程标题
      */

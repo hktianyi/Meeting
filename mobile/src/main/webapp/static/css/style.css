@@ -2452,3 +2452,31 @@ span.data-color {
 #filter .mix {
     width: 100%;
 }
+
+
+
+.meetingDetail .input-field{margin-top: 2rem;}
+.meetingDetail .input-field label{left: 0rem; top: 1.2rem;}
+.meetingDetail .input-field label.active{font-size: 1.2rem;}
+.meetingDetail .input-field .valueStyle{
+    text-indent: 10px;
+    background-color: transparent;
+    border: none;
+    border-bottom: 1px solid #9e9e9e;
+    border-radius: 0;
+    outline: none;
+    width: 100%;
+    font-size: 1rem;
+    margin: 0 0 15px 0;
+    box-shadow: none;
+    -webkit-box-sizing: content-box;
+    -moz-box-sizing: content-box;
+    box-sizing: content-box;
+    transition: all .3s;
+    padding: 1rem 0;
+    word-break: break-word;
+}
+
+.meetingAdd .input-field label{left: 0rem; top: 1.2rem; font-size: 1.2rem;}
+.meetingAdd .input-field label.active{font-size: 1.2rem;}
+.meetingAdd .input-field input{text-indent: 10px;}

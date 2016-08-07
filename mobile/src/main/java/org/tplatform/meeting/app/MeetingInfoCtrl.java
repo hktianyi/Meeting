@@ -3,11 +3,13 @@ package org.tplatform.meeting.app;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.tplatform.common.BaseCtrl;
 import org.tplatform.meeting.entity.MeetingImg;
 import org.tplatform.meeting.entity.MeetingInfo;
+import org.tplatform.meeting.entity.MeetingSchedule;
 import org.tplatform.meeting.service.MeetingImgService;
 import org.tplatform.meeting.service.MeetingInfoService;
 import org.tplatform.meeting.service.MeetingScheduleService;
@@ -41,8 +43,7 @@ public class MeetingInfoCtrl extends BaseCtrl {
     @RequestMapping(value = "/list", method = RequestMethod.GET)
     public String list(String keywords,String meetingType , String startTime,
                        String endTime,String orderBy,String orderType, ModelMap model){
-
-
+        model.put("dataList",meetingInfoService.findAll());
         return "/meeting/list.jsp";
     }
 
@@ -52,15 +53,17 @@ public class MeetingInfoCtrl extends BaseCtrl {
      * @param model
      * @return
      */
-    @RequestMapping(value = "/detail", method = RequestMethod.GET)
-    public String detail(Long meetingId,ModelMap model){
+    @RequestMapping(value = "/detail/{meetingId}", method = RequestMethod.GET)
+    public String detail(@PathVariable("meetingId") Long meetingId, ModelMap model){
 
         //基本信息
-
+        model.put("meeting",meetingInfoService.find(meetingId));
         //轮播图片
-
+        model.put("banner",meetingInfoService.find(meetingId));
         //会议日程列表
-
+        MeetingSchedule schedule = new MeetingSchedule();
+        schedule.setMeetingId(meetingId);
+        model.put("schedules",meetingScheduleService.find(schedule));
         return "/meeting/detail.jsp";
     }
 
@@ -78,13 +81,14 @@ public class MeetingInfoCtrl extends BaseCtrl {
 
     /**
      * 添加保存会议
+     *   生成会议链接和二维码
      * @param model
      * @return
      */
     @RequestMapping(value = "/add", method = RequestMethod.POST)
     public String add(MeetingInfo entity,ModelMap model){
-
-        return null;
+        int flag = meetingInfoService.save(entity);
+        return "/meeting/success.jsp";
     }
 
     /**
