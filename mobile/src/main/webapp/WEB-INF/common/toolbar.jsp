@@ -13,7 +13,7 @@
     <%--<i class="ion-android-person"></i>--%>
   <%--</div>--%>
 </div>
-<c:if test="{empty isCommnoBanner}">
+<c:if test="${empty isCommnoBanner}">
 <div class="h-banner animated fadeindown">
   <div class="parallax">
     <!-- Slider -->
