@@ -1,13 +1,10 @@
 package org.tplatform.member.app;
 
-import com.foxinmy.weixin4j.exception.WeixinException;
-import org.conference.biz.service.TemplateMsgService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import org.tplatform.constant.GlobalConstant;
 import org.tplatform.framework.util.StringUtil;
@@ -96,19 +93,4 @@ public class LoginCtrl {
 		return InternalResourceViewResolver.REDIRECT_URL_PREFIX + "/login";
 	}
 
-
-
-	@Autowired
-	private TemplateMsgService templateMsgService;
-
-	@RequestMapping("/testWx")
-	@ResponseBody
-	public String testWx(String content) {
-		try {
-			templateMsgService.sendAgendaWarn((String) session.getAttribute("openId"), content);
-		} catch (WeixinException e) {
-			e.printStackTrace();
-		}
-		return "OK";
-	}
 }

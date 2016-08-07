@@ -1,7 +1,5 @@
 package org.tplatform.filters;
 
-import com.foxinmy.weixin4j.exception.WeixinException;
-import com.foxinmy.weixin4j.mp.WeixinProxy;
 import com.foxinmy.weixin4j.mp.api.OauthApi;
 import org.tplatform.constant.GlobalConstant;
 import org.tplatform.framework.util.StringUtil;
@@ -40,15 +38,9 @@ public class AuthenticationFilter implements Filter {
 
     String ua = req.getHeader("user-agent").toLowerCase();
     if(ua.indexOf("micromessenger") > -1 && req.getSession().getAttribute("openId") == null && !uri.startsWith("/wx")) {
-      WeixinProxy weixinProxy = new WeixinProxy();
-      try {
-        weixinProxy.getTokenManager().getAccessToken();
-        OauthApi oauthApi = new OauthApi();
-        this.forword(req, res, oauthApi.getAuthorizeURL());
-        return;
-      } catch (WeixinException e) {
-        e.printStackTrace();
-      }
+      OauthApi oauthApi = new OauthApi();
+      this.forword(req, res, oauthApi.getAuthorizeURL());
+      return;
     }
 
     //1，白名单判断
