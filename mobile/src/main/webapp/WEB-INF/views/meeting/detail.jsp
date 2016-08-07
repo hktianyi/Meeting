@@ -1,4 +1,5 @@
 <%@ page pageEncoding="UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <!--[if IE 8]> <html class="ie8 no-js"> <![endif]-->
 <!--[if IE 9]> <html class="ie9 no-js"> <![endif]-->
@@ -7,28 +8,6 @@
 <!--<![endif]-->
 <head>
     <%@include file="../../common/common.jsp" %>
-    <style type="text/css">
-        .input-field{margin-top: 2rem;}
-        .input-field label{left: 0rem; top: 1.2rem;}
-        .input-field label.active{font-size: 1.2rem;}
-        .input-field .valueStyle{
-            text-indent: 10px;
-            background-color: transparent;
-            border: none;
-            border-bottom: 1px solid #9e9e9e;
-            border-radius: 0;
-            outline: none;
-            width: 100%;
-            font-size: 1rem;
-            margin: 0 0 15px 0;
-            box-shadow: none;
-            -webkit-box-sizing: content-box;
-            -moz-box-sizing: content-box;
-            box-sizing: content-box;
-            transition: all .3s;
-            padding: 1rem 0;
-            word-break: break-word;}
-    </style>
 </head>
 <body>
 <div class="m-scene" id="main"> <!-- Main Container -->
@@ -41,7 +20,10 @@
     <div id="content" class="page">
 
         <!-- Toolbar -->
-        <jsp:include page="../../common/toolbar.jsp"></jsp:include>
+        <jsp:include page="../../common/toolbar.jsp">
+            <jsp:param name="title" value="会议详细"></jsp:param>
+            <jsp:param name="isCommnoBanner" value="0"></jsp:param>
+        </jsp:include>
 
         <!-- Main Content -->
         <div class="animated fadeinup">
@@ -54,42 +36,50 @@
                     </ul>
                 </div>
 
-                <div id="test1">
+                <div id="test1" class="meetingDetail">
                     <!-- Form Inputs -->
                     <div class="form-inputs">
                         <div class="input-field animated fadeinright">
                             <p class="valueStyle">
-                                北京海淀区苏州街国际大酒店
+                                ${meeting.name}
+                            </p>
+                            <label class="active">会议名称</label>
+                        </div>
+                        <div class="input-field animated fadeinright">
+                            <p class="valueStyle">
+                                ${meeting.address}
                             </p>
                             <label class="active">活动地址</label>
                         </div>
                         <div class="input-field animated fadeinright delay-1">
                             <p class="valueStyle">
-                                2016.09.02—2016.09.03
+                                ${meeting.startTime}-${meeting.endTime}
                             </p>
                             <label class="active">活动时间</label>
                         </div>
                         <div class="input-field animated fadeinright delay-4">
                             <p class="valueStyle">
-                                培训会议
+                                ${meeting.meetingType}
                             </p>
                             <label class="active">活动类型</label>
                         </div>
                         <div class="input-field animated fadeinright delay-4">
                             <p class="valueStyle">
-                                免费
+                                <c:choose>
+                                    <c:when test="${meeting.free eq '0' || meeting.free eq '0.00'}">
+                                       免费
+                                    </c:when>
+                                    <c:otherwise>
+                                        ${meeting.free}
+                                    </c:otherwise>
+                                </c:choose>
+
                             </p>
                             <label class="active">活动费用</label>
                         </div>
                         <div class="input-field animated fadeinright delay-5">
                             <p class="valueStyle">
-                                此活动内部培训内部培训内部培训内部培训内部培训内部培训内部培训内部培训内
-                                部培训内部培训内部培训内部培训内部培训内部培训
-                                部培训内部培训内部培训内部培训内部培训内部培训
-                                部培训内部培训内部培训内部培训内部培训内部培训
-                                部培训内部培训内部培训内部培训内部培训内部培训
-                                部培训内部培训内部培训内部培训内部培训内部培训
-
+                                ${meeting.introduction}
                             </p>
                             <label class="active">活动简介</label>
                         </div>
@@ -97,77 +87,30 @@
                 </div>
 
                 <div id="test2">
-                    <div class="container activity p-l-r-20">
+                    <div class="container activity p-l-r-20" style=" padding-left: 100px !important;">
                         <div class="row m-l-0">
                             <div class="col">
-
-                                <div class="contact">
-                                    <span class="date">4 - 5 pm</span>
-                                    <div class="dot z-depth-1">
+                                <c:forEach items="${schedules}" var="item">
+                                    <div class="contact" style="padding: 16px 0;">
+                                        <span class="date" style=" left: -140px;top: 10px;">
+                                        ${item.scheduleDate}
+                                        </span>
+                                        <span class="date" style=" left: -140px;top: 28px;">
+                                        ${item.startTime} - ${item.endTime}  ${item.timeOfDay}
+                                        </span>
+                                        <div class="dot z-depth-1">
+                                        </div>
+                                        <p>
+                                            ${item.title}
+                                        </p>
+<%--                                        <div class="friends">
+                                            <img alt="" class="circle" src="../static/img/user3.jpg">
+                                            <img alt="" class="circle" src="../static/img/user4.jpg">
+                                            <img alt="" class="circle" src="../static/img/user.jpg">
+                                        </div>--%>
+                                        <span>${item.context}</span>
                                     </div>
-                                    <p>
-                                        37 New friends
-                                    </p>
-                                    <div class="friends">
-                                        <img alt="" class="circle" src="../static/img/user3.jpg">
-                                        <img alt="" class="circle" src="../static/img/user4.jpg">
-                                        <img alt="" class="circle" src="../static/img/user.jpg">
-                                    </div>
-                                </div>
-
-                                <div class="contact">
-                                    <span class="date">1 - 2 pm</span>
-                                    <div class="dot z-depth-1">
-                                    </div>
-                                    <p>
-                                        Jake Soul
-                                    </p>
-                                    <span>A wonderful serenity has taken possession of my entire soul, like these sweet mornings of spring which I enjoy with my whole heart.</span>
-                                </div>
-
-                                <div class="contact">
-                                    <img alt="" src="../static/img/user.jpg">
-                                    <div class="dot z-depth-1">
-                                    </div>
-                                    <p>
-                                        Robert Green
-                                    </p>
-                                    <span>7 New notifications</span>
-                                </div>
-
-                                <div class="contact">
-                                    <span class="date">4 - 8 am</span>
-                                    <div class="dot z-depth-1">
-                                    </div>
-                                    <p>
-                                        Camilla Oller
-                                    </p>
-                                    <span>One morning, when Gregor Samsa woke from troubled dreams, he found himself transformed in his bed into a horrible vermin.</span>
-                                </div>
-
-                                <div class="contact">
-                                    <span class="date">2 - 3 am</span>
-                                    <div class="dot z-depth-1">
-                                    </div>
-                                    <p>
-                                        Added 3 new photos.
-                                    </p>
-                                    <div class="friends">
-                                        <img alt="" class="circle" src="../static/img/user4.jpg">
-                                        <img alt="" class="circle" src="../static/img/user2.jpg">
-                                        <img alt="" class="circle" src="../static/img/user3.jpg">
-                                    </div>
-                                </div>
-
-                                <div class="contact">
-                                    <span class="date">1 - 2 pm</span>
-                                    <div class="dot z-depth-1">
-                                    </div>
-                                    <p>
-                                        Mike Lee <i class="ion-android-attach"></i>
-                                    </p>
-                                    <span>Sent you an attachment.</span>
-                                </div>
+                                </c:forEach>
                             </div>
                         </div>
                     </div>

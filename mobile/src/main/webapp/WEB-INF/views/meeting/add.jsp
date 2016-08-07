@@ -7,12 +7,6 @@
 <!--<![endif]-->
 <head>
     <%@include file="../../common/common.jsp" %>
-    <style type="text/css">
-   /*     .input-field{margin-top: 2rem;}*/
-        .input-field label{left: 0rem; top: 1.2rem; font-size: 1.2rem;}
-        .input-field label.active{font-size: 1.2rem;}
-        .input-field input{text-indent: 10px;}
-    </style>
 </head>
 <body>
 <div class="m-scene" id="main"> <!-- Main Container -->
@@ -41,7 +35,7 @@
                     </ul>
                 </div>
 
-                <div id="test1">
+                <div id="test1" class="meetingAdd">
                     <!-- Form Inputs -->
                     <form id="form" method="post" action="${_PATH}/meeting/add">
                     <div class="form-inputs">

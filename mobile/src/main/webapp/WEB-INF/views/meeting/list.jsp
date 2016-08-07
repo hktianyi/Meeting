@@ -1,4 +1,5 @@
 <%@ page pageEncoding="UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <!--[if IE 8]> <html class="ie8 no-js"> <![endif]-->
 <!--[if IE 9]> <html class="ie9 no-js"> <![endif]-->
@@ -60,7 +61,7 @@
                 <div>
                     <c:forEach begin="1"  var="item"  items="${dataList}">
                         <div class="single-news animated fadeinright delay-2">
-                            <a href="article.html">
+                            <a href="${_PATH}/meeting/detail/${item.id}">
                                 <h4 class="single-news-title">
                                    ${item.name}
                                 </h4>
