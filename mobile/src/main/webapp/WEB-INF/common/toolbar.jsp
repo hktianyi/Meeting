@@ -8,12 +8,12 @@
   <div class="open-left" id="open-left" data-activates="slide-out-left">
     <i class="ion-android-menu"></i>
   </div>
-  <span class="title"><%=title%></span>
+  <span class="title"><%=title%>${param.isCommnoBanner}</span>
   <%--<div class="open-right" id="open-right" data-activates="slide-out">--%>
     <%--<i class="ion-android-person"></i>--%>
   <%--</div>--%>
 </div>
-<c:if test="${empty isCommnoBanner}">
+<c:if test="${empty param.isCommnoBanner}">
 <div class="h-banner animated fadeindown">
   <div class="parallax">
     <!-- Slider -->
