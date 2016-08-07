@@ -5,6 +5,7 @@ import org.tplatform.core.entity.BaseEntity;
 
 import javax.persistence.Column;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 /**
  * Created by tianyi on 16/8/6.
@@ -22,5 +23,8 @@ public class Member extends BaseEntity {
 	public String mobile;
 
 	public String email;
+
+	@Transient
+	public String confirmPwd;
 
 }

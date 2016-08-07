@@ -78,14 +78,14 @@
             form.submit();
         },
         rules: {
-            userName: {required: true, rangelength: [6, 20]},
+            userName: {required: true, rangelength: [6, 20],remote:{type:"post",url:_PATH+"/validUserName",data:{userName:function(){return $("#userName").val()}}}},
             userPwd: {required: true, rangelength: [6, 20]},
             confirmPwd: {required: true, equalTo: "#userPwd"}
         },
         messages: {
-            userName: {required: "请输入用户名", rangeLength: jQuery.validator.format("请输入一个长度介于 {0} 和 {1} 之间的字符串")},
+            userName: {required: "请输入用户名", rangelength: $.validator.format("请输入{0}到{1}位字符串"),remote:"用户名已存在"},
             userPwd: {
-                required: "请输入密码", rangeLength: jQuery.validator.format("请输入一个长度介于 {0} 和 {1} 之间的字符串")
+                required: "请输入密码", rangelength: $.validator.format("请输入{0}到{1}位字符串")
             },
             confirmPwd: {
                 required: "请再次输入密码",
