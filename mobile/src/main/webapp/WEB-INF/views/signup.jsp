@@ -42,7 +42,7 @@
                     <input class="validate" name="confirmPwd" type="password" id="confirmPwd">
                     <label for="confirmPwd">确认密码</label>
                 </div>
-                <a class="waves-effect waves-light btn-large accent-color width-100 m-b-20 animated bouncein delay-4" href="javascript:submit();">注册</a>
+                <a class="waves-effect waves-light btn-large primary-color width-100 animated bouncein delay-6" href="javascript:submit();">注册</a>
                 <span>已有帐号? <a class="primary-text" href="${_PATH}/login">登录</a></span>
             </div><!-- End of Main Contents -->
         </form>

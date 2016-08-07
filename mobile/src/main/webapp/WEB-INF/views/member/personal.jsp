@@ -57,7 +57,7 @@
                         <input id="address" type="text" class="validate" name="address" value="${member.address}">
                         <label for="address">详细地址</label>
                     </div>
-                    <a class="waves-effect waves-light btn-large primary-color width-100" href="javascript:submit();">修改</a>
+                    <a class="waves-effect waves-light btn-large primary-color width-100 animated bouncein delay-6" href="javascript:submit();">修改</a>
                 </div>
             </form>
         </div>
