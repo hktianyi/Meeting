@@ -76,8 +76,8 @@ public class LoginCtrl {
 	 */
 	@RequestMapping(value = "/main", method = RequestMethod.GET)
 	public String main(ModelMap modelMap) {
-		modelMap.put("title", "微信会议");
-		modelMap.put("body", "/index.jsp");
+//		modelMap.put("title", "微信会议");
+//		modelMap.put("body", "/index.jsp");
 		return "/main.jsp";
 	}
 

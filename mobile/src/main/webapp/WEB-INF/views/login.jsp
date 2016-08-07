@@ -35,7 +35,7 @@
           <input class="validate" id="login-psw" type="password" placeholder="请输入密码" name="password">
         </div>
         <a class="waves-effect waves-light btn-large accent-color width-100 m-b-20 animated bouncein delay-4" href="javascript:submit();">登录</a>
-        <span>没有帐户? <a class="primary-text" href="/signup">注册</a></span>
+        <span>没有帐户? <a class="primary-text" href="${_PATH}/signup">注册</a></span>
       </div><!-- End of Main Contents -->
     </form>
 
