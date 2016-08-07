@@ -36,6 +36,11 @@ public class MeetingInfo extends BaseEntity {
     private String meetingType;
 
     /**
+     * 费用
+     */
+    private String free;
+
+    /**
      * 活动简介
      */
     private String introduction;
