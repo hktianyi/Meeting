@@ -14,7 +14,7 @@
     <!-- Page Content -->
     <div id="content" class="page">
         <jsp:include page="../../common/backbar.jsp">
-            <jsp:param name="title" value="个人信息"></jsp:param>
+            <jsp:param name="title" value="修改密码"></jsp:param>
         </jsp:include>
         <!-- Main Content -->
         <div class="animated fadeinup">
