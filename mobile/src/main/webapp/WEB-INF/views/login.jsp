@@ -17,10 +17,10 @@
     <!-- Toolbar -->
     <div id="toolbar" class="tool-login primary-color animated fadeindown">
       <%--<a href="javascript:history.back()" class="open-left">--%>
-        <%--<i class="ion-android-arrow-back"></i>--%>
+      <%--<i class="ion-android-arrow-back"></i>--%>
       <%--</a>--%>
     </div>
-    <form action="${_PATH }/login" method="post">
+    <form id="form" action="${_PATH }/login" method="post">
       <!-- Main Content -->
       <div class="login-form animated fadeinup delay-2 z-depth-1">
 

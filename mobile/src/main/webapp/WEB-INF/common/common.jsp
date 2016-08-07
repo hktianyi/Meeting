@@ -18,10 +18,11 @@
 <meta content="yes" name="apple-mobile-web-app-capable">
 <meta content="yes" name="apple-touch-fullscreen">
 <!-- Fonts -->
-<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,700' rel='stylesheet' type='text/css'>
+<%--<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,700' rel='stylesheet' type='text/css'>--%>
 <!-- Icons -->
-<link href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css" media="all" rel="stylesheet" type="text/css">
+<%--<link href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css" media="all" rel="stylesheet" type="text/css">--%>
 <!-- Styles -->
+<link href="${_PATH}/static/css/local.css" rel="stylesheet" type="text/css">
 <link href="${_PATH}/static/css/keyframes.css" rel="stylesheet" type="text/css">
 <link href="${_PATH}/static/css/materialize.min.css" rel="stylesheet" type="text/css">
 <link href="${_PATH}/static/css/swiper.css" rel="stylesheet" type="text/css">
@@ -29,7 +30,7 @@
 <link href="${_PATH}/static/css/style.css" rel="stylesheet" type="text/css">
 <%--<link rel="shortcut icon" href="${_PATH}/favicon.ico" type="image/x-icon" />--%>
 <script src="${_PATH}/static/plugins/jquery-2.2.2.min.js" type="text/javascript"></script>
-<script src="https://code.jquery.com/jquery-migrate-1.4.1.js" type="text/javascript"></script>
+<%--<script src="https://code.jquery.com/jquery-migrate-1.4.1.js" type="text/javascript"></script>--%>
 <script type="text/javascript">
     var _PATH = '${_PATH}';
 </script>
