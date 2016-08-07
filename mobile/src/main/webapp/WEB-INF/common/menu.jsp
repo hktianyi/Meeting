@@ -13,8 +13,20 @@
       </div>
     </div>
   </li>
-  <li><a href="/main" class="no-child">个人中心</a></li>
-  <li><a href="video.html" class="no-child">用户信息</a></li>
+  <li><a href="${_PATH}/main" class="no-child">活动中心</a></li>
+  <li>
+    <div class="collapsible-header">
+      用户信息
+    </div>
+    <div class="collapsible-body">
+      <ul class="collapsible">
+        <li>
+          <a href="${_PATH}/member/personal">个人信息</a>
+          <a href="${_PATH}/member/modifyPwd">修改密码</a>
+        </li>
+      </ul>
+    </div>
+  </li>
   <li><a href="news.html" class="no-child">活动通知</a></li>
   <li><a href="contact.html" class="no-child">消息推送</a></li>
   <li><a href="news.html" class="no-child">用户反馈</a></li>

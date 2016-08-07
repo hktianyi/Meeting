@@ -19,7 +19,9 @@
     <div id="content" class="page">
 
         <!-- Toolbar -->
-        <jsp:include page="../../common/toolbar.jsp"></jsp:include>
+        <jsp:include page="../../common/toolbar.jsp">
+            <jsp:param name="title" value="活动列表"></jsp:param>
+        </jsp:include>
 
         <!-- Main Content -->
         <div class="animated fadeinup">

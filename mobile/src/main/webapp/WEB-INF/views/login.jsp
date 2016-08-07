@@ -63,12 +63,7 @@
       errorMsg = null;
     }
   });
-  function isNotNull(str) {
-    if (null == str || '' == str || undefined == str || 'undefined' == str){
-      return false;
-    }
-    return true;
-  }
+
 </script>
 </body>
 </html>
