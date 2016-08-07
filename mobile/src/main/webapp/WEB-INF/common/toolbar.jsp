@@ -1,4 +1,5 @@
 <%@ page pageEncoding="UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%
   String title = request.getParameter("title");
 %>
@@ -12,7 +13,7 @@
     <%--<i class="ion-android-person"></i>--%>
   <%--</div>--%>
 </div>
-
+<c:if test="{empty isCommnoBanner}">
 <div class="h-banner animated fadeindown">
   <div class="parallax">
     <!-- Slider -->
@@ -32,3 +33,4 @@
     <div class="banner-title">${user.userName}</div>
   </div>
 </div>
+</c:if>
