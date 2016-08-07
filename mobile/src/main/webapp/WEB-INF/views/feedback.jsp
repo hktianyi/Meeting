@@ -7,6 +7,12 @@
 <!--<![endif]-->
 <head>
   <%@include file="../common/common.jsp" %>
+  <style type="text/css">
+  	label.error{
+  		left: 150px;
+  		color:red;
+  	}
+  </style>
 </head>
   <body>
       <!-- Page Content -->
@@ -17,42 +23,37 @@
           
           <!-- Form Inputs --> 
           <div class="form-inputs">
-			<form action="${_PATH }/saveFeedback" method="post">
-            <h4 class="center">活动反馈!</h4>
+			<form action="${_PATH }/saveFeedback" method="post" id="saveFeedback">
+            <h4 class="center">活动反馈</h4>
             <div>
               <div class="input-field animated fadeinright">
                 <input id="comeType" name="comeType" type="text" class="validate">
-                <label for="first_name">来时交通工具类型</label>
+                <label for="comeType">来时交通工具类型</label>
               </div>
               <div class="input-field animated fadeinright delay-1">
                 <input id="comeTicket" name="comeTicket" type="text" class="validate">
-                <label for="last_name">来时航班/车次</label>
+                <label for="comeTicket">来时航班/车次</label>
               </div>
             </div>
             <div class="input-field animated fadeinright delay-2">
               <input id="backType" name="backType" type="text">
-              <label for="email">回时交通工具类型</label>
+              <label for="backType">回时交通工具类型</label>
             </div>
             <div class="input-field animated fadeinright delay-3">
               <input id="backTicket" name="backTicket"type="text" class="validate">
-              <label for="telephone">回时航班/车次</label>
+              <label for="backTicket">回时航班/车次</label>
             </div>
             <div class="input-field animated fadeinright delay-4">
               <input id="dinner" name="dinner" type="text" class="validate">
-              <label for="city">用餐</label>
+              <label for="dinner">用餐</label>
             </div>
             
             <div class="input-field animated fadeinright delay-5">
-              <textarea class="materialize-textarea" id="activity"></textarea> 
-              <label for="textarea1">活动</label>
+              <textarea class="materialize-textarea" id="activity" name="activity"></textarea> 
+              <label for="activity">活动</label>
             </div>
 
-            <p class="remember animated bouncein delay-6">
-              <input type="checkbox" id="test5" />
-              <label for="test5">This is an awesome checkbox</label>
-            </p>
-        
-            <input type="submit" class="waves-effect waves-light btn-large primary-color width-100 animated bouncein delay-6" value="提交"/>
+            <input type="submit" class="waves-effect waves-light btn-large primary-color width-100 animated bouncein delay-4" value="提交"/>
             </form>
           </div>
 
@@ -60,5 +61,75 @@
 
     </div> <!-- End of Page Container -->
  	<%@include file="../common/footer.jsp"%>
+<script type="text/javascript">
+$(function(){
+    var validate = $("#saveFeedback").validate({
+        debug: true, //调试模式取消submit的默认提交功能   
+        //errorClass: "label.error", //默认为错误的样式类为：error   
+        focusInvalid: true, //当为false时，验证无效时，没有焦点响应  
+        onkeyup: true,   
+        submitHandler: function(form){   //表单提交句柄,为一回调函数，带一个参数：form   
+            alert("提交表单");   
+            form.submit();   //提交表单   
+        },   
+        
+        rules:{
+        	comeType:{
+                required:true,
+                maxlength:50
+            },
+            comeTicket:{
+                required:true,
+                maxlength:50
+            },
+            backType:{
+                required:true,
+                maxlength:50
+            },
+            backTicket:{
+            	required:true,
+                maxlength:50
+            },                  
+            dinner:{
+            	required:true,
+                maxlength:50
+            },
+            activity:{
+            	required:true,
+                maxlength:200
+            }                    
+        },
+        messages:{
+        	comeType:{
+            	required:"不能为空",
+            	maxlength:"不能大于50个字符"
+            },
+            comeTicket:{
+            	required:"不能为空",
+            	maxlength:"不能大于50个字符"
+            },
+            backType:{
+                required: "不能为空",
+            	maxlength:"不能大于50个字符"
+            },
+            backTicket:{
+            	required:"不能为空",
+            	maxlength:"不能大于50个字符"
+            },
+            dinner:{
+            	required:"不能为空",
+            	maxlength:"不能大于50个字符"
+            },
+            activity:{
+            	required:"不能为空",
+            	maxlength:"不能大于200个字符"
+            }
+        }
+        
+                  
+    });    
+
+});
+</script>
   </body>
 </html>

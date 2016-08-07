@@ -1,7 +1,5 @@
 package org.tplatform.meeting.app;
 
-import javax.servlet.http.HttpServletRequest;
-
 import org.conference.feedback.service.FeedbackService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -31,8 +29,8 @@ public class MeetingFeedbackCtrl extends BaseCtrl {
 	@RequestMapping(value = "/saveFeedback",method = RequestMethod.POST)
 	public String saveFeedback(MeetingFeedback mf) {
 
-		System.out.println(mf);
 		feedbackService.save(mf);
+		
 		return "/feedback.jsp";
 	}
 }
