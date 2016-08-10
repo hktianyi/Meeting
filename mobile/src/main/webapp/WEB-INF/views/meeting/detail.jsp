@@ -116,11 +116,19 @@
                     </div>
                 </div>
                  <div style="padding: 20px 40px;">
-                     <a class="waves-effect waves-light btn-large primary-color width-100 animated bouncein delay-6" href="index.html">
-                         参加活动
-                     </a>
+                     <c:choose>
+                         <c:when test="${signUp}">
+                             <a class="waves-effect waves-light btn-large primary-color width-100 animated bouncein delay-6" href="javascript:;">
+                                 已报名
+                             </a>
+                         </c:when>
+                         <c:otherwise>
+                             <a class="waves-effect waves-light btn-large primary-color width-100 animated bouncein delay-6" href="javascript:signUp();">
+                                 参加活动
+                             </a>
+                         </c:otherwise>
+                     </c:choose>
                  </div>
-
             </div>
             <!-- Footer -->
             <jsp:include page="../../common/pageFooter.jsp"></jsp:include>
@@ -132,5 +140,19 @@
 </div> <!-- End of Page Container -->
 
 <%@include file="../../common/footer.jsp" %>
+<script type="text/javascript">
+    function signUp() {
+        $.ajax(_PATH + '/meeting/signUp/${meeting.id}', {
+            type:'POST',
+            success:function (resp) {
+                if(resp.statusCode === 200) alert('报名成功');
+                else alert('报名失败');
+            },
+            error: function (resp) {
+                alert('报名失败');
+            }
+        })
+    }
+</script>
 </body>
 </html>

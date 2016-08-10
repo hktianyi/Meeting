@@ -1,21 +1,19 @@
 package org.tplatform.member.app;
 
-import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import org.tplatform.common.BaseCtrl;
 import org.tplatform.constant.GlobalConstant;
 import org.tplatform.core.entity.RespBody;
+import org.tplatform.meeting.service.MeetingAttendeeService;
 import org.tplatform.member.entity.Member;
 import org.tplatform.member.service.MemberService;
 
 import java.util.Date;
-import java.util.Map;
 
 /**
  * Created by guo_x on 2016/8/7.
@@ -28,6 +26,8 @@ public class MemberCtrl extends BaseCtrl{
 
 	@Autowired
 	private MemberService memberService;
+	@Autowired
+	private MeetingAttendeeService meetingAttendeeService;
 
 	@RequestMapping(value = "/personal",method = RequestMethod.GET)
 	public String personal(ModelMap modelMap){
@@ -74,6 +74,12 @@ public class MemberCtrl extends BaseCtrl{
 			session.setAttribute(GlobalConstant.SESSION_USER_KEY,currMember);
 
 		return RespBody.ok(msgInfo);
+	}
+
+	@RequestMapping("/attendeeList")
+	public String attendeeList(ModelMap modelMap) {
+		modelMap.put("dataList", meetingAttendeeService.findByUserId(((Member)session.getAttribute(GlobalConstant.SESSION_USER_KEY)).getId()));
+		return "/member/attendeeList.jsp";
 	}
 
 }

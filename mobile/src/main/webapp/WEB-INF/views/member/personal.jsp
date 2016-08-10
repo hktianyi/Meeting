@@ -26,8 +26,8 @@
                     <div>
                         <div class="input-field">
                             <input type="hidden" id="id" name="id" value="${member.id}">
-                            <input id="realName" type="text" class="validate" name="realName" value="${member.realName}">
-                            <label for="realName">真实姓名</label>
+                            <input id="realName" type="text" class="validate" name="realName" value="${member.realName}" placeholder="真实姓名">
+                            <label for="realName"></label>
                         </div>
                     </div>
                     <div class="input-field">
@@ -38,24 +38,24 @@
                         </select>
                     </div>
                     <div class="input-field">
-                        <input id="mobile" type="number" name="mobile" value="${member.mobile}">
-                        <label for="mobile">联系方式</label>
+                        <input id="mobile" type="number" name="mobile" value="${member.mobile}" placeholder="联系方式">
+                        <label for="mobile"></label>
                     </div>
                     <div class="input-field">
-                        <input id="email" type="email" class="validate" name="email" value="${member.email}">
-                        <label for="email">邮箱</label>
+                        <input id="email" type="email" class="validate" name="email" value="${member.email}" placeholder="邮箱">
+                        <label for="email"></label>
                     </div>
                     <div class="input-field">
-                        <input id="province" type="text" class="validate" name="province" value="${member.province}">
-                        <label for="province">省</label>
+                        <input id="province" type="text" class="validate" name="province" value="${member.province}" placeholder="省">
+                        <label for="province"></label>
                     </div>
                     <div class="input-field">
-                        <input id="city" type="text" class="validate" name="city" value="${member.city}">
-                        <label for="city">市</label>
+                        <input id="city" type="text" class="validate" name="city" value="${member.city}" placeholder="市">
+                        <label for="city"></label>
                     </div>
                     <div class="input-field">
-                        <input id="address" type="text" class="validate" name="address" value="${member.address}">
-                        <label for="address">详细地址</label>
+                        <input id="address" type="text" class="validate" name="address" value="${member.address}" placeholder="详细地址">
+                        <label for="address"></label>
                     </div>
                     <a class="waves-effect waves-light btn-large primary-color width-100 animated bouncein delay-6" href="javascript:submit();">修改</a>
                 </div>

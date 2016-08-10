@@ -14,14 +14,6 @@ import javax.persistence.Table;
 public class MeetingAttendee extends BaseEntity {
 
     /**
-     * 用户名
-     */
-    private String username;
-    /**
-     * 性别
-     */
-    private String gender;
-    /**
      * 邮箱
      */
     private String email;
@@ -43,5 +35,7 @@ public class MeetingAttendee extends BaseEntity {
      * 详细地址
      */
     private String address;
+
+    private Long meetingId;
 
 }

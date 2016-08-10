@@ -55,13 +55,10 @@
         }
 
     }
-    $(function () {
-        var errorMsg = "${errorMsg}";
-        if (isNotNull(errorMsg)) {
-            alert(errorMsg);
-            errorMsg = null;
-        }
-    });
+    var errorMsg = '${errorMsg}';
+    if (errorMsg) {
+        alert(errorMsg);
+    }
 
 </script>
 </body>

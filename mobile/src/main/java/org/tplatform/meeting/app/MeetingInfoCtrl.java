@@ -6,13 +6,23 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.tplatform.common.BaseCtrl;
+import org.tplatform.constant.GlobalConstant;
+import org.tplatform.core.entity.RespBody;
+import org.tplatform.core.fsm.StatusEnum;
+import org.tplatform.meeting.entity.MeetingAttendee;
 import org.tplatform.meeting.entity.MeetingImg;
 import org.tplatform.meeting.entity.MeetingInfo;
 import org.tplatform.meeting.entity.MeetingSchedule;
+import org.tplatform.meeting.service.MeetingAttendeeService;
 import org.tplatform.meeting.service.MeetingImgService;
 import org.tplatform.meeting.service.MeetingInfoService;
 import org.tplatform.meeting.service.MeetingScheduleService;
+import org.tplatform.member.entity.Member;
+
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Created by wzl on 2016/8/6.
@@ -28,6 +38,8 @@ public class MeetingInfoCtrl extends BaseCtrl {
     private MeetingImgService meetingImgService;
     @Autowired
     private MeetingScheduleService meetingScheduleService;
+    @Autowired
+    private MeetingAttendeeService meetingAttendeeService;
 
     /**
      * 会议列表
@@ -64,9 +76,25 @@ public class MeetingInfoCtrl extends BaseCtrl {
         MeetingSchedule schedule = new MeetingSchedule();
         schedule.setMeetingId(meetingId);
         model.put("schedules",meetingScheduleService.find(schedule));
+        model.put("signUp",meetingAttendeeService.signUp(meetingId, ((Member)session.getAttribute(GlobalConstant.SESSION_USER_KEY)).getId()) > 0);
         return "/meeting/detail.jsp";
     }
 
+    /**
+     * 报名
+     * @param meetingId
+     * @param model
+     * @return
+     */
+    @RequestMapping(value = "/signUp/{meetingId}", method = RequestMethod.POST)
+    @ResponseBody
+    public RespBody signUp(@PathVariable("meetingId") Long meetingId, MeetingAttendee meetingAttendee, ModelMap model){
+        Map<String, Object> respMap = new HashMap();
+        meetingAttendee.setMeetingId(meetingId);
+        meetingAttendee.setStatus(StatusEnum.COMMIT);
+        meetingAttendeeService.save(meetingAttendee);
+        return RespBody.ok();
+    }
 
     /**
      * 初始化添加会议

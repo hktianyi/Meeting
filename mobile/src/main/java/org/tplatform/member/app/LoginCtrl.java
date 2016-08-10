@@ -34,9 +34,9 @@ public class LoginCtrl {
 	 * @return
 	 */
 	@RequestMapping(value = {"/login", "/"}, method = RequestMethod.GET)
-	public String login() {
+	public String login(ModelMap modelMap) {
 		if (session.getAttribute(GlobalConstant.SESSION_USER_KEY) != null) {
-			return InternalResourceViewResolver.REDIRECT_URL_PREFIX + "main";
+      return InternalResourceViewResolver.REDIRECT_URL_PREFIX + "/member/attendeeList";
 		}
 		return "/login.jsp";
 	}
@@ -56,30 +56,16 @@ public class LoginCtrl {
 			// 登录跳转
 			String loginTo = String.valueOf(session.getAttribute(GlobalConstant.SESSION_LOSE_TO_PAGE_KEY));
 			session.setAttribute(GlobalConstant.SESSION_USER_KEY,member);
-			modelMap.remove("errorMsg");
 			if (StringUtil.isNotEmpty(loginTo)) {
 				session.removeAttribute(GlobalConstant.SESSION_LOSE_TO_PAGE_KEY);
-
 				return InternalResourceViewResolver.REDIRECT_URL_PREFIX + loginTo;
 			} else {
-				return InternalResourceViewResolver.REDIRECT_URL_PREFIX + "main";
+				return InternalResourceViewResolver.REDIRECT_URL_PREFIX + "/member/attendeeList";
 			}
 		} else {
 			modelMap.put("errorMsg", "用户名或密码错误！");
-			return login();
+			return login(modelMap);
 		}
-	}
-
-	/**
-	 * 主页
-	 *
-	 * @return
-	 */
-	@RequestMapping(value = "/main", method = RequestMethod.GET)
-	public String main(ModelMap modelMap) {
-//		modelMap.put("title", "微信会议");
-//		modelMap.put("body", "/index.jsp");
-		return "/meeting/list.jsp";
 	}
 
 	/**
