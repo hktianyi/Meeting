@@ -1,6 +1,6 @@
-package org.conference.feedback.service;
+package org.tplatform.meeting.service;
 
-import org.conference.feedback.mapper.FeedbackMapper;
+import org.tplatform.meeting.mapper.FeedbackMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.tplatform.impl.BaseService;

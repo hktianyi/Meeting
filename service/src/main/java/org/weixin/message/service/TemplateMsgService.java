@@ -1,8 +1,8 @@
-package org.conference.biz.service;
+package org.weixin.message.service;
 
 import com.foxinmy.weixin4j.exception.WeixinException;
 import com.foxinmy.weixin4j.mp.message.TemplateMessage;
-import org.conference.biz.entity.TemplateMsg;
+import org.weixin.message.entity.TemplateMsg;
 import org.springframework.stereotype.Service;
 import org.tplatform.impl.BaseService;
 import org.tplatform.util.WXUtil;

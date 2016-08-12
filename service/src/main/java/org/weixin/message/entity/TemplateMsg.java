@@ -1,4 +1,4 @@
-package org.conference.biz.entity;
+package org.weixin.message.entity;
 
 import org.tplatform.core.entity.BaseEntity;
 

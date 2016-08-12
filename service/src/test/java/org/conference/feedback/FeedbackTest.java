@@ -1,6 +1,5 @@
 package org.conference.feedback;
 
-import org.conference.feedback.mapper.FeedbackMapper;
 import org.junit.Test;
 import org.tplatform.meeting.entity.MeetingFeedback;
 

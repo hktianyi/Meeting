@@ -3,7 +3,7 @@ package org.tplatform.weixin.app;
 import com.foxinmy.weixin4j.exception.WeixinException;
 import com.foxinmy.weixin4j.mp.api.OauthApi;
 import com.foxinmy.weixin4j.mp.model.OauthToken;
-import org.conference.biz.service.TemplateMsgService;
+import org.weixin.message.service.TemplateMsgService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;

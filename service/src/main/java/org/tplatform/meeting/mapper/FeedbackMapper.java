@@ -1,4 +1,4 @@
-package org.conference.feedback.mapper;
+package org.tplatform.meeting.mapper;
 
 import org.tplatform.meeting.entity.MeetingFeedback;
 

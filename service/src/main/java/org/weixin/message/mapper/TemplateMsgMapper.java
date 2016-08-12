@@ -1,6 +1,6 @@
-package org.conference.biz.mapper;
+package org.weixin.message.mapper;
 
-import org.conference.biz.entity.TemplateMsg;
+import org.weixin.message.entity.TemplateMsg;
 import tk.mybatis.mapper.common.Mapper;
 
 /**
