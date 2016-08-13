@@ -55,6 +55,14 @@ public class MeetingCodeCtrl extends BaseCtrl {
     }
 
 
+    @RequestMapping(value = "/qrcodecheck")
+    public String qrcodecheck(ModelMap model){
+
+        return "/meeting/qrcodecheck.jsp";
+    }
+
+
+
 
 
 }
