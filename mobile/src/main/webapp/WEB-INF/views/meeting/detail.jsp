@@ -145,8 +145,13 @@
         $.ajax(_PATH + '/meeting/signUp/${meeting.id}', {
             type:'POST',
             success:function (resp) {
-                if(resp.statusCode === 200) alert('报名成功');
-                else alert('报名失败');
+                if(resp.statusCode === 200){
+                    //alert('报名成功');
+                    window.location = _PATH + "/meeting/join/2";
+
+                }else {
+                   // alert('报名失败');
+                }
             },
             error: function (resp) {
                 alert('报名失败');

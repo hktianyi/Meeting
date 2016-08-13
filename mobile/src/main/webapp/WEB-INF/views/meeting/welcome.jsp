@@ -20,7 +20,7 @@
 
         <!-- Toolbar -->
         <jsp:include page="../../common/toolbar.jsp">
-            <jsp:param name="title" value="登陆成功，欢迎恁！"></jsp:param>
+            <jsp:param name="title" value="登陆成功，欢迎您！"></jsp:param>
             <jsp:param name="isCommnoBanner" value="0"></jsp:param>
         </jsp:include>
 
