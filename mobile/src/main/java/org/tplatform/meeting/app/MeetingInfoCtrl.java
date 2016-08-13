@@ -76,7 +76,7 @@ public class MeetingInfoCtrl extends BaseCtrl {
         MeetingSchedule schedule = new MeetingSchedule();
         schedule.setMeetingId(meetingId);
         model.put("schedules",meetingScheduleService.find(schedule));
-        model.put("signUp",meetingAttendeeService.signUp(meetingId, ((Member)session.getAttribute(GlobalConstant.SESSION_USER_KEY)).getId()) > 0);
+        //model.put("signUp",meetingAttendeeService.signUp(meetingId, ((Member)session.getAttribute(GlobalConstant.SESSION_USER_KEY)).getId()) > 0);
         return "/meeting/detail.jsp";
     }
 

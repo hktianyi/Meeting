@@ -60,7 +60,8 @@ public class LoginCtrl {
 				session.removeAttribute(GlobalConstant.SESSION_LOSE_TO_PAGE_KEY);
 				return InternalResourceViewResolver.REDIRECT_URL_PREFIX + loginTo;
 			} else {
-				return InternalResourceViewResolver.REDIRECT_URL_PREFIX + "/member/attendeeList";
+				return "/meeting/welcome.jsp";
+				//return InternalResourceViewResolver.REDIRECT_URL_PREFIX + "/member/attendeeList";
 			}
 		} else {
 			modelMap.put("errorMsg", "用户名或密码错误！");

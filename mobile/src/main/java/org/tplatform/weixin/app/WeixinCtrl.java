@@ -27,35 +27,35 @@ public class WeixinCtrl extends BaseCtrl {
    *
    * @return
    */
-  @RequestMapping(value = "/oauth/{appId}", method = RequestMethod.GET)
-  public String login2WX(@PathVariable String appId, String code, String state, ModelMap modelMap) {
-    OauthApi oauthApi = new OauthApi();
-    try {
-      OauthToken oauthToken = oauthApi.getOauthToken(code);
-      System.out.println(oauthToken);
-      session.setAttribute("openId", oauthToken.getOpenId());
-//      User user = oauthApi.getUser(oauthToken);
-//      System.out.println(user);
-    } catch (WeixinException e) {
-      e.printStackTrace();
-    }
-    return GlobalConstant.REDIRECT + "/login";
-  }
+//  @RequestMapping(value = "/oauth/{appId}", method = RequestMethod.GET)
+//  public String login2WX(@PathVariable String appId, String code, String state, ModelMap modelMap) {
+//    OauthApi oauthApi = new OauthApi();
+//    try {
+//      OauthToken oauthToken = oauthApi.getOauthToken(code);
+//      System.out.println(oauthToken);
+//      session.setAttribute("openId", oauthToken.getOpenId());
+////      User user = oauthApi.getUser(oauthToken);
+////      System.out.println(user);
+//    } catch (WeixinException e) {
+//      e.printStackTrace();
+//    }
+//    return GlobalConstant.REDIRECT + "/login";
+//  }
 
 
 
 
-  @Autowired
-  private TemplateMsgService templateMsgService;
-
-  @RequestMapping("/sendTmpl")
-  @ResponseBody
-  public String testWx(@RequestParam(required = false, defaultValue = "wxdadf1852174f5054") String appId, String content) {
-    try {
-      templateMsgService.sendAgendaWarn(appId, (String) session.getAttribute("openId"), content);
-    } catch (WeixinException e) {
-      e.printStackTrace();
-    }
-    return "OK";
-  }
+//  @Autowired
+//  private TemplateMsgService templateMsgService;
+//
+//  @RequestMapping("/sendTmpl")
+//  @ResponseBody
+//  public String testWx(@RequestParam(required = false, defaultValue = "wxdadf1852174f5054") String appId, String content) {
+//    try {
+//      templateMsgService.sendAgendaWarn(appId, (String) session.getAttribute("openId"), content);
+//    } catch (WeixinException e) {
+//      e.printStackTrace();
+//    }
+//    return "OK";
+//  }
 }
