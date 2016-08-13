@@ -31,9 +31,11 @@
                 <!-- Form Inputs -->
                 <form id="form" method="post" action="${_PATH}/member/checkcode">
                 <div class="form-inputs">
+                    <center> <img src="${_PATH}/static/img/head-logo.png" style="width: 200px;" align="center"></center>
+                    <h4>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;尊敬的艾菲奖评委，感谢您拨冗前往参与2016年大中华区艾菲奖终审会，感谢您用宝贵的经验为大中华区艾菲奖做出的贡献，有任何问题可联系大中华区艾菲奖国际赛事部专员 Lily He，再次感谢您的参与！</h4>
                     <div class="input-field animated fadeinright">
                         <input id="meetCode"  name="meetCode" type="text" class="validate">
-                        <label for="meetCode">活动邀请码</label>
+                        <label for="meetCode">请输入您的邀请码</label>
                     </div>
                     <a class="waves-effect waves-light btn-large primary-color width-100 animated bouncein delay-6"
                        href="javascript:checkCode();">
