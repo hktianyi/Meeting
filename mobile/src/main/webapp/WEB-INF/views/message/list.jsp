@@ -35,53 +35,28 @@
             <jsp:param name="title" value="信息"></jsp:param>
             <jsp:param name="isCommnoBanner" value="0"></jsp:param>
         </jsp:include>
-
-        <!-- Main Content -->
-        <div class="animated fadeinup" id="tt">
-
-        </div> <!-- End of Main Contents -->
-        <div class="loading" id="loading">加载中……</div>
-        <div class="loading" id="nomoreresults">加载完毕！</div>
+        <div class="animated fadeinup">
+            <c:if test="${empty list}">
+                <p>没有任何消息</p>
+            </c:if>
+            <c:if test="${not empty list}">
+                <h6 class="p-10">我的信息</h6>
+                <ul class="faq collapsible animated fadeinright delay-1" style="margin:0 0" data-collapsible="accordion">
+                    <c:forEach begin="0" var="item" step="1"  items="${list}">
+                        <li class="">
+                            <div class="collapsible-header"><i class="ion-android-arrow-dropdown right"></i>${item.title}</div>
+                            <div class="collapsible-body" style="display: none;"><p>${item.content}</p></div>
+                        </li>
+                    </c:forEach>
+                </ul>
+            </c:if>
+        </div>
 
     </div> <!-- End of Page Content -->
 
 </div> <!-- End of Page Container -->
 
 <%@include file="../../common/footer.jsp" %>
-<script>
-    var page = 1;
-    $(function(){
-        $('#tt').scrollPagination({
-            'contentPage': '${_PATH}/message/list',
-            'contentData': {pageNo:page,pageSize:10},
-            'scrollTarget': $(window),
-            'heightOffset': 10,
-            'beforeLoad': function(){
-                console.log(page)
-                page = page+1;
-                $('#loading').fadeIn();
-            },
-            'afterLoad': function(elementsLoaded){
-                $('#loading').fadeOut();
-                var i = 0;
-                $(elementsLoaded).fadeInWithDelay();
-                if ($('#tt').children().size() > 100){
-                    $('#nomoreresults').fadeIn();
-                    $('#tt').stopScrollPagination();
-                }
-            }
-        });
 
-        // code for fade in element by element
-        $.fn.fadeInWithDelay = function(){
-            var delay = 0;
-            return this.each(function(){
-                $(this).delay(delay).animate({opacity:1}, 200);
-                delay += 100;
-            });
-        };
-
-    });
-</script>
 </body>
 </html>
