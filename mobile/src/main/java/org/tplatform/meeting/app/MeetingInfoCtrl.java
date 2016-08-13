@@ -96,6 +96,11 @@ public class MeetingInfoCtrl extends BaseCtrl {
         return RespBody.ok();
     }
 
+    @RequestMapping(value = "/join/{meetingId}")
+    public String join(ModelMap modelMap,@PathVariable(value = "meetingId") Long meetingId){
+        return "/meeting/attend.jsp";
+    }
+
     /**
      * 初始化添加会议
      * @param model
