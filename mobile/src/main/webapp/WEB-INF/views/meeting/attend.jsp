@@ -59,7 +59,7 @@
                                 <label class="active">职位/Title:</label>
                             </div>
                             <div class="input-field animated fadeinright">
-                                <input id="email" type="text" class="validate" name="email" value="${ma.email}">
+                                <input id="email" type="email" class="validate" name="email" value="${ma.email}">
                                 <label class="active">邮箱/Email:</label>
                             </div>
                             <div class="input-field animated fadeinright">
@@ -100,14 +100,9 @@
                             <div style="padding: 20px 40px;">
                                 <input id="id" type="hidden" class="validate" name="id" value="${ma.id}">
                                 <input id="meetingId" type="hidden" class="validate" name="meetingId" value="${meetingId}">
-
                                 <c:if test="${'COMMIT' eq ma.status || empty ma.status}">
                                     <a class="waves-effect waves-light btn-large primary-color width-100 animated bouncein delay-6" href="javascript:next();">下一步</a>
                                 </c:if>
-                                <%--<c:if test="${'VALID' eq ma.status}">--%>
-                                <%--<a class="waves-effect waves-light btn-large primary-color width-100 animated bouncein delay-6" href="javascript:nextStep();">下一步</a>--%>
-                                <%--</c:if>--%>
-
                             </div>
                         </div>
                     </form>
@@ -198,6 +193,13 @@
         }
     });
     function next() {
+        var name = $("#name").val();var salutation = $("#salutation").val(); var company = $("#company").val(); var title = $("#title").val(); var email = $("#email").val();
+        var mobile = $("#mobile").val(); var travelType = $("#travelType").val(); var travelName = $("#travelName").val(); var travelNo = $("#travelNo").val(); var contactName  =$("contactName").val();
+        var contactEmail = $("#contactEmail").val(); var contactMobile = $("#contactMobile").val();
+        if (!(isNotNull(name) && isNotNull(salutation) && isNotNull(company) && isNotNull(title) && isNotNull(email) && isNotNull(mobile) && isNotNull(travelType) && isNotNull(travelName) && isNotNull(travelNo) && isNotNull(contactName) && isNotNull(contactEmail) && isNotNull(contactMobile))){
+            alert("请填写完整的信息！");
+            return;
+        }
         $.ajax({
             type: "post",
             dataType: "json",
@@ -217,6 +219,11 @@
     }
 
     function signUp() {
+        var stayDate = $("#stayDate").val(); var leaveDate = $("#leaveDate").val(); var dinner1 = $("#dinner1").val(); var dinner2 = $("#dinner2").val(); var dinner3 = $("#dinner3").val();
+        if (!(isNotNull(stayDate) && isNotNull(leaveDate) && isNotNull(dinner1) && isNotNull(dinner2) && isNotNull(dinner3))){
+            alert("请填写完整的食宿信息！");
+            return;
+        }
         $.ajax({
             type: "post",
             dataType: "json",
