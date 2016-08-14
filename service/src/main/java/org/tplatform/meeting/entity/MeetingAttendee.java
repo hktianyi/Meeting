@@ -2,6 +2,8 @@ package org.tplatform.meeting.entity;
 
 import lombok.Data;
 import org.tplatform.core.entity.BaseEntity;
+import org.tplatform.core.fsm.CardTypeEnum;
+import org.tplatform.core.fsm.SalutationEnum;
 
 import javax.persistence.Table;
 
@@ -13,29 +15,18 @@ import javax.persistence.Table;
 @Table(name = "t_meeting_attendee")
 public class MeetingAttendee extends BaseEntity {
 
-    /**
-     * 邮箱
-     */
+    private String name;
+    private String salutation;
+    private String company;
+    private String title;
     private String email;
-
-    /**
-     * 手机郝
-     */
-    private String telephone;
-
-    /**
-     * 省
-     */
-    private String province;
-    /**
-     * 城市
-     */
-    private String city;
-    /**
-     * 详细地址
-     */
-    private String address;
-
+    private String mobile;
+    private String  travelType;
+    private String travelName;
+    private String travelNo;
+    private String contactName;
+    private String contactEmail;
+    private String contactMobile;
     private Long meetingId;
 
 }

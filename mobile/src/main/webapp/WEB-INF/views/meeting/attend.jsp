@@ -37,74 +37,80 @@
                 </div>
 
                 <div id="test1" class="meetingDetail">
-                    <!-- Form Inputs -->
-                    <div class="form-inputs">
-                        <div class="input-field animated fadeinright">
-                            <input id="name" type="text" class="validate" name="name" value="">
-                            <label class="active">姓名/Name:</label>
-                        </div>
-                        <div class="input-field animated fadeinright">
-                            <%--<input id="salutation" type="text" class="validate" name="salutation" value="">--%>
+                    <form id="form1" method="post">
+                        <div class="form-inputs">
+                            <div class="input-field animated fadeinright">
+                                <input id="name" type="text" class="validate" name="name" value="${ma.name}" required>
+                                <label class="active">姓名/Name:</label>
+                            </div>
+                            <div class="input-field animated fadeinright">
                                 <h5 class="active">称谓/Salutation:</h5>
-                            <select class="browser-default" name="salutation" id="salutation">
-                                <option value="1" selected>先生/Mr</option>
-                                <option value="2">女士/Ms.</option>
-                            </select>
-                            <%--<label class="active">称谓/Salutation:</label>--%>
-                        </div>
-                        <div class="input-field animated fadeinright">
-                            <input id="company" type="text" class="validate" name="company" value="">
-                            <label class="active">公司/Company:</label>
-                        </div>
-                        <div class="input-field animated fadeinright">
-                            <input id="title" type="text" class="validate" name="title" value="">
-                            <label class="active">职位/Title:</label>
-                        </div>
-                        <div class="input-field animated fadeinright">
-                            <input id="email" type="text" class="validate" name="email" value="">
-                            <label class="active">邮箱/Email:</label>
-                        </div>
-                        <div class="input-field animated fadeinright">
-                            <input id="mobile" type="text" class="validate" name="mobile" value="">
-                            <label class="active">手机/Mobile:</label>
-                        </div>
-                        <div class="input-field animated fadeinright">
-                            <%--<input id="travelType" type="text" class="validate" name="travelType" value="">--%>
-                            <%--<label class="active">证件类型/Type of Travel Document:</label>--%>
+                                <select class="browser-default" name="salutation" id="salutation">
+                                    <option value="先生/Mr" selected>先生/Mr</option>
+                                    <option value="女士/Ms">女士/Ms.</option>
+                                </select>
+                            </div>
+                            <div class="input-field animated fadeinright">
+                                <input id="company" type="text" class="validate" name="company" value="${ma.company}">
+                                <label class="active">公司/Company:</label>
+                            </div>
+                            <div class="input-field animated fadeinright">
+                                <input id="title" type="text" class="validate" name="title" value="${ma.title}">
+                                <label class="active">职位/Title:</label>
+                            </div>
+                            <div class="input-field animated fadeinright">
+                                <input id="email" type="text" class="validate" name="email" value="${ma.email}">
+                                <label class="active">邮箱/Email:</label>
+                            </div>
+                            <div class="input-field animated fadeinright">
+                                <input id="mobile" type="text" class="validate" name="mobile" value="${ma.mobile}">
+                                <label class="active">手机/Mobile:</label>
+                            </div>
+                            <div class="input-field animated fadeinright">
                                 <h5 class="active">证件类型/Type of Travel Document:</h5>
-                            <select class="browser-default" name="travelType" id="travelType">
-                                <option value="1" selected>身份证</option>
-                                <option value="2">护照</option>
-                                <option value="3">台胞证</option>
-                                <option value="4">台湾通行证</option>
-                                <option value="5">港澳通行证</option>
-                                <option value="6">香港身份证</option>
-                            </select>
+                                <select class="browser-default" name="travelType" id="travelType">
+                                    <option value="身份证" selected>身份证</option>
+                                    <option value="护照">护照</option>
+                                    <option value="台胞证">台胞证</option>
+                                    <option value="台湾通行证">台湾通行证</option>
+                                    <option value="港澳通行证">港澳通行证</option>
+                                    <option value="香港身份证">香港身份证</option>
+                                </select>
+                            </div>
+                            <div class="input-field animated fadeinright">
+                                <input id="travelName" type="text" class="validate" name="travelName" value="${ma.travelName}">
+                                <label class="active">证件姓名/Name on Travel Document:</label>
+                            </div>
+                            <div class="input-field animated fadeinright">
+                                <input id="travelNo" type="text" class="validate" name="travelNo" value="${ma.travelNo}">
+                                <label class="active">证件号码/Travel Document No.：</label>
+                            </div>
+                            <div class="input-field animated fadeinright">
+                                <input id="contactName" type="text" class="validate" name="contactName" value="${ma.contactName}">
+                                <label class="active">联系人姓名/Contact Name:</label>
+                            </div>
+                            <div class="input-field animated fadeinright">
+                                <input id="contactEmail" type="text" class="validate" name="contactEmail" value="${ma.contactEmail}">
+                                <label class="active">联系人邮箱/Contact Email:</label>
+                            </div>
+                            <div class="input-field animated fadeinright">
+                                <input id="contactMobile" type="text" class="validate" name="contactMobile" value="${ma.contactMobile}">
+                                <label class="active">联系人电话/Contact Mobile:</label>
+                            </div>
+                            <div style="padding: 20px 40px;">
+                                <input id="id" type="hidden" class="validate" name="id" value="${ma.id}">
+                                <input id="meetingId" type="hidden" class="validate" name="meetingId" value="${meetingId}">
+
+                                <c:if test="${'COMMIT' eq ma.status || empty ma.status}">
+                                    <a class="waves-effect waves-light btn-large primary-color width-100 animated bouncein delay-6" href="javascript:next();">下一步</a>
+                                </c:if>
+                                <%--<c:if test="${'VALID' eq ma.status}">--%>
+                                <%--<a class="waves-effect waves-light btn-large primary-color width-100 animated bouncein delay-6" href="javascript:nextStep();">下一步</a>--%>
+                                <%--</c:if>--%>
+
+                            </div>
                         </div>
-                        <div class="input-field animated fadeinright">
-                            <input id="travelName" type="text" class="validate" name="travelName" value="">
-                            <label class="active">证件姓名/Name on Travel Document:</label>
-                        </div>
-                        <div class="input-field animated fadeinright">
-                            <input id="travelNo" type="text" class="validate" name="travelNo" value="">
-                            <label class="active">证件号码/Travel Document No.：</label>
-                        </div>
-                        <div class="input-field animated fadeinright">
-                            <input id="contactName" type="text" class="validate" name="contactName" value="">
-                            <label class="active">联系人姓名/Contact Name:</label>
-                        </div>
-                        <div class="input-field animated fadeinright">
-                            <input id="contactEmail" type="text" class="validate" name="contactEmail" value="">
-                            <label class="active">联系人邮箱/Contact Email:</label>
-                        </div>
-                        <div class="input-field animated fadeinright">
-                            <input id="contactMobile" type="text" class="validate" name="contactMobile" value="">
-                            <label class="active">联系人电话/Contact Mobile:</label>
-                        </div>
-                        <div style="padding: 20px 40px;">
-                            <a class="waves-effect waves-light btn-large primary-color width-100 animated bouncein delay-6" href="javascript:next();">下一步</a>
-                        </div>
-                    </div>
+                    </form>
                 </div>
 
                 <div id="test2">
@@ -149,7 +155,11 @@
                         </div>
                     </div>
                     <div style="padding: 20px 40px;">
-                        <a class="waves-effect waves-light btn-large primary-color width-100 animated bouncein delay-6" href="${_PATH}/meetingcode/qrcodecheck">报名</a>
+                        <input type="hidden" class="validate" name="id" value="${ai.id}">
+                        <input type="hidden" class="validate" name="meetingId" value="${meetingId}">
+                        <c:if test="${'COMMIT' eq ai.status || empty ai.status}">
+                            <a class="waves-effect waves-light btn-large primary-color width-100 animated bouncein delay-6" href="javascript:signUp();">报名</a>
+                        </c:if>
                     </div>
                 </div>
             </div>
@@ -164,8 +174,65 @@
 
 <%@include file="../../common/footer.jsp" %>
 <script type="text/javascript">
+    $(function () {
+        if (isNotNull('${ma.salutation}')) {
+            $("#salutation").val('${ma.salutation}');
+        }
+        if (isNotNull('${ma.travelType}')) {
+            $("#travelType").val('${ma.travelType}');
+        }
+        if (isNotNull('${ai.stayDate}')) {
+            $("#stayDate").val('${ai.stayDate}');
+        }
+        if (isNotNull('${ai.leaveDate}')) {
+            $("#leaveDate").val('${ai.leaveDate}');
+        }
+        if (isNotNull('${ai.dinner1}')) {
+            $("#dinner1").val('${ai.dinner1}');
+        }
+        if (isNotNull('${ai.dinner2}')) {
+            $("#dinner2").val('${ai.dinner2}');
+        }
+        if (isNotNull('${ai.dinner3}')) {
+            $("#dinner3").val('${ai.dinner3}');
+        }
+    });
     function next() {
-        $("#test3").click();
+        $.ajax({
+            type: "post",
+            dataType: "json",
+            url: "${_PATH}/meeting/sign",
+            data: $('#form1').serialize(),
+            success: function (resp) {
+                if (resp.statusCode === 200) {
+                    $("#test3").click();
+                } else {
+                    alert(resp.errorInfo);
+                }
+            },
+            error: function (resp) {
+                alert('报名失败');
+            }
+        })
+    }
+
+    function signUp() {
+        $.ajax({
+            type: "post",
+            dataType: "json",
+            url: "${_PATH}/meeting/sign",
+            data: $('#form1').serialize(),
+            success: function (resp) {
+                if (resp.statusCode === 200) {
+                    window.location.href = "${_PATH}/meetingcode/qrcodecheck";
+                } else {
+                    alert(resp.errorInfo);
+                }
+            },
+            error: function (resp) {
+                alert('报名失败');
+            }
+        })
     }
 </script>
 </body>

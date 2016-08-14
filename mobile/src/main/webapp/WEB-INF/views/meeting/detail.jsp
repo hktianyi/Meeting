@@ -123,7 +123,7 @@
                              </a>
                          </c:when>
                          <c:otherwise>
-                             <a class="waves-effect waves-light btn-large primary-color width-100 animated bouncein delay-6" href="javascript:signUp();">
+                             <a class="waves-effect waves-light btn-large primary-color width-100 animated bouncein delay-6" href="${_PATH}/meeting/join/${meeting.id}">
                                  参加活动
                              </a>
                          </c:otherwise>
