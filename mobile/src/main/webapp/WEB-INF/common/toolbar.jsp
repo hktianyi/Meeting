@@ -2,9 +2,9 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!-- Toolbar -->
 <div id="toolbar" class="primary-color">
-  <div class="open-left" id="open-left" data-activates="slide-out-left">
-    <i class="ion-android-menu"></i>
-  </div>
+  <%--<div class="open-left" id="open-left" data-activates="slide-out-left">--%>
+    <%--<i class="ion-android-menu"></i>--%>
+  <%--</div>--%>
   <span class="title">${param.title}</span>
   <%--<div class="open-right" id="open-right" data-activates="slide-out">--%>
     <%--<i class="ion-android-person"></i>--%>

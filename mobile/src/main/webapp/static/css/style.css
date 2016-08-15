@@ -2457,7 +2457,7 @@ span.data-color {
 
 .meetingDetail .input-field{margin-top: 2rem;}
 .meetingDetail .input-field label{left: 0rem; top: 1.2rem;}
-.meetingDetail .input-field label.active{font-size: 1.2rem;}
+.meetingDetail .input-field label.active{font-size: 1.0rem;}
 .meetingDetail .input-field .valueStyle{
     text-indent: 10px;
     background-color: transparent;

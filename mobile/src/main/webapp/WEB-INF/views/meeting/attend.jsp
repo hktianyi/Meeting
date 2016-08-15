@@ -45,6 +45,8 @@
                             </div>
                             <div class="input-field animated fadeinright">
                                 <h5 class="active">称谓/Salutation:</h5>
+                                <%--<input id="salutation" type="radio" name="salutation" value="1">男--%>
+                                <%--<input id="salutation" type="radio" name="salutation" value="2">女--%>
                                 <select class="browser-default" name="salutation" id="salutation">
                                     <option value="先生/Mr" selected>先生/Mr</option>
                                     <option value="女士/Ms">女士/Ms.</option>
@@ -101,7 +103,7 @@
                                 <input id="id" type="hidden" class="validate" name="id" value="${ma.id}">
                                 <input id="meetingId" type="hidden" class="validate" name="meetingId" value="${meetingId}">
                                 <c:if test="${'COMMIT' eq ma.status || empty ma.status}">
-                                    <a class="waves-effect waves-light btn-large primary-color width-100 animated bouncein delay-6" href="javascript:next();">下一步</a>
+                                    <a class="waves-effect waves-light btn-large primary-color width-100 animated bouncein delay-6" href="javascript:next();">报名</a>
                                 </c:if>
                             </div>
                         </div>
