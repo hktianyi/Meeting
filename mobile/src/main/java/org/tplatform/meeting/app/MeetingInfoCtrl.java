@@ -56,7 +56,7 @@ public class MeetingInfoCtrl extends BaseCtrl {
 	}
 
 	/**
-	 * 会议详细信息
+	 * 活动详情信息
 	 *
 	 * @param meetingId
 	 * @param model

@@ -2,8 +2,6 @@ package org.tplatform.meeting.entity;
 
 import lombok.Data;
 import org.tplatform.core.entity.BaseEntity;
-import org.tplatform.core.fsm.CardTypeEnum;
-import org.tplatform.core.fsm.SalutationEnum;
 
 import javax.persistence.Table;
 
