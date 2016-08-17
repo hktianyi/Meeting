@@ -57,7 +57,7 @@ public class MeetingCodeCtrl extends BaseCtrl {
 
     @RequestMapping(value = "/qrcodecheck")
     public String qrcodecheck(ModelMap model){
-
+        //meetingCodeService.geneQrcode();
         return "/meeting/qrcodecheck.jsp";
     }
 
