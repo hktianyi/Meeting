@@ -60,29 +60,29 @@
 <script type="text/javascript">
     function checkCode(){
         //$("#form").submit();
-        <%--$.ajax({--%>
-            <%--type: "post",--%>
-            <%--dataType: "json",--%>
-            <%--url: "${_PATH}/member/checkcode",--%>
-            <%--data: {meetCode: $("#meetCode").val()},--%>
-            <%--success: function (data) {--%>
-<%--//                if (data.status == "1") {--%>
-<%--//                    alert("验证通过！");--%>
-<%--//                    var meetingId = data.meetingId;--%>
-<%--//                    window.location = _PATH + "/meeting/detail/"+meetingId;--%>
-<%--//                } else {--%>
-<%--//                    alert("该验证码不存在！");--%>
-<%--//                }--%>
+        $.ajax({
+            type: "post",
+            dataType: "json",
+            url: "${_PATH}/meetingcode/checkcode",
+            data: {meetCode: $("#meetCode").val()},
+            success: function (data) {
+                if (data.status == "1") {
+                    //alert("验证通过！");
+                    var meetingId = data.meetingId;
+                    window.location = _PATH + "/meeting/detail/"+meetingId;
+                } else {
+                    alert("该验证码不存在！");
+                }
 
-                <%--alert("验证通过！");--%>
-                <%--var meetingId = 2;--%>
-                <%--window.location = _PATH + "/meeting/detail/"+meetingId;--%>
-            <%--}--%>
-        <%--});--%>
+//                alert("验证通过！");
+//                var meetingId = 2;
+//                window.location = _PATH + "/meeting/detail/"+meetingId;
+            }
+        });
 
 
-        var meetingId = 2;
-        window.location = _PATH + "/meeting/detail/"+meetingId;
+        //var meetingId = 2;
+        //window.location = _PATH + "/meeting/detail/"+meetingId;
     }
 
 </script>

@@ -15,7 +15,7 @@ import java.util.List;
  */
 public interface MeetingCodeMapper extends Mapper<MeetingCode> {
 
-  @Select("SELECT * from MeetingCode where meetCode = #{meetCode}")
+  @Select("SELECT * from t_meeting_code where meetCode = #{meetCode}")
   List<MeetingCode> findMeetByCode(@Param("meetCode") String meetCode);
 
 }

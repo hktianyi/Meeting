@@ -73,7 +73,7 @@ public class MeetingInfoCtrl extends BaseCtrl {
 		MeetingSchedule schedule = new MeetingSchedule();
 		schedule.setMeetingId(meetingId);
 		model.put("schedules", meetingScheduleService.find(schedule));
-		model.put("signUp",meetingAttendeeService.signUp(meetingId, ((Member)session.getAttribute(GlobalConstant.SESSION_USER_KEY)).getId()) > 0);
+		//model.put("signUp",meetingAttendeeService.signUp(meetingId, ((Member)session.getAttribute(GlobalConstant.SESSION_USER_KEY)).getId()) > 0);
 		return "/meeting/detail.jsp";
 	}
 
@@ -99,10 +99,10 @@ public class MeetingInfoCtrl extends BaseCtrl {
 		Member currMember = (Member) session.getAttribute(GlobalConstant.SESSION_USER_KEY);
 		MeetingAttendee maExample = new MeetingAttendee();
 		maExample.setMeetingId(meetingId);
-		maExample.setOperator(String.valueOf(currMember.getId()));
+		//maExample.setOperator(String.valueOf(currMember.getId()));
 		MeetingAttendee ma = meetingAttendeeService.findOne(maExample);
 		AccommodationInfo aiExample = new AccommodationInfo();
-		aiExample.setOperator(currMember.getId().toString());
+		//aiExample.setOperator(currMember.getId().toString());
 		aiExample.setMeetingId(meetingId.toString());
 		AccommodationInfo ai = accommodationInfoService.findOne(aiExample);
 		modelMap.put("ma",ma);
