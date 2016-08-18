@@ -35,10 +35,10 @@ public class LoginCtrl {
 	 */
 	@RequestMapping(value = {"/login", "/"}, method = RequestMethod.GET)
 	public String login(ModelMap modelMap) {
-		if (session.getAttribute(GlobalConstant.SESSION_USER_KEY) != null) {
-      return InternalResourceViewResolver.REDIRECT_URL_PREFIX + "/member/attendeeList";
-		}
-		return "/login.jsp";
+//		if (session.getAttribute(GlobalConstant.SESSION_USER_KEY) != null) {
+//      return InternalResourceViewResolver.REDIRECT_URL_PREFIX + "/member/attendeeList";
+//		}
+		return "/meeting/welcome.jsp";
 	}
 
 	/**

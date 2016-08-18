@@ -50,7 +50,7 @@ public class AuthenticationFilter implements Filter {
       //2，登录判断
       Object so = req.getSession().getAttribute(GlobalConstant.SESSION_USER_KEY);
       if (so == null || so.equals("")) {
-        this.forword(req, res, req.getContextPath() + "/login");
+        this.forword(req, res, req.getContextPath() + "/meetingcode/welcome");
         return;
       } else {
         // 此处只针对服务操作，排除jsp资源考虑在拦截器中做权限处理

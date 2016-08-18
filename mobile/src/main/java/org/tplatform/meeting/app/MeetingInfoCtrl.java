@@ -29,13 +29,9 @@ public class MeetingInfoCtrl extends BaseCtrl {
 	@Autowired
 	private MeetingInfoService meetingInfoService;
 	@Autowired
-	private MeetingImgService meetingImgService;
-	@Autowired
 	private MeetingScheduleService meetingScheduleService;
 	@Autowired
 	private MeetingAttendeeService meetingAttendeeService;
-	@Autowired
-	private AccommodationInfoService accommodationInfoService;
 
 	/**
 	 * 会议列表
@@ -73,7 +69,7 @@ public class MeetingInfoCtrl extends BaseCtrl {
 		MeetingSchedule schedule = new MeetingSchedule();
 		schedule.setMeetingId(meetingId);
 		model.put("schedules", meetingScheduleService.find(schedule));
-		//model.put("signUp",meetingAttendeeService.signUp(meetingId, ((Member)session.getAttribute(GlobalConstant.SESSION_USER_KEY)).getId()) > 0);
+		model.put("signUp",meetingAttendeeService.signUp(meetingId, ((Member)session.getAttribute(GlobalConstant.SESSION_USER_KEY)).getId()) > 0);
 		return "/meeting/detail.jsp";
 	}
 
@@ -99,14 +95,9 @@ public class MeetingInfoCtrl extends BaseCtrl {
 		Member currMember = (Member) session.getAttribute(GlobalConstant.SESSION_USER_KEY);
 		MeetingAttendee maExample = new MeetingAttendee();
 		maExample.setMeetingId(meetingId);
-		//maExample.setOperator(String.valueOf(currMember.getId()));
+		maExample.setOperator(String.valueOf(currMember.getId()));
 		MeetingAttendee ma = meetingAttendeeService.findOne(maExample);
-		AccommodationInfo aiExample = new AccommodationInfo();
-		//aiExample.setOperator(currMember.getId().toString());
-		aiExample.setMeetingId(meetingId.toString());
-		AccommodationInfo ai = accommodationInfoService.findOne(aiExample);
 		modelMap.put("ma",ma);
-		modelMap.put("ai",ai);
 		modelMap.put("meetingId",meetingId);
 		return "/meeting/attend.jsp";
 	}
@@ -120,18 +111,6 @@ public class MeetingInfoCtrl extends BaseCtrl {
 		}
 		return RespBody.ok();
 	}
-
-	@RequestMapping(value = "/signUp",method = RequestMethod.POST)
-	@ResponseBody
-	public RespBody signUp(AccommodationInfo accommodationInfo){
-		accommodationInfo.setStatus(StatusEnum.COMMIT);
-		int i = accommodationInfoService.saveOrUpdate(accommodationInfo);
-		if (i < 1){
-			return RespBody.error("食宿信息处理失败");
-		}
-		return RespBody.ok();
-	}
-
 
 	/**
 	 * 初始化添加会议

@@ -3,14 +3,16 @@ package org.tplatform.meeting.app;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.tplatform.common.BaseCtrl;
 import org.tplatform.constant.GlobalConstant;
-import org.tplatform.core.entity.RespBody;
-import org.tplatform.core.fsm.StatusEnum;
-import org.tplatform.framework.util.DateUtil;
-import org.tplatform.meeting.entity.*;
-import org.tplatform.meeting.service.*;
+import org.tplatform.meeting.entity.MeetingCode;
+import org.tplatform.meeting.service.MeetingAttendeeService;
+import org.tplatform.meeting.service.MeetingCodeService;
+import org.tplatform.meeting.service.MeetingInfoService;
+import org.tplatform.meeting.service.MeetingScheduleService;
 import org.tplatform.member.entity.Member;
 
 import java.util.HashMap;
@@ -39,6 +41,10 @@ public class MeetingCodeCtrl extends BaseCtrl {
         Map<String, Object> result = new HashMap<>();
         MeetingCode meetingCode = meetingCodeService.checkCode(meetCode);
         if(meetingCode!=null){
+            Member member = new Member();
+            member.setId(meetingCode.getId());
+            member.setUserName(meetCode);
+            session.setAttribute(GlobalConstant.SESSION_USER_KEY, member);
             result.put("status", "1");
             result.put("meetingId", meetingCode.getMeetingId());
         }else{

@@ -51,8 +51,8 @@
           </ul>
         </div>
 
+        <form id="form1" method="post">
         <div id="test1" class="meetingDetail">
-          <form id="form1" method="post">
             <div class="form-inputs">
               <div class="input-field animated fadeinright">
                 <input id="name" type="text" class="validate" name="name" value="${ma.name}" required>
@@ -60,8 +60,8 @@
               </div>
               <div class="input-field animated fadeinright sex">
                 <h5 class="active">称谓/Salutation:</h5>
-                <input id="salutation1" type="radio" name="salutation" value="1" checked><label for="salutation1">先生/Mr</label>
-                <input id="salutation2" type="radio" name="salutation" value="2"><label for="salutation2">女士/Ms</label>
+                <input id="salutation1" type="radio" name="salutation" value="1" ${ma.salutation eq '1' ? 'checked' : ''}><label for="salutation1">先生/Mr</label>
+                <input id="salutation2" type="radio" name="salutation" value="2" ${ma.salutation eq '2' ? 'checked' : ''}><label for="salutation2">女士/Ms</label>
               </div>
               <div class="input-field animated fadeinright">
                 <input id="company" type="text" class="validate" name="company" value="${ma.company}">
@@ -82,12 +82,12 @@
               <div class="input-field animated fadeinright">
                 <h5 class="active">证件类型/Type of Travel Document:</h5>
                 <select class="browser-default" name="travelType" id="travelType">
-                  <option value="身份证" selected>身份证</option>
-                  <option value="护照">护照</option>
-                  <option value="台胞证">台胞证</option>
-                  <option value="台湾通行证">台湾通行证</option>
-                  <option value="港澳通行证">港澳通行证</option>
-                  <option value="香港身份证">香港身份证</option>
+                  <option value="身份证" ${ma.travelType eq '身份证' ? 'selected' : ''}>身份证</option>
+                  <option value="护照" ${ma.travelType eq '护照' ? 'selected' : ''}>护照</option>
+                  <option value="台胞证" ${ma.travelType eq '台胞证' ? 'selected' : ''}>台胞证</option>
+                  <option value="台湾通行证" ${ma.travelType eq '台湾通行证' ? 'selected' : ''}>台湾通行证</option>
+                  <option value="港澳通行证" ${ma.travelType eq '港澳通行证' ? 'selected' : ''}>港澳通行证</option>
+                  <option value="香港身份证" ${ma.travelType eq '香港身份证' ? 'selected' : ''}>香港身份证</option>
                 </select>
               </div>
               <div class="input-field animated fadeinright">
@@ -113,13 +113,10 @@
               <div style="padding: 20px 40px;">
                 <input id="id" type="hidden" class="validate" name="id" value="${ma.id}">
                 <input id="meetingId" type="hidden" class="validate" name="meetingId" value="${meetingId}">
-                <c:if test="${'COMMIT' eq ma.status || empty ma.status}">
-                  <a class="waves-effect waves-light btn-large primary-color width-100 animated bouncein delay-6"
-                     href="javascript:next();">下一步</a>
-                </c:if>
+                <a class="waves-effect waves-light btn-large primary-color width-100 animated bouncein delay-6"
+                   href="javascript:next();">下一步</a>
               </div>
             </div>
-          </form>
         </div>
 
         <div id="test2">
@@ -128,156 +125,115 @@
             <div class="input-field animated fadeinright">
               <h5>入住日期:</h5>
               <select class="browser-default" name="stayDate" id="stayDate">
-                <option value="2016-09-02" selected>9月2日周五</option>
-                <option value="2016-09-03">9月3日周六</option>
+                <option value="2016-09-02" ${ma.stayDate eq '2016-09-02' ? 'selected' : ''}>9月2日周五</option>
+                <option value="2016-09-03" ${ma.stayDate eq '2016-09-03' ? 'selected' : ''}>9月3日周六</option>
               </select>
             </div>
             <div class="input-field animated fadeinright">
               <h5>退房日期:</h5>
               <select class="browser-default" name="leaveDate" id="leaveDate">
-                <option value="2016-09-04" selected>9月4日周日</option>
-                <option value="2016-09-04">9月5日周一</option>
+                <option value="2016-09-04" ${ma.leaveDate eq '2016-09-04' ? 'selected' : ''}>9月4日周日</option>
+                <option value="2016-09-05" ${ma.leaveDate eq '2016-09-05' ? 'selected' : ''}>9月5日周一</option>
               </select>
             </div>
             <div class="input-field animated fadeinright">
               <h5>9月2日周五自助晚餐:</h5>
               <select class="browser-default" name="dinner1" id="dinner1">
-                <option value="1" selected>需要</option>
-                <option value="2">不需要</option>
+                <option value="1" ${ma.dinner1 eq '1' ? 'selected' : ''}>需要</option>
+                <option value="2" ${ma.dinner1 eq '2' ? 'selected' : ''}>不需要</option>
 
               </select>
             </div>
             <div class="input-field animated fadeinright">
               <h5>9月3日周六答谢晚宴:</h5>
               <select class="browser-default" name="dinner2" id="dinner2">
-                <option value="1" selected>参加</option>
-                <option value="2">不参加</option>
+                <option value="1" ${ma.dinner2 eq '1' ? 'selected' : ''}>参加</option>
+                <option value="2" ${ma.dinner2 eq '2' ? 'selected' : ''}>不参加</option>
 
               </select>
             </div>
             <div class="input-field animated fadeinright">
               <h5>9月4日周日搜狐之夜晚宴，暨评委证书颁发仪式:</h5>
               <select class="browser-default" name="dinner3" id="dinner3">
-                <option value="1" selected>参加</option>
-                <option value="2">不参加</option>
+                <option value="1" ${ma.dinner3 eq '1' ? 'selected' : ''}>参加</option>
+                <option value="2" ${ma.dinner3 eq '2' ? 'selected' : ''}>不参加</option>
               </select>
             </div>
           </div>
           <div style="padding: 20px 40px;">
-            <input type="hidden" class="validate" name="id" value="${ai.id}">
-            <input type="hidden" class="validate" name="meetingId" value="${meetingId}">
-            <c:if test="${'COMMIT' eq ai.status || empty ai.status}">
-              <a class="waves-effect waves-light btn-large primary-color width-100 animated bouncein delay-6"
-                 href="javascript:signUp();">提交报名</a>
-            </c:if>
+            <a class="waves-effect waves-light btn-large primary-color width-100 animated bouncein delay-6"
+               href="javascript:signUp();">提交报名</a>
           </div>
         </div>
+        </form>
       </div>
       <!-- Footer -->
       <jsp:include page="../../common/pageFooter.jsp"></jsp:include>
 
     </div> <!-- End of Main Contents -->
+    <script type="text/javascript">
+      function next() {
+        if(validate1()) {
+          $("#test3").click();
+        }
+      }
 
+      function signUp() {
+        if(validate1()) {
+          var stayDate = $("#stayDate").val();
+          var leaveDate = $("#leaveDate").val();
+          var dinner1 = $("#dinner1").val();
+          var dinner2 = $("#dinner2").val();
+          var dinner3 = $("#dinner3").val();
+          if (!(isNotNull(stayDate) && isNotNull(leaveDate) && isNotNull(dinner1) && isNotNull(dinner2) && isNotNull(dinner3))) {
+            alert("请填写完整的食宿信息！");
+            return;
+          }
+          $.ajax({
+            type: "post",
+            dataType: "json",
+            url: "${_PATH}/meeting/sign",
+            data: $('#form1').serialize(),
+            success: function (resp) {
+              if (resp.statusCode === 200) {
+                window.location.href = "${_PATH}/meetingcode/qrcodecheck";
+              } else {
+                alert(resp.errorInfo);
+              }
+            },
+            error: function (resp) {
+              alert('报名失败');
+            }
+          })
+        }
+      }
+
+      function validate1() {
+        var name = $("#name").val();
+        var salutation = $("input[name='salutation']:checked").val();
+        var company = $("#company").val();
+        var title = $("#title").val();
+        var email = $("#email").val();
+        var mobile = $("#mobile").val();
+        var travelType = $("#travelType").val();
+        var travelName = $("#travelName").val();
+        var travelNo = $("#travelNo").val();
+        var contactName = $("#contactName").val();
+        var contactEmail = $("#contactEmail").val();
+        var contactMobile = $("#contactMobile").val();
+        if (!(isNotNull(name) && isNotNull(salutation) && isNotNull(company) && isNotNull(title) && isNotNull(email) && isNotNull(mobile) && isNotNull(travelType) && isNotNull(travelName) && isNotNull(travelNo) && isNotNull(contactName) && isNotNull(contactEmail) && isNotNull(contactMobile))) {
+          alert("请填写完整的个人信息！");
+          return false;
+        } else {
+          return true;
+        }
+      }
+    </script>
   </div> <!-- End of Page Content -->
 
 </div> <!-- End of Page Container -->
 
 <%@include file="../../common/footer.jsp" %>
-<script type="text/javascript">
-  $(function () {
-    if (isNotNull('${ma.salutation}')) {
-      $("#salutation${ma.salutation}").attr('checked', 'checked');
-    }
-    if (isNotNull('${ma.travelType}')) {
-      $("#travelType").val('${ma.travelType}');
-    }
-    if (isNotNull('${ai.stayDate}')) {
-      $("#stayDate").val('${ai.stayDate}');
-    }
-    if (isNotNull('${ai.leaveDate}')) {
-      $("#leaveDate").val('${ai.leaveDate}');
-    }
-    if (isNotNull('${ai.dinner1}')) {
-      $("#dinner1").val('${ai.dinner1}');
-    }
-    if (isNotNull('${ai.dinner2}')) {
-      $("#dinner2").val('${ai.dinner2}');
-    }
-    if (isNotNull('${ai.dinner3}')) {
-      $("#dinner3").val('${ai.dinner3}');
-    }
-  });
-  function next() {
-    if(validate1()) {
-      $.ajax({
-        type: "post",
-        dataType: "json",
-        url: "${_PATH}/meeting/sign",
-        data: $('#form1').serialize(),
-        success: function (resp) {
-          if (resp.statusCode === 200) {
-            $("#test3").click();
-          } else {
-            alert(resp.errorInfo);
-          }
-        },
-        error: function (resp) {
-          alert('报名失败');
-        }
-      })
-    }
-  }
 
-  function signUp() {
-    if(validate1()) {
-      var stayDate = $("#stayDate").val();
-      var leaveDate = $("#leaveDate").val();
-      var dinner1 = $("#dinner1").val();
-      var dinner2 = $("#dinner2").val();
-      var dinner3 = $("#dinner3").val();
-      if (!(isNotNull(stayDate) && isNotNull(leaveDate) && isNotNull(dinner1) && isNotNull(dinner2) && isNotNull(dinner3))) {
-        alert("请填写完整的食宿信息！");
-        return;
-      }
-      $.ajax({
-        type: "post",
-        dataType: "json",
-        url: "${_PATH}/meeting/sign",
-        data: $('#form1').serialize(),
-        success: function (resp) {
-          if (resp.statusCode === 200) {
-            window.location.href = "${_PATH}/meetingcode/qrcodecheck";
-          } else {
-            alert(resp.errorInfo);
-          }
-        },
-        error: function (resp) {
-          alert('报名失败');
-        }
-      })
-    }
-  }
-
-  function validate1() {
-    var name = $("#name").val();
-    var salutation = $("input[name='salutation']:checked").val();
-    var company = $("#company").val();
-    var title = $("#title").val();
-    var email = $("#email").val();
-    var mobile = $("#mobile").val();
-    var travelType = $("#travelType").val();
-    var travelName = $("#travelName").val();
-    var travelNo = $("#travelNo").val();
-    var contactName = $("#contactName").val();
-    var contactEmail = $("#contactEmail").val();
-    var contactMobile = $("#contactMobile").val();
-    if (!(isNotNull(name) && isNotNull(salutation) && isNotNull(company) && isNotNull(title) && isNotNull(email) && isNotNull(mobile) && isNotNull(travelType) && isNotNull(travelName) && isNotNull(travelNo) && isNotNull(contactName) && isNotNull(contactEmail) && isNotNull(contactMobile))) {
-      alert("请填写完整的个人信息！");
-      return false;
-    } else {
-      return true;
-    }
-  }
-</script>
 </body>
 </html>
