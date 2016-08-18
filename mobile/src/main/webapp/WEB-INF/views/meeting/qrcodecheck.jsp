@@ -32,10 +32,11 @@
                 <form id="form" method="post" action="${_PATH}/member/checkcode">
                 <div class="form-inputs">
                     <center>
-                        <h3>信息提交成功，请您保存以下二维码</h3>
+                        <h3>报名成功！</h3>
+                        <h3>请您妥善保存下方二维码：</h3>
                         <img src="${_PATH}/static/img/qru6.jpg" style="width: 200px;" align="center">
                     </center>
-                    <h4>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;尊敬的艾菲奖评委，感谢您拨冗前往参与2016年大中华区艾菲奖终审会，感谢您用宝贵的经验为大中华区艾菲奖做出的贡献，有任何问题可联系大中华区艾菲奖国际赛事部专员 Lily He，再次感谢您的参与！</h4>
+                    <h4>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;请扫描右下角二维码关注大中华区艾菲奖官方微信公众号，以便及时了解活动信息。若有任何问题，欢迎联系Lily He: +86 186-3257-8088 </h4>
 
                 </div>
               </form>

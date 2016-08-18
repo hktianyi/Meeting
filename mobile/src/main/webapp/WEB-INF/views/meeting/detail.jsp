@@ -45,25 +45,25 @@
                             </p>
                             <label class="active">会议名称</label>
                         </div>
+                        <div class="input-field animated fadeinright delay-1">
+                            <p class="valueStyle">
+                                ${meeting.startTime} - ${meeting.endTime}
+                            </p>
+                            <label class="active">活动时间</label>
+                        </div>
                         <div class="input-field animated fadeinright">
                             <p class="valueStyle">
                                 ${meeting.address}
                             </p>
                             <label class="active">活动地址</label>
                         </div>
-                        <div class="input-field animated fadeinright delay-1">
-                            <p class="valueStyle">
-                                ${meeting.startTime}-${meeting.endTime}
-                            </p>
-                            <label class="active">活动时间</label>
-                        </div>
-                        <div class="input-field animated fadeinright delay-4">
+                        <%--<div class="input-field animated fadeinright delay-4">
                             <p class="valueStyle">
                                 ${meeting.meetingType}
                             </p>
                             <label class="active">活动类型</label>
-                        </div>
-                        <div class="input-field animated fadeinright delay-4">
+                        </div>--%>
+                        <%--<div class="input-field animated fadeinright delay-4">
                             <p class="valueStyle">
                                 <c:choose>
                                     <c:when test="${meeting.free eq '0' || meeting.free eq '0.00'}">
@@ -76,12 +76,12 @@
 
                             </p>
                             <label class="active">活动费用</label>
-                        </div>
+                        </div>--%>
                         <div class="input-field animated fadeinright delay-5">
                             <p class="valueStyle">
                                 ${meeting.introduction}
                             </p>
-                            <label class="active">活动简介</label>
+                            <label class="active">具体位置</label>
                         </div>
                     </div>
                 </div>

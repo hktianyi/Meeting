@@ -115,7 +115,7 @@
                 <input id="meetingId" type="hidden" class="validate" name="meetingId" value="${meetingId}">
                 <c:if test="${'COMMIT' eq ma.status || empty ma.status}">
                   <a class="waves-effect waves-light btn-large primary-color width-100 animated bouncein delay-6"
-                     href="javascript:next();">报名</a>
+                     href="javascript:next();">下一步</a>
                 </c:if>
               </div>
             </div>
@@ -168,7 +168,7 @@
             <input type="hidden" class="validate" name="meetingId" value="${meetingId}">
             <c:if test="${'COMMIT' eq ai.status || empty ai.status}">
               <a class="waves-effect waves-light btn-large primary-color width-100 animated bouncein delay-6"
-                 href="javascript:signUp();">报名</a>
+                 href="javascript:signUp();">提交报名</a>
             </c:if>
           </div>
         </div>
@@ -208,6 +208,57 @@
     }
   });
   function next() {
+    if(validate1()) {
+      $.ajax({
+        type: "post",
+        dataType: "json",
+        url: "${_PATH}/meeting/sign",
+        data: $('#form1').serialize(),
+        success: function (resp) {
+          if (resp.statusCode === 200) {
+            $("#test3").click();
+          } else {
+            alert(resp.errorInfo);
+          }
+        },
+        error: function (resp) {
+          alert('报名失败');
+        }
+      })
+    }
+  }
+
+  function signUp() {
+    if(validate1()) {
+      var stayDate = $("#stayDate").val();
+      var leaveDate = $("#leaveDate").val();
+      var dinner1 = $("#dinner1").val();
+      var dinner2 = $("#dinner2").val();
+      var dinner3 = $("#dinner3").val();
+      if (!(isNotNull(stayDate) && isNotNull(leaveDate) && isNotNull(dinner1) && isNotNull(dinner2) && isNotNull(dinner3))) {
+        alert("请填写完整的食宿信息！");
+        return;
+      }
+      $.ajax({
+        type: "post",
+        dataType: "json",
+        url: "${_PATH}/meeting/sign",
+        data: $('#form1').serialize(),
+        success: function (resp) {
+          if (resp.statusCode === 200) {
+            window.location.href = "${_PATH}/meetingcode/qrcodecheck";
+          } else {
+            alert(resp.errorInfo);
+          }
+        },
+        error: function (resp) {
+          alert('报名失败');
+        }
+      })
+    }
+  }
+
+  function validate1() {
     var name = $("#name").val();
     var salutation = $("input[name='salutation']:checked").val();
     var company = $("#company").val();
@@ -221,53 +272,11 @@
     var contactEmail = $("#contactEmail").val();
     var contactMobile = $("#contactMobile").val();
     if (!(isNotNull(name) && isNotNull(salutation) && isNotNull(company) && isNotNull(title) && isNotNull(email) && isNotNull(mobile) && isNotNull(travelType) && isNotNull(travelName) && isNotNull(travelNo) && isNotNull(contactName) && isNotNull(contactEmail) && isNotNull(contactMobile))) {
-      alert("请填写完整的信息！");
-      return;
+      alert("请填写完整的个人信息！");
+      return false;
+    } else {
+      return true;
     }
-    $.ajax({
-      type: "post",
-      dataType: "json",
-      url: "${_PATH}/meeting/sign",
-      data: $('#form1').serialize(),
-      success: function (resp) {
-        if (resp.statusCode === 200) {
-          $("#test3").click();
-        } else {
-          alert(resp.errorInfo);
-        }
-      },
-      error: function (resp) {
-        alert('报名失败');
-      }
-    })
-  }
-
-  function signUp() {
-    var stayDate = $("#stayDate").val();
-    var leaveDate = $("#leaveDate").val();
-    var dinner1 = $("#dinner1").val();
-    var dinner2 = $("#dinner2").val();
-    var dinner3 = $("#dinner3").val();
-    if (!(isNotNull(stayDate) && isNotNull(leaveDate) && isNotNull(dinner1) && isNotNull(dinner2) && isNotNull(dinner3))) {
-      alert("请填写完整的食宿信息！");
-      return;
-    }
-    $.ajax({
-      type: "post",
-      dataType: "json",
-      url: "${_PATH}/meeting/sign",
-      data: $('#form1').serialize(),
-      success: function (resp) {
-        if (resp.statusCode === 200) {
-          window.location.href = "${_PATH}/meetingcode/qrcodecheck";
-        } else {
-          alert(resp.errorInfo);
-        }
-      },
-      error: function (resp) {
-        alert('报名失败');
-      }
-    })
   }
 </script>
 </body>

@@ -40,5 +40,6 @@ public class MeetingSchedule extends BaseEntity {
      */
     private String endTime;
 
+    private Integer sort;
 
 }

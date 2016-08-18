@@ -1,4 +1,3 @@
-<%@ page import="org.tplatform.member.entity.Member" %>
 <%@ page pageEncoding="UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
@@ -22,12 +21,12 @@
 <!-- Icons -->
 <%--<link href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css" media="all" rel="stylesheet" type="text/css">--%>
 <!-- Styles -->
-<link href="${_PATH}/static/css/local.css" rel="stylesheet" type="text/css">
-<link href="${_PATH}/static/css/keyframes.css" rel="stylesheet" type="text/css">
-<link href="${_PATH}/static/css/materialize.min.css" rel="stylesheet" type="text/css">
-<link href="${_PATH}/static/css/swiper.css" rel="stylesheet" type="text/css">
-<link href="${_PATH}/static/css/swipebox.min.css" rel="stylesheet" type="text/css">
-<link href="${_PATH}/static/css/style.css" rel="stylesheet" type="text/css">
+<link href="${_PATH}/static/css/local.css?${_VERSION}" rel="stylesheet" type="text/css">
+<link href="${_PATH}/static/css/keyframes.css?${_VERSION}" rel="stylesheet" type="text/css">
+<link href="${_PATH}/static/css/materialize.min.css?${_VERSION}" rel="stylesheet" type="text/css">
+<link href="${_PATH}/static/css/swiper.css?${_VERSION}" rel="stylesheet" type="text/css">
+<link href="${_PATH}/static/css/swipebox.min.css?${_VERSION}" rel="stylesheet" type="text/css">
+<link href="${_PATH}/static/css/style.css?${_VERSION}" rel="stylesheet" type="text/css">
 <%--<link rel="shortcut icon" href="${_PATH}/favicon.ico" type="image/x-icon" />--%>
 <script src="${_PATH}/static/plugins/jquery-2.2.2.min.js" type="text/javascript"></script>
 <%--<script src="https://code.jquery.com/jquery-migrate-1.4.1.js" type="text/javascript"></script>--%>

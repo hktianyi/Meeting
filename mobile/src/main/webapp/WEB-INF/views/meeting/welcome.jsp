@@ -32,7 +32,7 @@
                 <form id="form" method="post" action="${_PATH}/member/checkcode">
                 <div class="form-inputs">
                     <center> <img src="${_PATH}/static/img/head-logo.png" style="width: 200px;" align="center"></center>
-                    <h4>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;尊敬的评委，感谢您拨冗前往参与2016大中华区艾菲奖终审评审会！您的学识和见解将为大中华区艾菲奖及整个行业做出宝贵的贡献。有任何问题，可请联系大中华区艾菲奖国际赛是部专员 Lily He（+86 186-3257-8088）。再次感谢您的参与！</h4>
+                    <h4>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;尊敬的评委，感谢您拨冗参与2016大中华区艾菲奖终审评审会！请扫描右下角二维码关注大中华区艾菲奖官方微信公众号，以便及时了解活动信息。若有任何问题，欢迎联系Lily He: +86 186-3257-8088</h4>
                     <div class="input-field animated fadeinright">
                         <input id="meetCode"  name="meetCode" type="text" class="validate">
                         <label for="meetCode">请输入您的邀请码</label>

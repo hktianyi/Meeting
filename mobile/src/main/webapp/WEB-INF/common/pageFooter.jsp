@@ -15,7 +15,7 @@
     </div>
   </div>--%>
   <div class="footer-copyright blue darken-1">
-    <div class="container">
+    <div class="container" style="font-size: 12px">
       版权所有 大中华区艾菲奖工作组
       <%--<p class="center-align grey-text text-lighten-4"></p>--%>
       <img class="grey-text text-lighten-4 right" src="${_PATH}/static/img/qrcode.jpeg" style="width: 3em;padding-top: .3em;">
