@@ -25,6 +25,9 @@ public class MeetingCodeService extends BaseService<MeetingCode> {
     public MeetingCode checkCode(String meetCode){
         List<MeetingCode> meetList = meetingCodeMapper.findMeetByCode(meetCode);
         if(meetList.size()>0){
+            MeetingCode meetingCode = meetList.get(0);
+            meetingCode.setBizStatus("2");
+            this.saveOrUpdate(meetingCode);
             return meetList.get(0);
         }else{
             return null;
