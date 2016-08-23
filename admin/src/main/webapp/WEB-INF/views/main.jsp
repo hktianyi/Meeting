@@ -30,29 +30,7 @@
         <%--<li class="sidebar-toggler-wrapper">
           <div class="sidebar-toggler"> </div>
         </li>--%>
-        <c:choose>
-          <c:when test="${menuChange}">
-            <li class="nav-item open">
-              <a href="javascript:void(0);" data-action="" class="nav-link nav-toggle">
-                <i class="fa fa-edit"></i><span class="title">在线填报</span></a>
-              <ul class="sub-menu" style="display: block;">
-                <c:forEach items="${_taskDetails}" var="_taskDetail">
-                  <li class="nav-item">
-                    <a href="javascript:void(0);" data-action="/kpi/edit/${_taskDetail.taskType}?id=${_taskDetail.id}" class="nav-link">
-                      <i class="fa fa-tachometer"></i><span class="title">
-                      <c:forEach items="${dic_taskType}" var="dic">
-                        <c:if test="${_taskDetail.taskType eq dic.value}">${dic.zhName}</c:if>
-                      </c:forEach>
-                    </span></a>
-                  </li>
-                </c:forEach>
-              </ul>
-            </li>
-          </c:when>
-          <c:otherwise>
-            <view:menu/>
-          </c:otherwise>
-        </c:choose>
+        <view:menu/>
       </ul>
     </div>
   </div>

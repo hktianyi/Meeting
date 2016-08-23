@@ -13,7 +13,7 @@
 <!-- BEGIN LOGO -->
 <div class="logo">
   <a href="index.html">
-    <img src="${_PATH}/static/common/img/logo.png" alt="" /> </a>
+    <img src="${_PATH}/static/common/img/logo.png" alt="" width="300px" /> </a>
 </div>
 <!-- END LOGO -->
 <!-- BEGIN LOGIN -->

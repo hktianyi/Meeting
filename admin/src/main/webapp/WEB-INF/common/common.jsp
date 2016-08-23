@@ -3,7 +3,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%
-    request.setAttribute("FILE_DOMAIN", "http://f.changdiyun.cn");
+    request.setAttribute("FILE_DOMAIN", "http://effie.china-caa.org:81/");
 %>
 <meta charset="utf-8" />
 <%--<title>${APP_NAME}</title>--%>
@@ -24,7 +24,7 @@
 <link href="${_PATH}/static/plugins/datatables/datatables.min.css" rel="stylesheet" type="text/css" />
 <link href="${_PATH}/static/plugins/bootstrap-datepicker/css/bootstrap-datepicker3.min.css" rel="stylesheet" type="text/css" />
 <link href="${_PATH}/static/plugins/bootstrap-editable/css/bootstrap-editable.css" rel="stylesheet" type="text/css" />
-<link href="${_PATH}/static/plugins/jstree/themes/default/style.min.css" rel="stylesheet" type="text/css" />
+<link href="${_PATH}/static/plugins/bootstrap-multiselect/css/bootstrap-multiselect.css" rel="stylesheet" type="text/css" />
 <!-- END PAGE LEVEL STYLES -->
 <!-- BEGIN THEME GLOBAL STYLES -->
 <link href="${_PATH}/static/common/css/components.min.css" rel="stylesheet" id="style_components" type="text/css" />
@@ -33,7 +33,7 @@
 <!-- BEGIN THEME LAYOUT STYLES -->
 <link href="${_PATH}/static/common/css/layout.min.css" rel="stylesheet" type="text/css" />
 <link href="${_PATH}/static/common/css/themes/darkblue.min.css" rel="stylesheet" type="text/css" id="style_color" />
-<link href="${_PATH}/static/common/css/custom.css?${_VERSION}" rel="stylesheet" type="text/css" />
+<link href="${_PATH}/static/common/css/custom.css" rel="stylesheet" type="text/css" />
 <!-- END THEME LAYOUT STYLES -->
 <%--<link rel="shortcut icon" href="${_PATH}/favicon.ico" type="image/x-icon" />--%>
 <script src="${_PATH}/static/plugins/jquery/jquery-2.2.2.min.js" type="text/javascript"></script>

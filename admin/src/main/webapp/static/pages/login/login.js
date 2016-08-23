@@ -1,10 +1,8 @@
 var Login = function () {
   var handleLogin = function () {
     var unme = Cookies.get('username');
-    var pwd = Cookies.get('pwd');
     if (unme) {
       $('.login-form input[name="username"]').val(unme);
-      $('.login-form input[name="password"]').val(pwd);
       $('.login-form input[name="remember"]').parent().addClass('checked');
       $('.login-form input[name="remember"]').prop("checked", true);
     }
@@ -53,11 +51,9 @@ var Login = function () {
 
       submitHandler: function (form) {
         if ($('input[name="remember"]:checked').length > 0) {
-          Cookies.set('username', $('.login-form input[name="username"]').val(), { expires: 365 });
-          Cookies.set('pwd', $('.login-form input[name="pwd"]').val(), { expires: 365 });
+          Cookies.set('username', $('.login-form input[name="username"]').val());
         } else {
           Cookies.remove('username');
-          Cookies.remove('pwd');
         }
         form.submit(); // form validation success, call ajax form submit
       }

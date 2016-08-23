@@ -25,7 +25,6 @@ public class SysInfoCtrl extends BaseCtrl<SysInfo> {
 
   /**
    * 系统基础信息
-   *
    * @param modelMap
    * @return
    */
@@ -37,7 +36,6 @@ public class SysInfoCtrl extends BaseCtrl<SysInfo> {
 
   /**
    * 刷新数据
-   *
    * @return
    */
   @RequestMapping("/refresh")
@@ -48,7 +46,6 @@ public class SysInfoCtrl extends BaseCtrl<SysInfo> {
 
   /**
    * 数据源监控
-   *
    * @return
    */
   @RequestMapping("/druidStatView")

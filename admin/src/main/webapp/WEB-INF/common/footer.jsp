@@ -31,7 +31,7 @@
 <script src="${_PATH}/static/plugins/bootstrap-datepicker/js/bootstrap-datepicker.min.js" type="text/javascript"></script>
 <script src="${_PATH}/static/plugins/bootstrap-datepicker/locales/bootstrap-datepicker.zh-CN.min.js" type="text/javascript"></script>
 <script src="${_PATH}/static/plugins/bootstrap-editable/js/bootstrap-editable.min.js" type="text/javascript"></script>
-<script src="${_PATH}/static/plugins/jstree/jstree.min.js" type="text/javascript"></script>
+<script src="${_PATH}/static/plugins/bootstrap-multiselect/js/bootstrap-multiselect.js" type="text/javascript"></script>
 <!-- END PAGE LEVEL PLUGINS -->
 <!-- BEGIN THEME LAYOUT SCRIPTS -->
 <script src="${_PATH}/static/common/js/layout.min.js" type="text/javascript"></script>
@@ -40,7 +40,6 @@
 <!-- END THEME LAYOUT SCRIPTS -->
 <script src="${_PATH}/static/plugins/jquery-validation/jquery.validate.min.js" type="text/javascript"></script>
 <script src="${_PATH}/static/plugins/jquery-validation/additional-methods.min.js" type="text/javascript"></script>
-<script src="${_PATH}/static/plugins/jquery-validation/localization/messages_zh.min.js" type="text/javascript"></script>
 <script type="text/javascript">
   // 编辑
   function edit(id, url) {
@@ -62,7 +61,7 @@
   }
   // 编辑
   function del(id, url) {
-    layer.confirm('确认删除？', function () {
+    layer.confirm('确认删除' + (name || '') + '？', function () {
       $.post(url || (_MODULE_NAME + '/delete/' + id), function (resp) {
         layer.alert(resp.data);
         window.location.reload();
@@ -72,6 +71,7 @@
   !(function () {
     window.alert = layer.alert;
     window.confim = layer.confim;
+    $('select[multiple="multiple"]').multiselect();
     // DataTable配置
     $.fn.dataTable.ext.errMode = 'throw';
     $.fn.dataTable.defaults = $.extend($.fn.dataTable.defaults, {
@@ -81,35 +81,6 @@
       processing: true, serverSide: true, deferRender: true, searching: false, ordering: false, pageLength: 50,
       fnCreatedRow: function (nRow, aData, iDataIndex) {
         $('td:eq(0)', nRow).html(++iDataIndex);
-      }
-    });
-    $.validator.setDefaults({
-      onfocusout: function (element) {
-        $(element).valid();
-      },
-      submitHandler: function (form) {
-        for (var instance in CKEDITOR.instances)
-          CKEDITOR.instances[instance].updateElement();
-        $.ajax(_MODULE_NAME + '/save', {
-          type: 'POST',
-          data: $(form).serialize(),
-          success: function (resp) {
-            if (resp.statusCode === 200) {
-              layer.alert('保存成功!', function () {
-                try {
-                  saveCallback && saveCallback()
-                } catch (e) {
-                  window.location.href = _MODULE_NAME + '/list';
-                }
-              })
-            }
-          },
-          error: function (resp) {
-            layer.alert('保存失败!');
-            var img = new Image();
-            img.src = _PATH + '/sendJSError?s=' + _MODULE_NAME + '&e=' + encodeURIComponent(JSON.stringify(resp));
-          }
-        });
       }
     });
     // datepicker配置

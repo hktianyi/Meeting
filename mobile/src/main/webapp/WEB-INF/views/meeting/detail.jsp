@@ -32,7 +32,7 @@
                 <div class="p-t-20">
                     <ul class="tabs">
                         <li class="tab"><a class="active" href="#test1">活动信息</a></li>
-                        <li class="tab"><a href="#test2">评审日程</a></li>
+                        <li class="tab"><a href="#test2">评审会日程</a></li>
                     </ul>
                 </div>
 

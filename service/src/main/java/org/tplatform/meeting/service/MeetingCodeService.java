@@ -1,5 +1,7 @@
 package org.tplatform.meeting.service;
 
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -11,6 +13,7 @@ import org.tplatform.meeting.mapper.MeetingCodeMapper;
 import org.tplatform.util.PropertyUtil;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by zjk on 2016/8/13.
@@ -52,6 +55,14 @@ public class MeetingCodeService extends BaseService<MeetingCode> {
 //            e.printStackTrace();
 //        }
         return null;
+    }
+
+    public PageInfo<Map<String, Object>> findForAttendee(MeetingCode meetingCode, PageInfo pageInfo) {
+        if (pageInfo.getPageNum() == 0) {
+            pageInfo.setPageNum(pageInfo.getStartRow() / pageInfo.getPageSize() + 1);
+        }
+        PageHelper.startPage(pageInfo.getPageNum(), pageInfo.getPageSize());
+        return new PageInfo<>(meetingCodeMapper.selectForAttendee());
     }
 
 }

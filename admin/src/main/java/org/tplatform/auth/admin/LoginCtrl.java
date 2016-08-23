@@ -6,9 +6,7 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
-import org.tplatform.auth.entity.SysRole;
 import org.tplatform.auth.entity.SysUser;
-import org.tplatform.auth.service.ISysOrganService;
 import org.tplatform.auth.service.ISysRoleService;
 import org.tplatform.auth.service.ISysUserService;
 import org.tplatform.constant.GlobalConstant;
@@ -16,7 +14,6 @@ import org.tplatform.core.fsm.StatusEnum;
 import org.tplatform.framework.util.StringUtil;
 
 import javax.servlet.http.HttpSession;
-import java.util.Set;
 
 /**
  * Created by Tianyi on 2015/12/5.
@@ -32,8 +29,6 @@ public class LoginCtrl {
   private ISysUserService sysUserService;
   @Autowired
   private ISysRoleService sysRoleService;
-  @Autowired
-  private ISysOrganService sysOrganService;
 
   /**
    * 登录页
@@ -60,16 +55,8 @@ public class LoginCtrl {
   public String login(String username, String password, ModelMap modelMap) {
     SysUser sysUser = sysUserService.findByUsername(username);
     if (sysUser != null && sysUser.getPassword().equals(password)) {
-      Set<SysRole> set = sysRoleService.findByUserId(sysUser.getId(), StatusEnum.VALID);
-      sysUser.setRoles(set);
-      sysUser.setOrgan(sysOrganService.findByUserId(sysUser.getId()));
+      sysUser.setRoles(sysRoleService.findByUserId(sysUser.getId(), StatusEnum.VALID));
       session.setAttribute(GlobalConstant.SESSION_USER_KEY, sysUser);
-      for(SysRole role : set) {
-        if(4 == role.getId()) {
-          session.setAttribute("menuChange", true);
-          break;
-        }
-      }
       // 登录跳转
       String loginTo = String.valueOf(session.getAttribute(GlobalConstant.SESSION_LOSE_TO_PAGE_KEY));
       if (StringUtil.isNotEmpty(loginTo)) {
@@ -92,7 +79,7 @@ public class LoginCtrl {
   @RequestMapping(value = "/main.html", method = RequestMethod.GET)
   public String main(ModelMap modelMap) {
     modelMap.put("title", "TPlatform");
-    modelMap.put("body", "/index.jsp");
+    modelMap.put("body", "/sys/dashboard.jsp");
     return "/main.jsp";
   }
 

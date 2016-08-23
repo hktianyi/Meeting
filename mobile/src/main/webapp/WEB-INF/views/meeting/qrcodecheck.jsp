@@ -33,7 +33,7 @@
                 <div class="form-inputs">
                     <center>
                         <h3>提交成功！请您妥善保存下方二维码，此码将是您参会的重要信息。</h3>
-                        <img src="${_PATH}${empty qrCodeUrl ? '/static/img/qru6.jpg' : qrCodeUrl}" style="width: 200px;" align="center">
+                        <img src="${qrCodeUrl}" style="width: 200px;" align="center" onerror="${_PATH}/static/img/qru6.jpg">
                     </center>
                     <h4>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;大中华区艾菲奖再次感谢您的参与和支持。若有问题，欢迎联系Lily He. </h4>
                     <h4>Email: lily.he@greaterchinaeffie.org<br>Mobile: +86 18632578088</h4>
