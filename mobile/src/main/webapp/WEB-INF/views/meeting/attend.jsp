@@ -36,7 +36,7 @@
 
     <!-- Toolbar -->
     <jsp:include page="../../common/toolbar.jsp">
-      <jsp:param name="title" value="活动报名"></jsp:param>
+      <jsp:param name="title" value="评委登记注册"></jsp:param>
       <jsp:param name="isCommnoBanner" value="0"></jsp:param>
     </jsp:include>
 
@@ -153,7 +153,7 @@
               </select>
             </div>
             <div class="input-field animated fadeinright">
-              <h5>9月4日周日搜狐之夜晚宴，暨评委证书颁发仪式:</h5>
+              <h5>9月4日周日搜狐之夜晚宴暨评委证书颁发仪式:</h5>
               <select class="browser-default" name="dinner3" id="dinner3">
                 <option value="1" ${ma.dinner3 eq '1' ? 'selected' : ''}>参加</option>
                 <option value="2" ${ma.dinner3 eq '2' ? 'selected' : ''}>不参加</option>
@@ -162,7 +162,7 @@
           </div>
           <div style="padding: 20px 40px;">
             <a class="waves-effect waves-light btn-large primary-color width-100 animated bouncein delay-6"
-               href="javascript:signUp();">提交报名</a>
+               href="javascript:signUp();">提交</a>
           </div>
         </div>
         </form>

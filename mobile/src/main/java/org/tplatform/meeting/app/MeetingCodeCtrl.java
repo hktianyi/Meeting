@@ -3,6 +3,7 @@ package org.tplatform.meeting.app;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -56,14 +57,21 @@ public class MeetingCodeCtrl extends BaseCtrl {
 
     @RequestMapping(value = "/welcome")
     public String welcome(ModelMap model,String meetCode){
+        return "/meeting/welcome.jsp";
+    }
 
+
+    @RequestMapping(value = "/validate/qrCode/{code}")
+    public String validate(@PathVariable String code, ModelMap model){
+        model.put("code", code);
         return "/meeting/welcome.jsp";
     }
 
 
     @RequestMapping(value = "/qrcodecheck")
     public String qrcodecheck(ModelMap model){
-        //meetingCodeService.geneQrcode();
+        Member member = (Member) session.getAttribute(GlobalConstant.SESSION_USER_KEY);
+        model.put("qrCodeUrl", meetingCodeService.geneQrcode(member.getUserName()));
         return "/meeting/qrcodecheck.jsp";
     }
 

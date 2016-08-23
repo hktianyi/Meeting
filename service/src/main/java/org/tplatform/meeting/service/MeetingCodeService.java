@@ -1,17 +1,16 @@
 package org.tplatform.meeting.service;
 
-import com.foxinmy.weixin4j.mp.model.QRParameter;
-import com.foxinmy.weixin4j.mp.model.QRResult;
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.tplatform.impl.BaseService;
 import org.tplatform.meeting.entity.MeetingCode;
 import org.tplatform.meeting.mapper.MeetingCodeMapper;
-import org.tplatform.util.WXUtil;
+import org.tplatform.util.PropertyUtil;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 /**
  * Created by zjk on 2016/8/13.
@@ -36,7 +35,14 @@ public class MeetingCodeService extends BaseService<MeetingCode> {
 
     }
 
-    public Map<String, Object> geneQrcode(){
+    public String geneQrcode(String code){
+        try {
+            Document document = Jsoup.connect(String.format(PropertyUtil.getProInfo("config", "api_qrCode_cli"), "http://effie.china-caa.org:8600/mobile/validate/qrCode/" + code)).get();
+            Element element = document.select("#qrcode_plugins_img").first();
+            return element.attr("src");
+        }catch (Exception e) {
+            e.printStackTrace();
+        }
         //WXUtil.getProxy("1").sendTmplMessage(templateMessage);
 
 //        try {

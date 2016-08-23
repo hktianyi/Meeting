@@ -32,7 +32,7 @@
                 <div class="p-t-20">
                     <ul class="tabs">
                         <li class="tab"><a class="active" href="#test1">活动信息</a></li>
-                        <li class="tab"><a href="#test2">活动日程</a></li>
+                        <li class="tab"><a href="#test2">评审日程</a></li>
                     </ul>
                 </div>
 
@@ -90,13 +90,49 @@
                     <div class="container activity p-l-r-20" style=" padding-left: 100px !important;">
                         <div class="row m-l-0">
                             <div class="col">
-                                <c:forEach items="${schedules}" var="item">
-                                    <div class="contact" style="padding: 16px 0;">
-                                        <span class="date" style=" left: -140px;top: 10px;">
-                                        ${item.scheduleDate}
+                                <c:forEach items="${schedules}" var="item" varStatus="status">
+                                    <c:if test="${status.first}">
+                                        <c:set scope="page" var="t_index" value="0"></c:set>
+                                        <c:set scope="page" var="t_now" value="${item.scheduleDate}"></c:set>
+                                        <div class="contact" style="padding: 16px 0;">
+                                        <span class="date" style=" left: -130px;">
+                                                ${item.scheduleDate}
                                         </span>
-                                        <span class="date" style=" left: -140px;top: 28px;">
-                                        ${item.startTime} - ${item.endTime}  ${item.timeOfDay}
+                                            <div class="dot z-depth-1" style="width: 50px;height: 50px;line-height: 42px;text-align: center;left: -56px;top: 0px;border: 4px solid #bbb;">
+                                                报到
+                                            </div>
+                                        </div>
+                                    </c:if>
+                                    <c:if test="${t_now ne item.scheduleDate}">
+                                        <c:if test="${item.scheduleDate eq '2016-09-05'}">
+                                            <div class="contact" style="padding: 16px 0;">
+                                        <span class="date" style=" left: -130px;">
+                                                ${item.scheduleDate}
+                                        </span>
+                                                <div class="dot z-depth-1" style="width: 50px;height: 50px;line-height: 42px;text-align: center;left: -56px;top: 0px;border: 4px solid #bbb;">
+                                                    结束
+                                                </div>
+                                            </div>
+                                        </c:if>
+                                    <c:if test="${item.scheduleDate ne '2016-09-05'}">
+                                        <c:set scope="page" var="t_index" value="${t_index+1}"></c:set>
+                                        <c:set scope="page" var="t_now" value="${item.scheduleDate}"></c:set>
+                                        <div class="contact" style="padding: 16px 0;">
+                                        <span class="date" style=" left: -130px;">
+                                                ${item.scheduleDate}
+                                        </span>
+                                            <div class="dot z-depth-1" style="width: 50px;height: 50px;line-height: 42px;text-align: center;left: -56px;top: 0px;border: 4px solid #bbb;">
+                                                Day${t_index}
+                                            </div>
+                                        </div>
+                                        </c:if>
+                                    </c:if>
+                                    <div class="contact" style="padding: 16px 0;">
+                                        <%--<span class="date" style=" left: -140px;top: 10px;">
+                                        ${item.scheduleDate}
+                                        </span>--%>
+                                        <span class="date" style=" left: -120px;">
+                                        ${item.startTime} ${empty item.endTime ? '' : '-'} ${item.endTime}  ${item.timeOfDay}
                                         </span>
                                         <div class="dot z-depth-1">
                                         </div>
@@ -118,13 +154,13 @@
                  <div style="padding: 20px 40px;">
                      <c:choose>
                          <c:when test="${signUp}">
-                             <a class="waves-effect waves-light btn-large primary-color width-100 animated bouncein delay-6" href="javascript:;">
-                                 已报名
+                             <a class="waves-effect waves-light btn-large primary-color width-100 animated bouncein delay-6" href="${_PATH}/meeting/join/${meeting.id}">
+                                 查看/修改个人信息
                              </a>
                          </c:when>
                          <c:otherwise>
                              <a class="waves-effect waves-light btn-large primary-color width-100 animated bouncein delay-6" href="${_PATH}/meeting/join/${meeting.id}">
-                                 参加活动
+                                 评委登记注册
                              </a>
                          </c:otherwise>
                      </c:choose>

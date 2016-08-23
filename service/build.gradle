@@ -82,7 +82,8 @@ dependencies {
             "org.apache.httpcomponents:httpclient:4.3.6",
             "redis.clients:jedis:2.6.2",
 
-            "com.foxinmy:weixin4j-mp:1.7.0"
+            "com.foxinmy:weixin4j-mp:1.7.0",
+            "com.google.zxing:core:3.2.1"
 
             // 分布式
 //            "org.javassist:javassist:3.20.0-GA"

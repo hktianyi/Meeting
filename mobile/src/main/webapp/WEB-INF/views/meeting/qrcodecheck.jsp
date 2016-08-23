@@ -32,11 +32,11 @@
                 <form id="form" method="post" action="${_PATH}/member/checkcode">
                 <div class="form-inputs">
                     <center>
-                        <h3>报名成功！</h3>
-                        <h3>请您妥善保存下方二维码：</h3>
-                        <img src="${_PATH}/static/img/qru6.jpg" style="width: 200px;" align="center">
+                        <h3>提交成功！请您妥善保存下方二维码，此码将是您参会的重要信息。</h3>
+                        <img src="${_PATH}${empty qrCodeUrl ? '/static/img/qru6.jpg' : qrCodeUrl}" style="width: 200px;" align="center">
                     </center>
-                    <h4>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;请扫描右下角二维码关注大中华区艾菲奖官方微信公众号，以便及时了解活动信息。若有任何问题，欢迎联系Lily He: +86 186-3257-8088 </h4>
+                    <h4>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;大中华区艾菲奖再次感谢您的参与和支持。若有问题，欢迎联系Lily He. </h4>
+                    <h4>Email: lily.he@greaterchinaeffie.org<br>Mobile: +86 18632578088</h4>
 
                 </div>
               </form>
