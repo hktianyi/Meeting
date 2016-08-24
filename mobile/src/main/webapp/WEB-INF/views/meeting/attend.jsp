@@ -131,14 +131,14 @@
             </div>
             <div class="input-field animated fadeinright">
               <h5>入住日期:</h5>
-              <select class="browser-default" name="stayDate" id="stayDate">
+              <select class="browser-default" name="stayDate" id="stayDate" ${ma.isStay eq '0' ? 'disabled' : ''}>
                 <option value="2016-09-02" ${ma.stayDate eq '2016-09-02' ? 'selected' : ''}>9月2日周五</option>
                 <option value="2016-09-03" ${ma.stayDate eq '2016-09-03' ? 'selected' : ''}>9月3日周六</option>
               </select>
             </div>
             <div class="input-field animated fadeinright">
               <h5>退房日期:</h5>
-              <select class="browser-default" name="leaveDate" id="leaveDate">
+              <select class="browser-default" name="leaveDate" id="leaveDate" ${ma.isStay eq '0' ? 'disabled' : ''}>
                 <option value="2016-09-04" ${ma.leaveDate eq '2016-09-04' ? 'selected' : ''}>9月4日周日</option>
                 <option value="2016-09-05" ${ma.leaveDate eq '2016-09-05' ? 'selected' : ''}>9月5日周一</option>
               </select>
