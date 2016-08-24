@@ -27,6 +27,7 @@ public class MeetingAttendee extends BaseEntity {
     private String contactEmail;
     private String contactMobile;
 
+    private String isStay;
     private String stayDate;
     private String leaveDate;
     private String dinner1;

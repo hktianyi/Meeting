@@ -6,7 +6,7 @@ import org.springframework.web.filter.CharacterEncodingFilter;
 import org.springframework.web.servlet.DispatcherServlet;
 import org.springframework.web.util.IntrospectorCleanupListener;
 import org.tplatform.constant.GlobalConstant;
-import org.tplatform.filters.AuthenticationFilter;
+import org.tplatform.filters.WXFilter;
 import org.tplatform.framework.util.DateUtil;
 import org.tplatform.listener.SessionListener;
 
@@ -52,10 +52,10 @@ public class WebAppConfig implements WebApplicationInitializer {
     servletContext.setAttribute(GlobalConstant.SYSTEM_SERVLET_PATH, servletContext.getContextPath());
     servletContext.setAttribute(GlobalConstant.SYSTEM_SERVLET_VERSION, DateUtil.getCurrentDate(DateUtil.FORMAT_DATETIME_SHORT));
 
-    // 权限过滤
-//    FilterRegistration.Dynamic authenticationFilter = servletContext.addFilter("authenticationFilter", new AuthenticationFilter());
-//    authenticationFilter.setInitParameter("urlRegex", "^/(login|static|signup|wx|meeting|meetingcode|favicon\\.ico)+.*$");
-//    authenticationFilter.addMappingForServletNames(EnumSet.of(DispatcherType.REQUEST), true, GlobalConstant.SYSTEM_SERVLET_NAME_SPRINGMVC);
+    // 权限过滤   微信过滤器
+    FilterRegistration.Dynamic authenticationFilter = servletContext.addFilter("authenticationFilter", new WXFilter());
+    authenticationFilter.setInitParameter("urlRegex", "^/(login|static|signup|wx|meeting|meetingcode|favicon\\.ico)+.*$");
+    authenticationFilter.addMappingForServletNames(EnumSet.of(DispatcherType.REQUEST), true, GlobalConstant.SYSTEM_SERVLET_NAME_SPRINGMVC);
 
   }
 }

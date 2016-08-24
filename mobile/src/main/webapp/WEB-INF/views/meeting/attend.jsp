@@ -123,6 +123,13 @@
           <!-- Form Inputs -->
           <div class="form-inputs">
             <div class="input-field animated fadeinright">
+              <h5>是否住宿:</h5>
+              <select class="browser-default" name="isStay" id="isStay">
+                <option value="1" ${ma.isStay eq '1' ? 'selected' : ''}>是</option>
+                <option value="0" ${ma.isStay eq '0' ? 'selected' : ''}>否</option>
+              </select>
+            </div>
+            <div class="input-field animated fadeinright">
               <h5>入住日期:</h5>
               <select class="browser-default" name="stayDate" id="stayDate">
                 <option value="2016-09-02" ${ma.stayDate eq '2016-09-02' ? 'selected' : ''}>9月2日周五</option>
@@ -172,6 +179,17 @@
 
     </div> <!-- End of Main Contents -->
     <script type="text/javascript">
+      $(function () {
+        $("#isStay").on('change', function () {
+          if($(this).val() == '0') {
+            $("#stayDate").attr("disabled", "disabled");
+            $("#leaveDate").attr("disabled", "disabled");
+          } else {
+            $("#stayDate").removeAttr("disabled");
+            $("#leaveDate").removeAttr("disabled");
+          }
+        })
+      });
       function next() {
         if(validate1()) {
           $("#test3").click();
@@ -221,12 +239,55 @@
         var contactName = $("#contactName").val();
         var contactEmail = $("#contactEmail").val();
         var contactMobile = $("#contactMobile").val();
-        if (!(isNotNull(name) && isNotNull(salutation) && isNotNull(company) && isNotNull(title) && isNotNull(email) && isNotNull(mobile) && isNotNull(travelType) && isNotNull(travelName) && isNotNull(travelNo) && isNotNull(contactName) && isNotNull(contactEmail) && isNotNull(contactMobile))) {
-          alert("请填写完整的个人信息！");
+        if (!isNotNull(name)) {
+          alert('请填写姓名!');
           return false;
-        } else {
-          return true;
         }
+        if (!isNotNull(salutation)) {
+          alert('请选择称谓!');
+          return false;
+        }
+        if (!isNotNull(company)) {
+          alert('请填写公司!');
+          return false;
+        }
+        if (!isNotNull(title)) {
+          alert('请填写职位!');
+          return false;
+        }
+        if (!isNotNull(email)) {
+          alert('请填写邮箱!');
+          return false;
+        }
+        if (!isNotNull(mobile)) {
+          alert('请填写手机号!');
+          return false;
+        }
+        if (!isNotNull(travelType)) {
+          alert('请选择证件类型!');
+          return false;
+        }
+        if (!isNotNull(travelName)) {
+          alert('请填写证件名称!');
+          return false;
+        }
+        if (!isNotNull(travelNo)) {
+          alert('请填写证件号码!');
+          return false;
+        }
+        if (!isNotNull(contactName)) {
+          alert('请填写联系人姓名!');
+          return false;
+        }
+        if (!isNotNull(contactEmail)) {
+          alert('请填写联系人邮箱!');
+          return false;
+        }
+        if (!isNotNull(contactMobile)) {
+          alert('请填写联系人电话!');
+          return false;
+        }
+        return true;
       }
     </script>
   </div> <!-- End of Page Content -->

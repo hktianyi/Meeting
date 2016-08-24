@@ -1,6 +1,5 @@
 package org.tplatform.filters;
 
-import com.foxinmy.weixin4j.mp.api.OauthApi;
 import org.tplatform.constant.GlobalConstant;
 import org.tplatform.framework.util.StringUtil;
 
@@ -35,13 +34,6 @@ public class AuthenticationFilter implements Filter {
 
     // 替换 项目部署路径 ，只留项目相对根路径
     String uri = req.getRequestURI().replaceAll("^" + req.getContextPath(), "");
-
-    String ua = req.getHeader("user-agent").toLowerCase();
-    if(ua.indexOf("micromessenger") > -1 && req.getSession().getAttribute("openId") == null && !uri.startsWith("/wx")) {
-      OauthApi oauthApi = new OauthApi();
-      this.forword(req, res, oauthApi.getAuthorizeURL());
-      return;
-    }
 
     //1，白名单判断
 
