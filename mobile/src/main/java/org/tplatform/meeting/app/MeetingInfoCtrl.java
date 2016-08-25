@@ -69,7 +69,7 @@ public class MeetingInfoCtrl extends BaseCtrl {
 		MeetingSchedule schedule = new MeetingSchedule();
 		schedule.setMeetingId(meetingId);
 		model.put("schedules", meetingScheduleService.find(schedule));
-		model.put("signUp",meetingAttendeeService.signUp(meetingId, ((Member)session.getAttribute(GlobalConstant.SESSION_USER_KEY)).getId()) > 0);
+		model.put("signUp",meetingAttendeeService.signUp(meetingId, ((Member)session.getAttribute(GlobalConstant.KEY_SESSION_USER)).getId()) > 0);
 		return "/meeting/detail.jsp";
 	}
 
@@ -92,7 +92,7 @@ public class MeetingInfoCtrl extends BaseCtrl {
 
 	@RequestMapping(value = "/join/{meetingId}",method = RequestMethod.GET)
 	public String join(ModelMap modelMap, @PathVariable(value = "meetingId") Long meetingId) {
-		Member currMember = (Member) session.getAttribute(GlobalConstant.SESSION_USER_KEY);
+		Member currMember = (Member) session.getAttribute(GlobalConstant.KEY_SESSION_USER);
 		MeetingAttendee maExample = new MeetingAttendee();
 		maExample.setMeetingId(meetingId);
 		maExample.setOperator(String.valueOf(currMember.getId()));

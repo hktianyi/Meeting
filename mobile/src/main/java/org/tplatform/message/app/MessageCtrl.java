@@ -31,7 +31,7 @@ public class MessageCtrl extends BaseCtrl {
 
 	@RequestMapping
 	public String list(ModelMap modelMap) {
-		Member member = (Member) session.getAttribute(GlobalConstant.SESSION_USER_KEY);
+		Member member = (Member) session.getAttribute(GlobalConstant.KEY_SESSION_USER);
 		int pageNo = 1;
 		int pageSize = 50;
 		Message message = new Message();
@@ -48,7 +48,7 @@ public class MessageCtrl extends BaseCtrl {
 
 	@RequestMapping(method = RequestMethod.POST)
 	public RespBody list(@RequestParam("pageNo")int pageNo,@RequestParam("pageSize") int pageSize){
-		Member member = (Member) session.getAttribute(GlobalConstant.SESSION_USER_KEY);
+		Member member = (Member) session.getAttribute(GlobalConstant.KEY_SESSION_USER);
 		Message message = new Message();
 		PageInfo<Message> pageInfo = new PageInfo<>();
 		pageInfo.setPageNum(pageNo);

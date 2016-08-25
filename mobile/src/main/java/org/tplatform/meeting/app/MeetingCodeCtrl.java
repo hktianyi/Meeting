@@ -45,7 +45,7 @@ public class MeetingCodeCtrl extends BaseCtrl {
             Member member = new Member();
             member.setId(meetingCode.getId());
             member.setUserName(meetCode);
-            session.setAttribute(GlobalConstant.SESSION_USER_KEY, member);
+            session.setAttribute(GlobalConstant.KEY_SESSION_USER, member);
             result.put("status", "1");
             result.put("meetingId", meetingCode.getMeetingId());
         }else{
@@ -70,7 +70,7 @@ public class MeetingCodeCtrl extends BaseCtrl {
 
     @RequestMapping(value = "/qrcodecheck")
     public String qrcodecheck(ModelMap model){
-        Member member = (Member) session.getAttribute(GlobalConstant.SESSION_USER_KEY);
+        Member member = (Member) session.getAttribute(GlobalConstant.KEY_SESSION_USER);
         model.put("qrCodeUrl", meetingCodeService.geneQrcode(member.getUserName()));
         return "/meeting/qrcodecheck.jsp";
     }

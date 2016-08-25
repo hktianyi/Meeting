@@ -40,7 +40,7 @@ public class AuthenticationFilter implements Filter {
     if (!(urlRegex.matcher(uri).matches() || "/".equals(uri))) {
 
       //2，登录判断
-      Object so = req.getSession().getAttribute(GlobalConstant.SESSION_USER_KEY);
+      Object so = req.getSession().getAttribute(GlobalConstant.KEY_SESSION_USER);
       if (so == null || so.equals("")) {
         this.forword(req, res, req.getContextPath() + "/login");
         return;

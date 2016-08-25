@@ -35,7 +35,7 @@ public class LoginCtrl {
 	 */
 	@RequestMapping(value = {"/login", "/"}, method = RequestMethod.GET)
 	public String login(ModelMap modelMap) {
-//		if (session.getAttribute(GlobalConstant.SESSION_USER_KEY) != null) {
+//		if (session.getAttribute(GlobalConstant.KEY_SESSION_USER) != null) {
 //      return InternalResourceViewResolver.REDIRECT_URL_PREFIX + "/member/attendeeList";
 //		}
 		return "/meeting/welcome.jsp";
@@ -55,7 +55,7 @@ public class LoginCtrl {
 		if (member != null && member.getUserPwd().equals(password)) {
 			// 登录跳转
 			String loginTo = String.valueOf(session.getAttribute(GlobalConstant.SESSION_LOSE_TO_PAGE_KEY));
-			session.setAttribute(GlobalConstant.SESSION_USER_KEY,member);
+			session.setAttribute(GlobalConstant.KEY_SESSION_USER,member);
 			if (StringUtil.isNotEmpty(loginTo)) {
 				session.removeAttribute(GlobalConstant.SESSION_LOSE_TO_PAGE_KEY);
 				return InternalResourceViewResolver.REDIRECT_URL_PREFIX + loginTo;
@@ -76,7 +76,7 @@ public class LoginCtrl {
 	 */
 	@RequestMapping(value = "/logout", method = RequestMethod.GET)
 	public String logout() {
-		session.removeAttribute(GlobalConstant.SESSION_USER_KEY);
+		session.removeAttribute(GlobalConstant.KEY_SESSION_USER);
 		return InternalResourceViewResolver.REDIRECT_URL_PREFIX + "/login";
 	}
 

@@ -1,6 +1,7 @@
 package org.tplatform.filters;
 
 import org.tplatform.constant.GlobalConstant;
+import org.tplatform.framework.util.SpringContextUtil;
 import org.tplatform.framework.util.StringUtil;
 
 import javax.servlet.Filter;
@@ -33,14 +34,14 @@ public class AuthenticationFilter implements Filter {
     HttpServletResponse res = (HttpServletResponse) response;
 
     // 替换 项目部署路径 ，只留项目相对根路径
-    String uri = req.getRequestURI().replaceAll("^" + req.getContextPath(), "");
+    String uri = SpringContextUtil.getDomain("action");
 
     //1，白名单判断
 
     if (!(urlRegex.matcher(uri).matches() || "/".equals(uri))) {
 
       //2，登录判断
-      Object so = req.getSession().getAttribute(GlobalConstant.SESSION_USER_KEY);
+      Object so = req.getSession().getAttribute(GlobalConstant.KEY_SESSION_USER);
       if (so == null || so.equals("")) {
         this.forword(req, res, req.getContextPath() + "/meetingcode/welcome");
         return;

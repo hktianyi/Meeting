@@ -1,9 +1,10 @@
 package org.tplatform.filters;
 
 import com.foxinmy.weixin4j.exception.WeixinException;
-import com.foxinmy.weixin4j.mp.api.OauthApi;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.tplatform.constant.GlobalConstant;
+import org.tplatform.framework.util.SpringContextUtil;
+import org.tplatform.util.WXUtil;
 import org.weixin.user.service.WXUserService;
 
 import javax.servlet.FilterChain;
@@ -28,21 +29,17 @@ public class WXFilter extends AuthenticationFilter {
     HttpServletRequest req = (HttpServletRequest) request;
     HttpServletResponse res = (HttpServletResponse) response;
 
-    // 替换 项目部署路径 ，只留项目相对根路径
-    String uri = req.getRequestURI().replaceAll("^" + req.getContextPath(), "");
-
     String ua = req.getHeader("user-agent").toLowerCase();
-    if(ua.indexOf("micromessenger") > -1) {
-      if(req.getSession().getAttribute("openId") == null && !uri.startsWith("/wx")) {
-        OauthApi oauthApi = new OauthApi();
-        this.forword(req, res, oauthApi.getAuthorizeURL());
+    if(ua.contains("micromessenger")) {
+      // 替换 项目部署路径 ，只留项目相对根路径
+      if(req.getSession().getAttribute("openId") == null && !SpringContextUtil.getDomain("action").startsWith("/wx")) {
+        this.forword(req, res, SpringContextUtil.getDomain() + "/wx/oauth/" + WXUtil.getAppId());
         return;
       } else {
-        if(req.getSession().getAttribute(GlobalConstant.SESSION_USER_KEY) == null) {
-          String appId = (String) req.getSession().getAttribute("appId");
+        if(req.getSession().getAttribute(GlobalConstant.KEY_SESSION_USER) == null) {
           String openId = (String) req.getSession().getAttribute("openId");
           try {
-            req.getSession().setAttribute(GlobalConstant.SESSION_USER_KEY, wxUserService.getMember(appId, openId));
+            req.getSession().setAttribute(GlobalConstant.KEY_SESSION_USER, wxUserService.getMember(WXUtil.getAppId(), openId));
           } catch (WeixinException e) {
             e.printStackTrace();
           }

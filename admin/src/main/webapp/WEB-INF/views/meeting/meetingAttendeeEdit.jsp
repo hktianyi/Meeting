@@ -52,7 +52,7 @@
               </div>
               <div class="col-md-6">
                 <div class="form-group">
-                  <label class="control-label col-md-3">职级:</label>
+                  <label class="control-label col-md-3">职位:</label>
                   <div class="col-md-9">
                     <p class="form-control-static">${data.title}</p>
                   </div>
@@ -104,6 +104,32 @@
                   </div>
                 </div>
               </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label class="control-label col-md-3">联系人姓名:</label>
+                  <div class="col-md-9">
+                    <p class="form-control-static">${data.contactName}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label class="control-label col-md-3">联系人电话:</label>
+                  <div class="col-md-9">
+                    <p class="form-control-static">${data.contactMobile}</p>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label class="control-label col-md-3">联系人邮箱:</label>
+                  <div class="col-md-9">
+                    <p class="form-control-static">${data.contactEmail}</p>
+                  </div>
+                </div>
+              </div>
             </div>
             <div class="row">
               <div class="col-md-6">
@@ -119,6 +145,42 @@
                   <label class="control-label col-md-3">离开日期:</label>
                   <div class="col-md-9">
                     <p class="form-control-static">${data.leaveDate}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label class="control-label col-md-3">是否住宿:</label>
+                  <div class="col-md-9">
+                    <p class="form-control-static">${data.isStay eq '1' ? '住宿' : '不住宿'}</p>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label class="control-label col-md-3">9月4日周日搜狐之夜晚宴暨评委证书颁发仪式:</label>
+                  <div class="col-md-9">
+                    <p class="form-control-static">${data.dinner3 eq '1' ? '参加' : '不参加'}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label class="control-label col-md-3">9月2日周五自助晚餐:</label>
+                  <div class="col-md-9">
+                    <p class="form-control-static">${ma.dinner1 eq '1' ? '需要' : '不需要'}</p>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label class="control-label col-md-3">9月3日周六答谢晚宴:</label>
+                  <div class="col-md-9">
+                    <p class="form-control-static">${data.dinner2 eq '1' ? '参加' : '不参加'}</p>
                   </div>
                 </div>
               </div>

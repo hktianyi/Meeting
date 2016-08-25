@@ -36,7 +36,7 @@ import java.util.Properties;
  */
 @Configuration
 @EnableWebMvc
-@ComponentScan(basePackages = {"org.tplatform", "org.conference"}, basePackageClasses = {Controller.class, ControllerAdvice.class},
+@ComponentScan(basePackages = {"org.tplatform", "org.weixin", "org.conference"}, basePackageClasses = {Controller.class, ControllerAdvice.class},
 		includeFilters = {@ComponentScan.Filter(type = FilterType.REGEX, pattern = ".*.app.*")})
 //@ImportResource("classpath:dubbo-consumer.xml")
 public class SpringMvcConfig extends WebMvcConfigurerAdapter {

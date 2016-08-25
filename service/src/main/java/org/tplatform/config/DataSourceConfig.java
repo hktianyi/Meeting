@@ -117,7 +117,7 @@ public class DataSourceConfig {
   @DependsOn("sqlSessionFactory")
   public MapperScannerConfigurer mapperScannerConfigurer() {
     MapperScannerConfigurer mapperScannerConfigurer = new MapperScannerConfigurer();
-    mapperScannerConfigurer.setBasePackage("org.tplatform.**.mapper,org.conference.**.mapper");
+    mapperScannerConfigurer.setBasePackage("org.tplatform.**.mapper,org.weixin.**.mapper,org.conference.**.mapper");
     mapperScannerConfigurer.setSqlSessionFactoryBeanName("sqlSessionFactory");
 
     MapperHelper mapperHelper = new MapperHelper();

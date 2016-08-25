@@ -31,7 +31,7 @@ public class MemberCtrl extends BaseCtrl{
 
 	@RequestMapping(value = "/personal",method = RequestMethod.GET)
 	public String personal(ModelMap modelMap){
-		Member member = (Member)session.getAttribute(GlobalConstant.SESSION_USER_KEY);
+		Member member = (Member)session.getAttribute(GlobalConstant.KEY_SESSION_USER);
 		modelMap.put("member",member);
 		return BASE_DIR.concat("/personal.jsp");
 	}
@@ -43,7 +43,7 @@ public class MemberCtrl extends BaseCtrl{
 	@RequestMapping(value = "/modifyPwd",method = RequestMethod.POST)
 	@ResponseBody
 	public RespBody upPwd(String oldPwd,String userPwd){
-		Member member = (Member)session.getAttribute(GlobalConstant.SESSION_USER_KEY);
+		Member member = (Member)session.getAttribute(GlobalConstant.KEY_SESSION_USER);
 		if (member.getUserPwd() != userPwd)
 			return RespBody.error("原密码错误");
 		else{
@@ -57,7 +57,7 @@ public class MemberCtrl extends BaseCtrl{
 	@RequestMapping(value ="/personal",method = RequestMethod.POST)
 	@ResponseBody
 	public RespBody personal(ModelMap modelMap,Member member){
-		Member currMember = (Member) session.getAttribute(GlobalConstant.SESSION_USER_KEY);
+		Member currMember = (Member) session.getAttribute(GlobalConstant.KEY_SESSION_USER);
 		currMember.setCreateTime(new Date());
 		currMember.setAddress(member.getAddress());
 		currMember.setCity(member.getCity());
@@ -71,14 +71,14 @@ public class MemberCtrl extends BaseCtrl{
 		if (count <= 0)
 			msgInfo = "修改用户信息失败";
 		else
-			session.setAttribute(GlobalConstant.SESSION_USER_KEY,currMember);
+			session.setAttribute(GlobalConstant.KEY_SESSION_USER,currMember);
 
 		return RespBody.ok(msgInfo);
 	}
 
 	@RequestMapping("/attendeeList")
 	public String attendeeList(ModelMap modelMap) {
-		modelMap.put("dataList", meetingAttendeeService.findByUserId(((Member)session.getAttribute(GlobalConstant.SESSION_USER_KEY)).getId()));
+		modelMap.put("dataList", meetingAttendeeService.findByUserId(((Member)session.getAttribute(GlobalConstant.KEY_SESSION_USER)).getId()));
 		return "/member/attendeeList.jsp";
 	}
 

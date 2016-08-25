@@ -79,13 +79,26 @@ public class SpringContextUtil implements ApplicationContextAware {
     return getRequest().getSession();
   }
 
+  public static String getDomain(String... type) {
+    HttpServletRequest request = getRequest();
+    if(type!=null && type.length>1) {
+      switch (type[0]) {
+        case "action": return request.getRequestURI().replaceAll("^" + request.getContextPath(), "");
+        case "scheme": return request.getScheme();
+        case "serverName": return request.getServerName();
+        case "serverPort": return String.valueOf(request.getServerPort());
+      }
+    }
+    return request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + request.getContextPath();
+  }
+
   /**
    * SpringMvc下获取操作员登录名
    *
    * @return
    */
   public static String getOperator() {
-    Object object = getSession().getAttribute(GlobalConstant.SESSION_USER_KEY);
+    Object object = getSession().getAttribute(GlobalConstant.KEY_SESSION_USER);
     if (object != null) {
       try {
         Field field = object.getClass().getDeclaredField("id");

@@ -28,13 +28,19 @@ public class GlobalConstant {
   /**
    * 系统常量
    */
-  public final static String SESSION_USER_KEY = "user";
   public final static String SYSTEM_APPLICATION_NAME = "APP_NAME";
   public final static String APP_MODULE_NAME = "MODULE_NAME";
   public final static String SYSTEM_SERVLET_PATH = "_PATH";
   public final static String SYSTEM_SERVLET_VERSION = "_VERSION";
   public final static String SYSTEM_SERVLET_NAME_SPRINGMVC = "spring-mvc";
   public final static String SYSTEM_SERVLET_NAME_DRUIDSTATVIEW = "druid-stat-view";
+
+  /**
+   * session key 常量
+   */
+  public final static String KEY_SESSION_USER = "user";
+  public final static String KEY_SESSION_APPID = "_APPID";
+  public final static String KEY_SESSION_OPENID = "_OPENID";
 
   /**
    * 错误页面
