@@ -6,6 +6,7 @@ import lombok.Data;
 import org.tplatform.core.entity.BaseEntity;
 
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 /**
  * 微信用户
@@ -55,6 +56,7 @@ public class WXUser extends BaseEntity {
   /**
    * 用户特权信息，json 数组，如微信沃卡用户为（chinaunicom）
    */
+  @Transient
   private JSONArray privilege;
   /**
    * 用户是否订阅该公众号标识，值为0时，代表此用户没有关注该公众号，拉取不到其余信息。
