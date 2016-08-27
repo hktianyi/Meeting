@@ -1,7 +1,6 @@
 package org.tplatform.filters;
 
 import com.foxinmy.weixin4j.exception.WeixinException;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.tplatform.constant.GlobalConstant;
 import org.tplatform.framework.util.SpringContextUtil;
 import org.tplatform.util.WXUtil;
@@ -21,9 +20,6 @@ import java.io.IOException;
  */
 public class WXFilter extends AuthenticationFilter {
 
-  @Autowired
-  private WXUserService wxUserService;
-
   @Override
   public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
     HttpServletRequest req = (HttpServletRequest) request;
@@ -31,20 +27,21 @@ public class WXFilter extends AuthenticationFilter {
 
     String ua = req.getHeader("user-agent").toLowerCase();
     if(ua.contains("micromessenger")) {
-      // 替换 项目部署路径 ，只留项目相对根路径
-      if(req.getSession().getAttribute("openId") == null && !SpringContextUtil.getDomain("action").startsWith("/wx")) {
-        this.forword(req, res, SpringContextUtil.getDomain() + "/wx/oauth/" + WXUtil.getAppId());
-        return;
-      } else {
+
+      if(req.getSession().getAttribute(GlobalConstant.KEY_SESSION_OPENID) != null) {
         if(req.getSession().getAttribute(GlobalConstant.KEY_SESSION_USER) == null) {
-          String openId = (String) req.getSession().getAttribute("openId");
+          String openId = (String) req.getSession().getAttribute(GlobalConstant.KEY_SESSION_OPENID);
           try {
-            req.getSession().setAttribute(GlobalConstant.KEY_SESSION_USER, wxUserService.getMember(WXUtil.getAppId(), openId));
+            req.getSession().setAttribute(GlobalConstant.KEY_SESSION_USER, SpringContextUtil.getBean(WXUserService.class).getMember(WXUtil.getAppId(), openId));
           } catch (WeixinException e) {
             e.printStackTrace();
           }
         }
+      } else if (!SpringContextUtil.getDomain("action").startsWith("/wx")) {
+        this.forword(req, res, WXUtil.getOauthApi(WXUtil.getAppId()).getAuthorizeURL(SpringContextUtil.getDomain() + "/wx/oauth/" + WXUtil.getAppId(), "state", "snsapi_base"));
+        return;
       }
+
     }
     super.doFilter(request, response, chain);
   }

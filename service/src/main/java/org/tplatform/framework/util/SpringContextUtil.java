@@ -81,7 +81,7 @@ public class SpringContextUtil implements ApplicationContextAware {
 
   public static String getDomain(String... type) {
     HttpServletRequest request = getRequest();
-    if(type!=null && type.length>1) {
+    if(type!=null && type.length>0) {
       switch (type[0]) {
         case "action": return request.getRequestURI().replaceAll("^" + request.getContextPath(), "");
         case "scheme": return request.getScheme();

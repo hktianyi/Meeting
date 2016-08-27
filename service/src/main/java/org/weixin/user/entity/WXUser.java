@@ -36,7 +36,7 @@ public class WXUser extends BaseEntity {
    * 用户的性别，值为1时是男性，值为2时是女性，值为0时是未知
    */
   @JSONField(name = "sex")
-  private int gender;
+  private Integer gender;
   /**
    * 用户个人资料填写的省份
    */
@@ -62,12 +62,12 @@ public class WXUser extends BaseEntity {
    * 用户是否订阅该公众号标识，值为0时，代表此用户没有关注该公众号，拉取不到其余信息。
    */
   @JSONField(name = "subscribe")
-  private boolean isSubscribe;
+  private Boolean isSubscribe;
   /**
    * 关注时间
    */
   @JSONField(name = "subscribe_time")
-  private long subscribeTime;
+  private Long subscribeTime;
   /**
    * 使用语言
    */
@@ -85,5 +85,5 @@ public class WXUser extends BaseEntity {
    * 用户所在的分组ID
    */
   @JSONField(name = "groupid")
-  private int groupId;
+  private Integer groupId;
 }

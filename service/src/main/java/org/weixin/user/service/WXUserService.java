@@ -44,10 +44,15 @@ public class WXUserService extends BaseService<WXUser> {
       if(user!=null) {
         wxUser = new WXUser();
         BeanUtils.copyProperties(user, wxUser);
+        wxUser.setAppId(appId);
         wxUserMapper.insert(wxUser);
       }
     }
 
     return null;
+  }
+
+  public void bindMember(String appId, String openId, Long memberId) {
+    wxUserMapper.bindMember(appId, openId, memberId);
   }
 }

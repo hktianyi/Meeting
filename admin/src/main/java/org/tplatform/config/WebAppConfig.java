@@ -2,6 +2,7 @@ package org.tplatform.config;
 
 import com.alibaba.druid.support.http.StatViewServlet;
 import org.springframework.web.WebApplicationInitializer;
+import org.springframework.web.context.request.RequestContextListener;
 import org.springframework.web.context.support.AnnotationConfigWebApplicationContext;
 import org.springframework.web.filter.CharacterEncodingFilter;
 import org.springframework.web.servlet.DispatcherServlet;
@@ -39,6 +40,7 @@ public class WebAppConfig implements WebApplicationInitializer {
     }
 
     // Spring 刷新Introspector防止内存泄露
+    servletContext.addListener(new RequestContextListener());
     servletContext.addListener(new IntrospectorCleanupListener());
     servletContext.addListener(new SessionListener());
 

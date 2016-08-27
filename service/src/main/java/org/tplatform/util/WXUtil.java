@@ -2,6 +2,7 @@ package org.tplatform.util;
 
 import com.foxinmy.weixin4j.model.WeixinAccount;
 import com.foxinmy.weixin4j.mp.WeixinProxy;
+import com.foxinmy.weixin4j.mp.api.OauthApi;
 import com.foxinmy.weixin4j.setting.Weixin4jSettings;
 import org.tplatform.constant.GlobalConstant;
 import org.tplatform.framework.util.SpringContextUtil;
@@ -15,6 +16,7 @@ import java.util.Map;
 public class WXUtil {
 
   private static Map<String, WeixinProxy> proxyMap = new HashMap<>();
+  private static Map<String, OauthApi> oauthApiMap = new HashMap<>();
 
   private WXUtil() {
   }
@@ -34,6 +36,14 @@ public class WXUtil {
    */
   public static WeixinProxy getProxy() {
     return getProxy(getAppId());
+  }
+
+  public static OauthApi getOauthApi(String appId) {
+    if(oauthApiMap.containsKey(appId)) return oauthApiMap.get(appId);
+
+    OauthApi oauthApi = new OauthApi(WXUtil.getProxy(WXUtil.getAppId()).getWeixinAccount());
+    oauthApiMap.put(appId, oauthApi);
+    return oauthApi;
   }
 
   /**

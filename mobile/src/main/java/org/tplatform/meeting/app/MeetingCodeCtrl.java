@@ -15,6 +15,7 @@ import org.tplatform.meeting.service.MeetingCodeService;
 import org.tplatform.meeting.service.MeetingInfoService;
 import org.tplatform.meeting.service.MeetingScheduleService;
 import org.tplatform.member.entity.Member;
+import org.weixin.user.service.WXUserService;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -35,6 +36,8 @@ public class MeetingCodeCtrl extends BaseCtrl {
     private MeetingScheduleService meetingScheduleService;
     @Autowired
     private MeetingAttendeeService meetingAttendeeService;
+    @Autowired
+    private WXUserService wxUserService;
 
     @RequestMapping(value = "/checkcode", method = RequestMethod.POST)
     @ResponseBody
@@ -48,6 +51,10 @@ public class MeetingCodeCtrl extends BaseCtrl {
             session.setAttribute(GlobalConstant.KEY_SESSION_USER, member);
             result.put("status", "1");
             result.put("meetingId", meetingCode.getMeetingId());
+
+            String ua = request.getHeader("user-agent").toLowerCase();
+            if(ua.contains("micromessenger"))
+                wxUserService.bindMember(String.valueOf(session.getAttribute(GlobalConstant.KEY_SESSION_APPID)), String.valueOf(session.getAttribute(GlobalConstant.KEY_SESSION_OPENID)), meetingCode.getId());
         }else{
             result.put("status", "0");
         }
