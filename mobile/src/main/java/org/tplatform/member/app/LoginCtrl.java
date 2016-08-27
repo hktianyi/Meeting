@@ -54,10 +54,10 @@ public class LoginCtrl {
 		Member member = memberService.findByUserName(username);
 		if (member != null && member.getUserPwd().equals(password)) {
 			// 登录跳转
-			String loginTo = String.valueOf(session.getAttribute(GlobalConstant.SESSION_LOSE_TO_PAGE_KEY));
+			String loginTo = String.valueOf(session.getAttribute(GlobalConstant.KEY_SESSION_LOGIN_TO_PAGE));
 			session.setAttribute(GlobalConstant.KEY_SESSION_USER,member);
 			if (StringUtil.isNotEmpty(loginTo)) {
-				session.removeAttribute(GlobalConstant.SESSION_LOSE_TO_PAGE_KEY);
+				session.removeAttribute(GlobalConstant.KEY_SESSION_LOGIN_TO_PAGE);
 				return InternalResourceViewResolver.REDIRECT_URL_PREFIX + loginTo;
 			} else {
 				return "/meeting/welcome.jsp";

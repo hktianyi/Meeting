@@ -10,10 +10,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.tplatform.common.BaseCtrl;
 import org.tplatform.constant.GlobalConstant;
 import org.tplatform.meeting.entity.MeetingCode;
-import org.tplatform.meeting.service.MeetingAttendeeService;
 import org.tplatform.meeting.service.MeetingCodeService;
-import org.tplatform.meeting.service.MeetingInfoService;
-import org.tplatform.meeting.service.MeetingScheduleService;
 import org.tplatform.member.entity.Member;
 import org.weixin.user.service.WXUserService;
 
@@ -30,12 +27,6 @@ public class MeetingCodeCtrl extends BaseCtrl {
 
     @Autowired
     private MeetingCodeService meetingCodeService;
-    @Autowired
-    private MeetingInfoService meetingInfoService;
-    @Autowired
-    private MeetingScheduleService meetingScheduleService;
-    @Autowired
-    private MeetingAttendeeService meetingAttendeeService;
     @Autowired
     private WXUserService wxUserService;
 
@@ -68,9 +59,14 @@ public class MeetingCodeCtrl extends BaseCtrl {
     }
 
 
-    @RequestMapping(value = "/validate/qrCode/{code}")
-    public String validate(@PathVariable String code, ModelMap model){
-        model.put("code", code);
+    @RequestMapping(value = "/validate/qrCode/{meetCode}")
+    public String validate(@PathVariable String meetCode, ModelMap model){
+        model.put("meetCode", meetCode);
+        Member member = (Member)session.getAttribute(GlobalConstant.KEY_SESSION_USER);
+        if(member!=null && (member.getUserName().startsWith("88888"))) {
+            model.put("qd", meetingCodeService.updateCodeAndAttendee(meetCode));
+            return "/meeting/qdSuccess.jsp";
+        }
         return "/meeting/welcome.jsp";
     }
 
@@ -81,7 +77,6 @@ public class MeetingCodeCtrl extends BaseCtrl {
         model.put("qrCodeUrl", meetingCodeService.geneQrcode(member.getUserName()));
         return "/meeting/qrcodecheck.jsp";
     }
-
 
 
 

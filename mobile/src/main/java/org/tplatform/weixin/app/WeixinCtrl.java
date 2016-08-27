@@ -10,8 +10,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import org.tplatform.common.BaseCtrl;
 import org.tplatform.constant.GlobalConstant;
+import org.tplatform.framework.util.StringUtil;
 import org.tplatform.member.entity.Member;
 import org.tplatform.util.WXUtil;
 import org.weixin.user.service.WXUserService;
@@ -33,6 +35,7 @@ public class WeixinCtrl extends BaseCtrl {
   @RequestMapping(value = "/redirect/{appId}", method = RequestMethod.GET)
   public String redirect(@PathVariable String appId, @RequestParam String to) {
     session.setAttribute(GlobalConstant.KEY_SESSION_APPID, appId);
+    session.setAttribute(GlobalConstant.KEY_SESSION_LOGIN_TO_PAGE, to);
     return GlobalConstant.REDIRECT + to;
   }
 
@@ -49,30 +52,19 @@ public class WeixinCtrl extends BaseCtrl {
       session.setAttribute(GlobalConstant.KEY_SESSION_OPENID, oauthToken.getOpenId());
       Member member = wxUserService.getMember(appId, oauthToken.getOpenId());
       if(member != null) {
-        session.setAttribute("user", oauthToken.getOpenId());
+        session.setAttribute(GlobalConstant.KEY_SESSION_USER, member);
+        String loginTo = String.valueOf(session.getAttribute(GlobalConstant.KEY_SESSION_LOGIN_TO_PAGE));
+        if (StringUtil.isNotEmpty(loginTo)) {
+          session.removeAttribute(GlobalConstant.KEY_SESSION_LOGIN_TO_PAGE);
+          return InternalResourceViewResolver.REDIRECT_URL_PREFIX + loginTo;
+        } else {
+          return InternalResourceViewResolver.REDIRECT_URL_PREFIX + "/meeting/detail/2";
+        }
       }
-//      User user = oauthApi.getUser(oauthToken);
-//      System.out.println(user);
     } catch (WeixinException e) {
       e.printStackTrace();
     }
-    return GlobalConstant.REDIRECT + "/login";
+    return InternalResourceViewResolver.REDIRECT_URL_PREFIX + "/login";
   }
 
-
-
-
-//  @Autowired
-//  private TemplateMsgService templateMsgService;
-//
-//  @RequestMapping("/sendTmpl")
-//  @ResponseBody
-//  public String testWx(@RequestParam(required = false, defaultValue = "wxdadf1852174f5054") String appId, String content) {
-//    try {
-//      templateMsgService.sendAgendaWarn(appId, (String) session.getAttribute("openId"), content);
-//    } catch (WeixinException e) {
-//      e.printStackTrace();
-//    }
-//    return "OK";
-//  }
 }

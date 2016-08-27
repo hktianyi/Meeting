@@ -23,7 +23,6 @@ public class GlobalConstant {
   public final static String REDIRECT = "redirect:";
   public final static String FORWARD_500 = "/error/500.jsp";
   public final static String REDIRECT_500 = "/error/500.jsp";
-  public final static String SESSION_LOSE_TO_PAGE_KEY = "loginTo";
 
   /**
    * 系统常量
@@ -38,9 +37,10 @@ public class GlobalConstant {
   /**
    * session key 常量
    */
-  public final static String KEY_SESSION_USER = "user";
-  public final static String KEY_SESSION_APPID = "_APPID";
-  public final static String KEY_SESSION_OPENID = "_OPENID";
+  public final static String KEY_SESSION_LOGIN_TO_PAGE = "_LOGIN_TO";
+  public final static String KEY_SESSION_USER = "_USER";
+  public final static String KEY_SESSION_APPID = "_APP_ID";
+  public final static String KEY_SESSION_OPENID = "_OPEN_ID";
 
   /**
    * 错误页面

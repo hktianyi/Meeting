@@ -7,6 +7,7 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.tplatform.core.fsm.StatusEnum;
 import org.tplatform.impl.BaseService;
 import org.tplatform.meeting.entity.MeetingCode;
 import org.tplatform.meeting.mapper.MeetingCodeMapper;
@@ -65,4 +66,8 @@ public class MeetingCodeService extends BaseService<MeetingCode> {
         return new PageInfo<>(meetingCodeMapper.selectForAttendee());
     }
 
+
+    public boolean updateCodeAndAttendee(String meetCode) {
+        return meetingCodeMapper.updateCodeAndAttendee(meetCode, StatusEnum.VALID) > 0;
+    }
 }
