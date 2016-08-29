@@ -41,7 +41,7 @@ public class MeetingCodeService extends BaseService<MeetingCode> {
 
     public String geneQrcode(String code){
         try {
-            Document document = Jsoup.connect(String.format(PropertyUtil.getProInfo("config", "api_qrCode_cli"), "http://effie.china-caa.org:8600/mobile/validate/qrCode/" + code)).get();
+            Document document = Jsoup.connect(String.format(PropertyUtil.getProInfo("config", "api_qrCode_cli"), "http://effie.china-caa.org/m/meetingcode/validate/qrCode/" + code)).get();
             Element element = document.select("#qrcode_plugins_img").first();
             return element.attr("src");
         }catch (Exception e) {

@@ -6,6 +6,7 @@ import com.foxinmy.weixin4j.mp.api.OauthApi;
 import com.foxinmy.weixin4j.setting.Weixin4jSettings;
 import org.tplatform.constant.GlobalConstant;
 import org.tplatform.framework.util.SpringContextUtil;
+import org.tplatform.framework.util.StringUtil;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -26,8 +27,13 @@ public class WXUtil {
    * @return
    */
   public static String getAppId() {
-    Object appId = SpringContextUtil.getSession().getAttribute(GlobalConstant.KEY_SESSION_APPID);
-    return appId == null ? PropertyUtil.getProInfo("WX_APPID_DEFAULT") : appId.toString();
+    String appId = String.valueOf(SpringContextUtil.getSession().getAttribute(GlobalConstant.KEY_SESSION_APPID));
+    if(StringUtil.isEmpty(appId)) {
+      appId = PropertyUtil.getProInfo("WX_APPID_DEFAULT");
+      if(StringUtil.isEmpty(appId)) throw new RuntimeException("微信公众号APPID为空");
+      SpringContextUtil.getSession().setAttribute(GlobalConstant.KEY_SESSION_APPID, appId);
+    }
+    return appId;
   }
 
   /**

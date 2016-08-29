@@ -85,6 +85,7 @@
                   <option value="身份证" ${ma.travelType eq '身份证' ? 'selected' : ''}>身份证</option>
                   <option value="护照" ${ma.travelType eq '护照' ? 'selected' : ''}>护照</option>
                   <option value="台胞证" ${ma.travelType eq '台胞证' ? 'selected' : ''}>台胞证</option>
+                  <option value="台胞证" ${ma.travelType eq '回乡证' ? 'selected' : ''}>回乡证</option>
                   <option value="台湾通行证" ${ma.travelType eq '台湾通行证' ? 'selected' : ''}>台湾通行证</option>
                   <option value="港澳通行证" ${ma.travelType eq '港澳通行证' ? 'selected' : ''}>港澳通行证</option>
                   <option value="香港身份证" ${ma.travelType eq '香港身份证' ? 'selected' : ''}>香港身份证</option>
@@ -123,10 +124,10 @@
           <!-- Form Inputs -->
           <div class="form-inputs">
             <div class="input-field animated fadeinright">
-              <h5>是否住宿:</h5>
+              <h5>是否需要住宿:</h5>
               <select class="browser-default" name="isStay" id="isStay">
-                <option value="1" ${ma.isStay eq '1' ? 'selected' : ''}>是</option>
-                <option value="0" ${ma.isStay eq '0' ? 'selected' : ''}>否</option>
+                <option value="1" ${ma.isStay eq '1' ? 'selected' : ''}>需要</option>
+                <option value="0" ${ma.isStay eq '0' ? 'selected' : ''}>不需要</option>
               </select>
             </div>
             <div class="input-field animated fadeinright">

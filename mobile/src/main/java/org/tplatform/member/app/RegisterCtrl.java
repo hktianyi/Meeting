@@ -9,8 +9,6 @@ import org.tplatform.common.BaseCtrl;
 import org.tplatform.framework.log.Logger;
 import org.tplatform.member.service.MemberService;
 
-import java.util.logging.LogManager;
-
 /**
  * Created by guo_x on 2016/8/6.
  */
@@ -47,7 +45,7 @@ public class RegisterCtrl extends BaseCtrl {
 	@RequestMapping(value = "validUserName", method = RequestMethod.POST)
 	@ResponseBody
 	public boolean validUserName(String userName) {
-		Logger.i(this.getClass(),"userName:"+ userName);
+		Logger.i("userName:"+ userName);
 		return memberService.validUserName(userName);
 	}
 }

@@ -44,6 +44,7 @@ public class WXUserService extends BaseService<WXUser> {
       if(user!=null) {
         wxUser = new WXUser();
         BeanUtils.copyProperties(user, wxUser);
+        wxUser.setNickname(user.getNickName());
         wxUser.setAppId(appId);
         wxUserMapper.insert(wxUser);
       }

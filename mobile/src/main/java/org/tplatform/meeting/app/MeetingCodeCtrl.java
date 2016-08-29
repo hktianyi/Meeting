@@ -9,11 +9,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.tplatform.common.BaseCtrl;
 import org.tplatform.constant.GlobalConstant;
+import org.tplatform.framework.log.Logger;
 import org.tplatform.meeting.entity.MeetingCode;
 import org.tplatform.meeting.service.MeetingCodeService;
 import org.tplatform.member.entity.Member;
 import org.weixin.user.service.WXUserService;
 
+import java.text.MessageFormat;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -55,6 +57,7 @@ public class MeetingCodeCtrl extends BaseCtrl {
 
     @RequestMapping(value = "/welcome")
     public String welcome(ModelMap model,String meetCode){
+        if(session.getAttribute(GlobalConstant.KEY_SESSION_USER) != null) return GlobalConstant.REDIRECT + "/meeting/detail/2";
         return "/meeting/welcome.jsp";
     }
 
@@ -64,10 +67,15 @@ public class MeetingCodeCtrl extends BaseCtrl {
         model.put("meetCode", meetCode);
         Member member = (Member)session.getAttribute(GlobalConstant.KEY_SESSION_USER);
         if(member!=null && (member.getUserName().startsWith("88888"))) {
-            model.put("qd", meetingCodeService.updateCodeAndAttendee(meetCode));
+            Logger.i("管理员扫码签到: " + meetCode);
+            boolean flag = meetingCodeService.updateCodeAndAttendee(meetCode);
+            model.put("qd", flag);
+            Logger.i(MessageFormat.format("签到结果: {0}", flag ? "成功" : "失败"));
             return "/meeting/qdSuccess.jsp";
+        } else {
+            Logger.i("请管理员扫码签到: " + meetCode);
+            return "/meeting/welcome.jsp";
         }
-        return "/meeting/welcome.jsp";
     }
 
 

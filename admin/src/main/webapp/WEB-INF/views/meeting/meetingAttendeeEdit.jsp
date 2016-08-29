@@ -152,9 +152,9 @@
             <div class="row">
               <div class="col-md-6">
                 <div class="form-group">
-                  <label class="control-label col-md-3">是否住宿:</label>
+                  <label class="control-label col-md-3">是否需要住宿:</label>
                   <div class="col-md-9">
-                    <p class="form-control-static">${data.isStay eq '1' ? '住宿' : '不住宿'}</p>
+                    <p class="form-control-static">${data.isStay eq '1' ? '需要' : '不需要'}</p>
                   </div>
                 </div>
               </div>

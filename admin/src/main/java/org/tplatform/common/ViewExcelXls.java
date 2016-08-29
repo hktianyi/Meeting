@@ -269,7 +269,7 @@ public class ViewExcelXls extends AbstractXlsView {
         }
       }
     } catch (Exception e) {
-      Logger.e(this.getClass(), "reflectObjectFieldValue", e);
+      Logger.e("reflectObjectFieldValue", e);
     }
     return value == null ? "" : value.toString();
   }

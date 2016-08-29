@@ -87,6 +87,7 @@ public class SpringContextUtil implements ApplicationContextAware {
         case "scheme": return request.getScheme();
         case "serverName": return request.getServerName();
         case "serverPort": return String.valueOf(request.getServerPort());
+        case "domain80": return request.getScheme() + "://" + request.getServerName() + request.getContextPath();
       }
     }
     return request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + request.getContextPath();

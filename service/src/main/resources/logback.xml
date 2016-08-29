@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration scan="true" debug="false">
-    <property name="APP_Name" value="JiXiao"/>
-    <property name="dir" value="/Users/lihui/Desktop/log/${APP_Name}/"/>
+    <property name="APP_Name" value="Meeting"/>
+    <property name="dir" value="/logs/${APP_Name}/"/>
 
     <!--<if condition='property("HOSTNAME").contains("window")'>
         <then>-->

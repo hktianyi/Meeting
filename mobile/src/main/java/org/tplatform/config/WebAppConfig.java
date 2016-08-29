@@ -38,8 +38,9 @@ public class WebAppConfig implements WebApplicationInitializer {
       throw new IllegalStateException("'" + GlobalConstant.SYSTEM_SERVLET_NAME_SPRINGMVC + "' cannot be mapped to '/' under Tomcat versions <= 7.0.14");
     }
 
-    // Spring 刷新Introspector防止内存泄露
+    // Spring session request监听
     servletContext.addListener(new RequestContextListener());
+    // Spring 刷新Introspector防止内存泄露
     servletContext.addListener(new IntrospectorCleanupListener());
     servletContext.addListener(new SessionListener());
 

@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import org.tplatform.common.BaseCtrl;
 import org.tplatform.constant.GlobalConstant;
+import org.tplatform.framework.log.Logger;
 import org.tplatform.framework.util.StringUtil;
 import org.tplatform.member.entity.Member;
 import org.tplatform.util.WXUtil;
@@ -34,6 +35,7 @@ public class WeixinCtrl extends BaseCtrl {
    */
   @RequestMapping(value = "/redirect/{appId}", method = RequestMethod.GET)
   public String redirect(@PathVariable String appId, @RequestParam String to) {
+    Logger.i("微信用户准备访问: " + to);
     session.setAttribute(GlobalConstant.KEY_SESSION_APPID, appId);
     session.setAttribute(GlobalConstant.KEY_SESSION_LOGIN_TO_PAGE, to);
     return GlobalConstant.REDIRECT + to;
@@ -52,6 +54,7 @@ public class WeixinCtrl extends BaseCtrl {
       session.setAttribute(GlobalConstant.KEY_SESSION_OPENID, oauthToken.getOpenId());
       Member member = wxUserService.getMember(appId, oauthToken.getOpenId());
       if(member != null) {
+        Logger.i("微信用户["+appId+"|"+oauthToken.getOpenId()+"]自动登录: " + member);
         session.setAttribute(GlobalConstant.KEY_SESSION_USER, member);
         String loginTo = String.valueOf(session.getAttribute(GlobalConstant.KEY_SESSION_LOGIN_TO_PAGE));
         if (StringUtil.isNotEmpty(loginTo)) {
@@ -60,6 +63,8 @@ public class WeixinCtrl extends BaseCtrl {
         } else {
           return InternalResourceViewResolver.REDIRECT_URL_PREFIX + "/meeting/detail/2";
         }
+      } else {
+        Logger.i("微信用户["+appId+"|"+oauthToken.getOpenId()+"]查找用户为空。");
       }
     } catch (WeixinException e) {
       e.printStackTrace();

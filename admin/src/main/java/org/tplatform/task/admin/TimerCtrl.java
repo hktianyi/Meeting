@@ -32,7 +32,7 @@ public class TimerCtrl extends BaseCtrl<SchedulingJob> {
 //      jsonMap.put("recordsTotal", count);
 //      jsonMap.put("recordsFiltered", count);
     } catch (Exception e) {
-      Logger.e(this.getClass(), "loadData", e);
+      Logger.e("loadData", e);
     }
     return jsonMap;
   }
@@ -51,7 +51,7 @@ public class TimerCtrl extends BaseCtrl<SchedulingJob> {
       schedulerService.triggerJob(schedulingJob);
       rtnMap.put("statusCode", 200);
     } catch (Exception e) {
-      Logger.e(getClass(), "手动触发定时任务异常：" + schedulingJob.getId(), e);
+      Logger.e("手动触发定时任务异常：" + schedulingJob.getId(), e);
       rtnMap.put("statusCode", 500);
       rtnMap.put("info", "操作失败！");
     }
