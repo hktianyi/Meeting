@@ -21,7 +21,7 @@ public interface WXUserMapper extends Mapper<WXUser> {
    * @return
    */
 //  @Select("SELECT t1.* FROM t_member t1, t_wx_user t2 where t1.id = t2.memberId and t2.appId = #{appId} and t2.openId = #{openId}")
-  @Select("SELECT t1.id, t1.meetCode userName FROM t_meeting_code t1, t_wx_user t2 where t1.id = t2.memberId and t2.appId = #{appId} and t2.openId = #{openId}")
+  @Select("SELECT t1.id, t1.meetCode userName FROM t_meeting_code t1, t_wx_user t2 WHERE t1.id = t2.memberId and t2.appId = #{appId} and t2.openId = #{openId}")
   Member selectMember(@Param("appId") String appId, @Param("openId") String openId);
 
   /**
@@ -30,8 +30,17 @@ public interface WXUserMapper extends Mapper<WXUser> {
    * @return
    */
 //  @Select("SELECT t1.* FROM t_member t1, t_wx_user t2 where t1.id = t2.memberId and t2.appId = #{appId}")
-  @Select("SELECT t1.id, t1.meetCode userName FROM t_meeting_code t1, t_wx_user t2 where t1.id = t2.memberId and t2.appId = #{appId}")
+  @Select("SELECT t1.id, t1.meetCode userName FROM t_meeting_code t1, t_wx_user t2 WHERE t1.id = t2.memberId and t2.appId = #{appId}")
   List<Member> selectMembers(@Param("appId") String appId);
+
+  /**
+   * 根据系统用户ID查询微信OPENID
+   * @param memberIds
+   * @return
+   */
+//  @Select("SELECT t1.* FROM t_member t1, t_wx_user t2 where t1.id = t2.memberId and t2.appId = #{appId}")
+  @Select("SELECT openId FROM t_wx_user WHERE appId = #{appId} AND memberId in (${memberIds})")
+  List<String> findOpenIds(@Param("appId") String appId, @Param("memberIds") String memberIds);
 
   /**
    * 微信用户绑定系统用户

@@ -35,13 +35,14 @@
                       <div class="form-group">
                         <label class="control-label col-md-3">用户:</label>
                         <div class="col-md-9">
-                          <select multiple="multiple" class="multi-select double members" name="memberId">
+                          <select multiple="multiple" class="multi-select double members" id="memberId_wx" name="memberId">
                             <optgroup label="全部">
                               <c:forEach items="${members}" var="member">
                                 <option value="${member.id}">${member.userName}</option>
                               </c:forEach>
                             </optgroup>
                           </select>
+                          <label for="memberId_wx" class="error" id="label_memberId_wx"></label>
                         </div>
                       </div>
                     </div>
@@ -52,7 +53,7 @@
                         <ul class="nav nav-tabs">
                           <c:forEach items="${templates}" var="template" varStatus="status">
                             <li ${status.first ? 'class="active"' : ''} >
-                              <a href="#template_${template.id}" data-toggle="tab">${template.name}</a>
+                              <a href="#template_${template.id}" data-id="${template.id}" data-toggle="tab">${template.name}</a>
                             </li>
                           </c:forEach>
                         </ul>
@@ -83,7 +84,7 @@
                     <div class="col-md-6">
                       <div class="row">
                         <div class="col-md-offset-3 col-md-9">
-                          <button type="button" class="btn green" onclick="sendTemplateMsg()">
+                          <button type="submit" class="btn green">
                             <i class="fa fa-pencil"></i> 发送
                           </button>
                           <button type="button" class="btn default" onclick="history.back()">返回</button>
@@ -107,13 +108,14 @@
                       <div class="form-group">
                         <label class="control-label col-md-3">用户:</label>
                         <div class="col-md-9">
-                          <select multiple="multiple" class="multi-select double" id="members" name="my_multi_select2[]">
+                          <select multiple="multiple" class="multi-select double members" id="memberId" name="memberId[]">
                             <optgroup label="全部">
                               <c:forEach items="${attendees}" var="attendee">
                                 <option value="${attendee.id}">${attendee.name}</option>
                               </c:forEach>
                             </optgroup>
                           </select>
+                          <label for="memberId" class="error" id="label_memberId"></label>
                         </div>
                       </div>
                     </div>
@@ -133,7 +135,8 @@
                       <div class="form-group">
                         <label class="control-label col-md-3">内容:</label>
                         <div class="col-md-9">
-                          <textarea class="form-control ckeditor" id="context" name="context">${data.context}</textarea>
+                          <textarea class="form-control ckeditor" id="content" name="content">${data.content}</textarea>
+                          <label for="content" class="error" id="label_content"></label>
                         </div>
                       </div>
                     </div>
@@ -144,7 +147,7 @@
                     <div class="col-md-6">
                       <div class="row">
                         <div class="col-md-offset-3 col-md-9">
-                          <button type="button" class="btn green" onclick="sendStationMsg()">
+                          <button type="submit" class="btn green">
                             <i class="fa fa-pencil"></i> 发送
                           </button>
                           <button type="button" class="btn default" onclick="history.back()">返回</button>
@@ -165,16 +168,79 @@
 <script type="text/javascript" src="${_PATH}/static/plugins/jquery-multi-select/js/jquery.multi-select.js"></script>
 <script type="text/javascript" src="${_PATH}/static/plugins/ckeditor/ckeditor.js"></script>
 <script type="text/javascript">
+  var loading = 0;
   $(function () {
     $('.members').multiSelect({selectableOptgroup:true, keepOrder:true});
+
+    // 微信模板消息表单
+    $('#form_templateMsg').validate({
+      rules: {
+        title: 'required'
+      },
+      onfocusout: function (element) {
+        $(element).valid();
+      },
+      submitHandler: function (form) {
+        if(loading == 1) return;
+        if(!$(form).find('#memberId_wx').val()) {
+          $('#label_memberId_wx').text('请选择用户').show();
+        } else {
+          $('#label_memberId_wx').text('');
+          loading = 1;
+          var memberId = $('#form_templateMsg select[name="memberId"]').val();
+          var args = $('#form_templateMsg .tab-content .active input').serialize();
+          $.ajax(_MODULE_NAME + '/sendTemplateMsg', {
+            type: 'POST',
+            data: args + '&memberIds=' + memberId.join() + '&appId=${appId}&id=' + $('#form_templateMsg .nav-tabs .active a').data('id'),
+            success: function (resp) {
+              alert(resp.data || '发送成功');
+              loading = 0;
+            },
+            error: function (resp) {
+              alert(resp.data || '发送失败');
+              loading = 0;
+            }
+          });
+        }
+      }
+    });
+
+    // 站内信表单
+    $('#form_stationMsg').validate({
+      rules: {
+        title: 'required'
+      },
+      onfocusout: function (element) {
+        $(element).valid();
+      },
+      submitHandler: function (form) {
+        if(loading == 1) return;
+        for (var instance in CKEDITOR.instances)
+          CKEDITOR.instances[instance].updateElement();
+
+        if(!$(form).find('#memberId').val()) {
+          $('#label_memberId').text('请选择用户').show();
+        } else if(!$(form).find('#content').val()) {
+          $('#label_memberId').text('');
+          $('#label_content').text('请填写消息内容').show();
+        } else {
+          $('#label_memberId').text('');
+          $('#label_content').text('');
+          loading = 1;
+          $.ajax(_MODULE_NAME + '/sendStationMsg', {
+            type: 'POST',
+            data: $('#form_stationMsg').serialize(),
+            success: function (resp) {
+              alert(resp.data || '发送成功');
+              loading = 0;
+            },
+            error: function (resp) {
+              alert(resp.data || '发送失败');
+              loading = 0;
+            }
+          });
+        }
+      }
+    });
   });
-  function sendTemplateMsg() {
-    var memberId = $('#form_templateMsg select[name="memberId"]').val();
-    var args = $('#form_templateMsg .tab-content .active input').serialize();
-    console.log(memberId);
-    console.log(args);
-  }
-  function sendStationMsg() {
-    console.log($('#form_stationMsg').serialize());
-  }
 </script>

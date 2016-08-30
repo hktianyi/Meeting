@@ -27,6 +27,10 @@ public class WXUserService extends BaseService<WXUser> {
     return wxUserMapper.selectMembers(appId);
   }
 
+  public List<String> findOpenIds(String appId, String memberIds) {
+    return wxUserMapper.findOpenIds(appId, memberIds);
+  }
+
   /**
    * 获取微信用户
    * @param appId

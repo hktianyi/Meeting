@@ -40,6 +40,7 @@
 <!-- END THEME LAYOUT SCRIPTS -->
 <script src="${_PATH}/static/plugins/jquery-validation/jquery.validate.min.js" type="text/javascript"></script>
 <script src="${_PATH}/static/plugins/jquery-validation/additional-methods.min.js" type="text/javascript"></script>
+<script src="${_PATH}/static/plugins/jquery-validation/localization/messages_zh.min.js" type="text/javascript"></script>
 <script type="text/javascript">
   // 编辑
   function edit(id, url) {

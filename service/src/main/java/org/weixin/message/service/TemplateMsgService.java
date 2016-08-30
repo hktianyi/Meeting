@@ -46,7 +46,7 @@ public class TemplateMsgService extends BaseService<TemplateMsg> {
   public void send(TemplateMsg templateMsg) {
     WeixinProxy proxy = WXUtil.getProxy(templateMsg.getAppId());
     templateMsg.getOpenId().stream().forEach(openId -> {
-      TemplateMessage templateMessage = new TemplateMessage(openId, agendaWarnID, "");
+      TemplateMessage templateMessage = new TemplateMessage(openId, templateMsg.getTempId(), templateMsg.getUrl());
       templateMsg.getDetail().stream().forEach(temp -> {
         switch (temp.getKey()) {
           case "head": templateMessage.pushHead(temp.getText()); break;

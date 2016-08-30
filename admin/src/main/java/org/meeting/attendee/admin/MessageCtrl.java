@@ -4,14 +4,23 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.tplatform.common.BaseCtrl;
 import org.tplatform.core.entity.RespBody;
 import org.tplatform.meeting.entity.Message;
 import org.tplatform.meeting.service.MeetingAttendeeService;
+import org.tplatform.meeting.service.MessageService;
 import org.tplatform.util.WXUtil;
 import org.weixin.message.entity.TemplateMsg;
+import org.weixin.message.entity.TemplateMsgDetail;
 import org.weixin.message.service.TemplateMsgService;
 import org.weixin.user.service.WXUserService;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 /**
  * Created by hdb on 2016/8/23.
@@ -22,6 +31,8 @@ public class MessageCtrl extends BaseCtrl<Message> {
 
   @Autowired
   private MeetingAttendeeService meetingAttendeeService;
+  @Autowired
+  private MessageService messageService;
   @Autowired
   private WXUserService wxUserService;
   @Autowired
@@ -39,12 +50,35 @@ public class MessageCtrl extends BaseCtrl<Message> {
 
   /**
    * 发送微信模板消息
-   * @param templateMsg
+   * @param id
    * @return
    */
   @RequestMapping("/sendTemplateMsg")
-  protected RespBody sendTemplateMsg(TemplateMsg templateMsg) {
+  @ResponseBody
+  public RespBody sendTemplateMsg(@RequestParam Long id, @RequestParam String appId,@RequestParam String memberIds, @RequestParam Map<String, String> params) {
+    params.remove("id");
+    params.remove("appId");
+    params.remove("memberIds");
+    TemplateMsg templateMsg = templateMsgService.find(id);
+    templateMsg.setAppId(appId);
+    templateMsg.setOpenId(wxUserService.findOpenIds(appId, memberIds));
+    templateMsg.setDetail(params.entrySet().stream().map(entry -> new TemplateMsgDetail(entry.getKey(), entry.getValue())).collect(Collectors.toList()));
     templateMsgService.send(templateMsg);
+    return RespBody.ok();
+  }
+
+  /**
+   * 发送站内信
+   * @param message
+   * @return
+   */
+  @RequestMapping("/sendStationMsg")
+  @ResponseBody
+  public RespBody sendStationMsg(@RequestParam("memberId[]") Long[] memberId, Message message) {
+    for(Long id : memberId) {
+      message.setUserId(id);
+      messageService.save(message);
+    }
     return RespBody.ok();
   }
 }
