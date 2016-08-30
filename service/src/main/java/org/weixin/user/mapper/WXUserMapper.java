@@ -7,6 +7,8 @@ import org.tplatform.member.entity.Member;
 import org.weixin.user.entity.WXUser;
 import tk.mybatis.mapper.common.Mapper;
 
+import java.util.List;
+
 /**
  * Created by tianyi on 16/8/7.
  */
@@ -21,6 +23,15 @@ public interface WXUserMapper extends Mapper<WXUser> {
 //  @Select("SELECT t1.* FROM t_member t1, t_wx_user t2 where t1.id = t2.memberId and t2.appId = #{appId} and t2.openId = #{openId}")
   @Select("SELECT t1.id, t1.meetCode userName FROM t_meeting_code t1, t_wx_user t2 where t1.id = t2.memberId and t2.appId = #{appId} and t2.openId = #{openId}")
   Member selectMember(@Param("appId") String appId, @Param("openId") String openId);
+
+  /**
+   * 根据微信用户查询系统用户
+   * @param appId
+   * @return
+   */
+//  @Select("SELECT t1.* FROM t_member t1, t_wx_user t2 where t1.id = t2.memberId and t2.appId = #{appId}")
+  @Select("SELECT t1.id, t1.meetCode userName FROM t_meeting_code t1, t_wx_user t2 where t1.id = t2.memberId and t2.appId = #{appId}")
+  List<Member> selectMembers(@Param("appId") String appId);
 
   /**
    * 微信用户绑定系统用户

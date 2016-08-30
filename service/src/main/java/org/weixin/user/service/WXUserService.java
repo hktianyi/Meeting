@@ -12,6 +12,8 @@ import org.tplatform.util.WXUtil;
 import org.weixin.user.entity.WXUser;
 import org.weixin.user.mapper.WXUserMapper;
 
+import java.util.List;
+
 /**
  * Created by tianyi on 16/8/7.
  */
@@ -20,6 +22,10 @@ public class WXUserService extends BaseService<WXUser> {
 
   @Autowired
   private WXUserMapper wxUserMapper;
+
+  public List<Member> findMembers(String appId) {
+    return wxUserMapper.selectMembers(appId);
+  }
 
   /**
    * 获取微信用户

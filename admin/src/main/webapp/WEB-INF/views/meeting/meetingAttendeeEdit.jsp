@@ -172,7 +172,7 @@
                 <div class="form-group">
                   <label class="control-label col-md-3">9月2日周五自助晚餐:</label>
                   <div class="col-md-9">
-                    <p class="form-control-static">${ma.dinner1 eq '1' ? '需要' : '不需要'}</p>
+                    <p class="form-control-static">${data.dinner1 eq '1' ? '需要' : '不需要'}</p>
                   </div>
                 </div>
               </div>

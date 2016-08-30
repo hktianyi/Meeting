@@ -71,7 +71,7 @@
   !(function () {
     window.alert = layer.alert;
     window.confim = layer.confim;
-    $('select[multiple="multiple"]').multiselect();
+    $('select[multiple="multiple"]:not(".double")').multiselect();
     // DataTable配置
     $.fn.dataTable.ext.errMode = 'throw';
     $.fn.dataTable.defaults = $.extend($.fn.dataTable.defaults, {

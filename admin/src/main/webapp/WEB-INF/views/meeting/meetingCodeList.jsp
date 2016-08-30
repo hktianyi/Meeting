@@ -56,7 +56,7 @@
         },
         {
           "sTitle": "操作", "data": function (data) {
-          return '<a href="' + _PATH + '/attendee/edit?id=' + data.id + '" type="button" class="btn btn-primary btn-xs">详情</a>';
+          return '<a href="#" type="button" class="btn btn-primary btn-xs"></a>';
         }, "sWidth": "6%"
         }
       ]
