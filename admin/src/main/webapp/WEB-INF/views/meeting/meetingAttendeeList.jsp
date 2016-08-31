@@ -9,6 +9,9 @@
       <span>嘉宾信息</span>
     </li>
   </ul>
+  <div class="page-toolbar">
+    <a href="${_PATH}/attendee/export嘉宾信息.xls" class="btn btn-circle blue btn-outline btn-xs">导出</a>
+  </div>
 </div>
 <div class="row">
   <div class="col-md-12">

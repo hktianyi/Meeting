@@ -23,8 +23,8 @@ public class WXUserService extends BaseService<WXUser> {
   @Autowired
   private WXUserMapper wxUserMapper;
 
-  public List<Member> findMembers(String appId) {
-    return wxUserMapper.selectMembers(appId);
+  public List<WXUser> selectWXUser(String appId) {
+    return wxUserMapper.selectWXUser(appId);
   }
 
   public List<String> findOpenIds(String appId, String memberIds) {

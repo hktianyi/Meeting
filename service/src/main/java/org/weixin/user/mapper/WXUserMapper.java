@@ -30,8 +30,8 @@ public interface WXUserMapper extends Mapper<WXUser> {
    * @return
    */
 //  @Select("SELECT t1.* FROM t_member t1, t_wx_user t2 where t1.id = t2.memberId and t2.appId = #{appId}")
-  @Select("SELECT t1.id, t1.meetCode userName FROM t_meeting_code t1, t_wx_user t2 WHERE t1.id = t2.memberId and t2.appId = #{appId}")
-  List<Member> selectMembers(@Param("appId") String appId);
+  @Select("SELECT t2.openId, t2.nickname, t1.name remark FROM t_meeting_attendee t1, t_wx_user t2 WHERE t1.operator = t2.memberId and t2.appId = #{appId}")
+  List<WXUser> selectWXUser(@Param("appId") String appId);
 
   /**
    * 根据系统用户ID查询微信OPENID

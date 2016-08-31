@@ -17,7 +17,6 @@ import org.weixin.message.entity.TemplateMsgDetail;
 import org.weixin.message.service.TemplateMsgService;
 import org.weixin.user.service.WXUserService;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -42,7 +41,7 @@ public class MessageCtrl extends BaseCtrl<Message> {
   protected void editHook(Long id, ModelMap modelMap) {
     String appId = WXUtil.getAppId();
     modelMap.put("attendees", meetingAttendeeService.findAll());
-    modelMap.put("members", wxUserService.findMembers(appId));
+    modelMap.put("wxUsers", wxUserService.selectWXUser(appId));
     modelMap.put("templates", templateMsgService.find(appId));
     modelMap.put("appId", appId);
     super.editHook(id, modelMap);
@@ -55,14 +54,14 @@ public class MessageCtrl extends BaseCtrl<Message> {
    */
   @RequestMapping("/sendTemplateMsg")
   @ResponseBody
-  public RespBody sendTemplateMsg(@RequestParam Long id, @RequestParam String appId,@RequestParam String memberIds, @RequestParam Map<String, String> params) {
+  public RespBody sendTemplateMsg(@RequestParam Long id, @RequestParam String appId, @RequestParam("openId[]") List<String> openId, @RequestParam Map<String, String> params) {
     params.remove("id");
     params.remove("appId");
-    params.remove("memberIds");
+    params.remove("openId[]");
     TemplateMsg templateMsg = templateMsgService.find(id);
     templateMsg.setAppId(appId);
-    templateMsg.setOpenId(wxUserService.findOpenIds(appId, memberIds));
-    templateMsg.setDetail(params.entrySet().stream().map(entry -> new TemplateMsgDetail(entry.getKey(), entry.getValue())).collect(Collectors.toList()));
+    templateMsg.setOpenId(openId);
+    templateMsg.setDetail(params.entrySet().stream().map(entry -> new TemplateMsgDetail(entry.getKey(), "#333", entry.getValue())).collect(Collectors.toList()));
     templateMsgService.send(templateMsg);
     return RespBody.ok();
   }

@@ -35,14 +35,14 @@
                       <div class="form-group">
                         <label class="control-label col-md-3">用户:</label>
                         <div class="col-md-9">
-                          <select multiple="multiple" class="multi-select double members" id="memberId_wx" name="memberId">
+                          <select multiple="multiple" class="multi-select double members" id="openId" name="openId[]">
                             <optgroup label="全部">
-                              <c:forEach items="${members}" var="member">
-                                <option value="${member.id}">${member.userName}</option>
+                              <c:forEach items="${wxUsers}" var="wxUser">
+                                <option value="${wxUser.openId}">${wxUser.remark}</option>
                               </c:forEach>
                             </optgroup>
                           </select>
-                          <label for="memberId_wx" class="error" id="label_memberId_wx"></label>
+                          <label for="openId" class="error" id="label_openId"></label>
                         </div>
                       </div>
                     </div>
@@ -64,9 +64,9 @@
                                 <div class="row">
                                   <div class="col-md-12">
                                     <div class="form-group">
-                                      <label class="control-label col-md-3">${detail.key}:</label>
+                                      <label class="control-label col-md-3">${detail.zhName}:</label>
                                       <div class="col-md-9">
-                                        <input type="text" class="form-control" name="${detail.key}" />
+                                        <input type="text" class="form-control" name="${detail.key}" required />
                                       </div>
                                     </div>
                                   </div>
@@ -174,24 +174,21 @@
 
     // 微信模板消息表单
     $('#form_templateMsg').validate({
-      rules: {
-        title: 'required'
-      },
       onfocusout: function (element) {
         $(element).valid();
       },
       submitHandler: function (form) {
         if(loading == 1) return;
-        if(!$(form).find('#memberId_wx').val()) {
-          $('#label_memberId_wx').text('请选择用户').show();
+        if(!$(form).find('#openId').val()) {
+          $('#label_openId').text('请选择用户').show();
         } else {
-          $('#label_memberId_wx').text('');
+          $('#label_openId').text('');
           loading = 1;
-          var memberId = $('#form_templateMsg select[name="memberId"]').val();
+          var openId = $('#form_templateMsg #openId').val();
           var args = $('#form_templateMsg .tab-content .active input').serialize();
           $.ajax(_MODULE_NAME + '/sendTemplateMsg', {
             type: 'POST',
-            data: args + '&memberIds=' + memberId.join() + '&appId=${appId}&id=' + $('#form_templateMsg .nav-tabs .active a').data('id'),
+            data: args + '&openId[]=' + openId + '&appId=${appId}&id=' + $('#form_templateMsg .nav-tabs .active a').data('id'),
             success: function (resp) {
               alert(resp.data || '发送成功');
               loading = 0;

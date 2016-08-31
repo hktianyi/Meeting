@@ -19,8 +19,6 @@ import java.util.List;
 @Service
 public class TemplateMsgService extends BaseService<TemplateMsg> {
 
-  private static String agendaWarnID = "8cHzS_rKzTHRd-0OMVUk03WnkH96PzE23aH2_5txwuM";
-
   @Autowired
   private TemplateMsgMapper templateMsgMapper;
 
@@ -31,6 +29,7 @@ public class TemplateMsgService extends BaseService<TemplateMsg> {
    * @throws WeixinException
    */
   public void sendAgendaWarn(String appId, String openId, String content) throws WeixinException {
+    String agendaWarnID = "8cHzS_rKzTHRd-0OMVUk03WnkH96PzE23aH2_5txwuM";
     TemplateMessage templateMessage = new TemplateMessage(openId, agendaWarnID, "");
     templateMessage.pushHead("测试头");
     templateMessage.pushTail("测试脚");
@@ -49,9 +48,9 @@ public class TemplateMsgService extends BaseService<TemplateMsg> {
       TemplateMessage templateMessage = new TemplateMessage(openId, templateMsg.getTempId(), templateMsg.getUrl());
       templateMsg.getDetail().stream().forEach(temp -> {
         switch (temp.getKey()) {
-          case "head": templateMessage.pushHead(temp.getText()); break;
-          case "tail": templateMessage.pushTail(temp.getText()); break;
-          default: templateMessage.pushItem(temp.getKey(), temp.getText());
+          case "first": templateMessage.pushHead(temp.getColor(), temp.getText()); break;
+          case "remark": templateMessage.pushTail(temp.getColor(), temp.getText()); break;
+          default: templateMessage.pushItem(temp.getKey(), temp.getColor(), temp.getText());
         }
       });
       try {

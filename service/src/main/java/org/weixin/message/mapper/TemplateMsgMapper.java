@@ -29,7 +29,7 @@ public interface TemplateMsgMapper extends Mapper<TemplateMsg> {
    * @param templateId
    * @return
    */
-  @Select("SELECT `key`, color, text FROM t_wx_template_msg_detail WHERE templateId = #{0}")
+  @Select("SELECT zhName, `key`, color, text FROM t_wx_template_msg_detail WHERE templateId = #{0}")
 //  @Results(value = {
 //    @Result(id = true, property = "id", column = "id", javaType = Long.class, jdbcType = JdbcType.INTEGER),
 //    @Result(property = "templateId", column = "templateId", javaType = Long.class, jdbcType = JdbcType.INTEGER),

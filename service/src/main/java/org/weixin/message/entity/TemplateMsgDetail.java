@@ -1,12 +1,9 @@
 package org.weixin.message.entity;
 
 import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.RequiredArgsConstructor;
 import org.tplatform.core.entity.BaseEntity;
 
 import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
 
 /**
  * 微信模板消息
@@ -17,10 +14,11 @@ import javax.validation.constraints.NotNull;
 public class TemplateMsgDetail extends BaseEntity {
 
   public TemplateMsgDetail() {}
-  public TemplateMsgDetail(String key, String text) {this.key = key; this.text = text;}
+  public TemplateMsgDetail(String key, String color, String text) {this.key = key; this.color = color; this.text = text;}
 
   private Long templateId; // 模板ID
 
+  private String zhName; // 显示名称
   private String key;
   private String color;
   private String text;
