@@ -4,6 +4,8 @@ import lombok.Data;
 import org.tplatform.core.entity.BaseEntity;
 
 import javax.persistence.Table;
+import javax.persistence.Transient;
+import java.util.List;
 
 /**
  * 会议基本信息
@@ -44,5 +46,8 @@ public class MeetingInfo extends BaseEntity {
      * 活动简介
      */
     private String introduction;
+
+    @Transient
+    private List<MeetingSchedule> detail;
 
 }
