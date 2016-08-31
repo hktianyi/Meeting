@@ -55,6 +55,11 @@
         }, "sWidth": "6%"
         },
         {
+          "sTitle": "状态", "name": "createTime", "data": function (data) {
+          return data.status === 'VALID' ? '已签到' : '已报名';
+        }, "sWidth": "6%"
+        },
+        {
           "sTitle": "操作", "data": function (data) {
           return '<a href="' + _PATH + '/attendee/edit?id=' + data.id + '" type="button" class="btn btn-primary btn-xs">详情</a>';
         }, "sWidth": "6%"

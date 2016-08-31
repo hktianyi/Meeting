@@ -18,7 +18,7 @@
     <div class="tabbable-line">
       <ul class="nav nav-tabs">
         <li class="active">
-          <a href="#tab_1_1" data-toggle="tab">微信模板消息<span class="label label-sm label-danger circle">即时</span></a>
+          <a href="#tab_1_1" data-toggle="tab">微信模板消息<span class="label label-sm label-info circle">即时</span></a>
         </li>
         <li>
           <a href="#tab_1_2" data-toggle="tab">站内信</a>

@@ -19,6 +19,10 @@
         display:none;
         border-radius: 5px;
     }
+    .unread {
+        font-weight:bold;
+        color: #333;
+    }
 </style>
 <body>
 <div class="m-scene" id="main"> <!-- Main Container -->
@@ -42,9 +46,9 @@
             <c:if test="${not empty list}">
                 <h6 class="p-10">我的信息</h6>
                 <ul class="faq collapsible animated fadeinright delay-1" style="margin:0 0" data-collapsible="accordion">
-                    <c:forEach begin="0" var="item" step="1"  items="${list}">
+                    <c:forEach var="item" items="${list}">
                         <li class="">
-                            <div class="collapsible-header"><i class="ion-android-arrow-dropdown right"></i>${item.title}</div>
+                            <div class="collapsible-header ${empty item.status ? 'unread' : ''}" data-id="${item.id}"><i class="ion-android-arrow-dropdown right"></i>${item.title} [<fmt:formatDate value="${item.createTime}" type="both"/>]</div>
                             <div class="collapsible-body" style="display: none;"><p>${item.content}</p></div>
                         </li>
                     </c:forEach>
@@ -57,6 +61,14 @@
 </div> <!-- End of Page Container -->
 
 <%@include file="../../common/footer.jsp" %>
-
+<script type="text/javascript">
+    $(function () {
+        $(document).on('click', '.collapsible .unread', function () {
+            var _this = $(this);
+            _this.removeClass('unread');
+            $.post(_PATH + '/message/markRead/' + _this.data('id'));
+        })
+    });
+</script>
 </body>
 </html>

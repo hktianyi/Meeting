@@ -22,6 +22,10 @@ public class MeetingAttendeeService extends BaseService<MeetingAttendee> {
     return meetingAttendeeMapper.findByUserId(userId);
   }
 
+  public Long findattendeeIdByMeetCode(String meetCode) {
+    return meetingAttendeeMapper.findattendeeIdByMeetCode(meetCode);
+  }
+
   public int signUp(Long meetingId, Long userId) {
     return meetingAttendeeMapper.signUp(meetingId, userId);
   }
