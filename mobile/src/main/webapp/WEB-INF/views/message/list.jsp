@@ -48,7 +48,7 @@
                 <ul class="faq collapsible animated fadeinright delay-1" style="margin:0 0" data-collapsible="accordion">
                     <c:forEach var="item" items="${list}">
                         <li class="">
-                            <div class="collapsible-header ${empty item.status ? 'unread' : ''}" data-id="${item.id}"><i class="ion-android-arrow-dropdown right"></i>${item.title} [<fmt:formatDate value="${item.createTime}" type="both"/>]</div>
+                            <div class="collapsible-header ${item.status eq 'VALID' ? 'unread' : ''}" data-id="${item.id}"><i class="ion-android-arrow-dropdown right"></i>${item.title} [<fmt:formatDate value="${item.createTime}" type="both"/>]</div>
                             <div class="collapsible-body" style="display: none;"><p>${item.content}</p></div>
                         </li>
                     </c:forEach>

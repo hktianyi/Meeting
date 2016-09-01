@@ -74,7 +74,7 @@ public class MeetingCodeCtrl extends BaseCtrl {
             return "/meeting/qdSuccess.jsp";
         } else {
             Logger.i("请管理员扫码签到: " + meetCode);
-            return "/meeting/welcome.jsp";
+            return "/meeting/admin.jsp";
         }
     }
 

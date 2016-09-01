@@ -19,4 +19,11 @@ public class MessageService extends BaseService<Message> {
   public boolean markRead(Long id) {
     return messageMapper.updateStatus(id, StatusEnum.INVALID) > 0;
   }
+
+  public int unReadCount(Long userId) {
+    Message message = new Message();
+    message.setUserId(userId);
+    message.setStatus(StatusEnum.VALID);
+    return messageMapper.selectCount(message);
+  }
 }

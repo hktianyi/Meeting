@@ -6,9 +6,9 @@
     <%--<i class="ion-android-menu"></i>--%>
   <%--</div>--%>
   <span class="title">${param.title}</span>
-  <%--<div class="open-right" id="open-right" data-activates="slide-out">--%>
-    <%--<i class="ion-android-person"></i>--%>
-  <%--</div>--%>
+  <div class="open-right">
+    <a href="${_PATH}/message"><i class="ion-android-mail"></i></a>
+  </div>
 </div>
 <c:if test="${empty param.isCommnoBanner}">
 <div class="h-banner animated fadeindown">

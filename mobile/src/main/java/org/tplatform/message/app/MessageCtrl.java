@@ -46,6 +46,17 @@ public class MessageCtrl extends BaseCtrl {
 		return BASE_DIR.concat("/list.jsp");
 	}
 
+	@RequestMapping("/unReadCount")
+	@ResponseBody
+	public RespBody unReadCount() {
+		int count = 0;
+		try {
+			count = messageService.unReadCount(((Member) session.getAttribute(GlobalConstant.KEY_SESSION_USER)).getId());
+		} catch (Exception e) {
+		}
+		return RespBody.ok(count);
+	}
+
 	@RequestMapping("/markRead/{id}")
 	@ResponseBody
 	public RespBody markRead(@PathVariable Long id) {

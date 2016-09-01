@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.tplatform.common.BaseCtrl;
 import org.tplatform.core.entity.RespBody;
+import org.tplatform.core.fsm.StatusEnum;
 import org.tplatform.meeting.entity.Message;
 import org.tplatform.meeting.service.MeetingAttendeeService;
 import org.tplatform.meeting.service.MessageService;
@@ -76,6 +77,7 @@ public class MessageCtrl extends BaseCtrl<Message> {
   public RespBody sendStationMsg(@RequestParam("memberId[]") Long[] memberId, Message message) {
     for(Long id : memberId) {
       message.setUserId(id);
+      message.setStatus(StatusEnum.VALID);
       messageService.save(message);
     }
     return RespBody.ok();
