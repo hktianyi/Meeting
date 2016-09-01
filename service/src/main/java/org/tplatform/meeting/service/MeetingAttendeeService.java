@@ -2,6 +2,7 @@ package org.tplatform.meeting.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.tplatform.core.fsm.StatusEnum;
 import org.tplatform.impl.BaseService;
 import org.tplatform.meeting.entity.MeetingAttendee;
 import org.tplatform.meeting.entity.MeetingInfo;
@@ -24,6 +25,24 @@ public class MeetingAttendeeService extends BaseService<MeetingAttendee> {
 
   public Long findattendeeIdByMeetCode(String meetCode) {
     return meetingAttendeeMapper.findattendeeIdByMeetCode(meetCode);
+  }
+
+  /**
+   * 统计数量
+   * @param status
+   * @return
+   */
+  public Long count(StatusEnum status) {
+    return meetingAttendeeMapper.count("status = '"+status.name()+"'");
+  }
+
+  /**
+   * 统计数量
+   * @param where
+   * @return
+   */
+  public Long count(String where) {
+    return meetingAttendeeMapper.count(where);
   }
 
   public int signUp(Long meetingId, Long userId) {

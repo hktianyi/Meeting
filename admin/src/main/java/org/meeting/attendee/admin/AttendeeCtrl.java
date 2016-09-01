@@ -50,4 +50,31 @@ public class AttendeeCtrl extends BaseCtrl<MeetingAttendee> {
 
     return new ModelAndView(new ViewExcelXls(), modelMap);
   }
+
+  /**
+   * 统计邀请码、嘉宾签到信息
+   * @param modelMap
+   * @return
+   */
+  @RequestMapping("/stats")
+  public String stats(ModelMap modelMap) {
+    Long countCommit = meetingAttendeeService.count("status = '"+StatusEnum.COMMIT.name()+"'");
+    Long countValid = meetingAttendeeService.count("status = '"+StatusEnum.VALID.name()+"'");
+    modelMap.put("countCommit", countCommit);
+    modelMap.put("countValid", countValid);
+    modelMap.put("countUnused", 100 - countCommit - countValid);
+    modelMap.put("countGenderMr", meetingAttendeeService.count("salutation = '1'"));
+    modelMap.put("countGenderMs", meetingAttendeeService.count("salutation = '2'"));
+
+    modelMap.put("countStay1", meetingAttendeeService.count("isStay='1'"));
+    modelMap.put("countStay2", meetingAttendeeService.count("isStay='0'"));
+    modelMap.put("countDinner11", meetingAttendeeService.count("dinner1='1'"));
+    modelMap.put("countDinner12", meetingAttendeeService.count("dinner1='2'"));
+    modelMap.put("countDinner21", meetingAttendeeService.count("dinner2='1'"));
+    modelMap.put("countDinner22", meetingAttendeeService.count("dinner2='2'"));
+    modelMap.put("countDinner31", meetingAttendeeService.count("dinner3='1'"));
+    modelMap.put("countDinner32", meetingAttendeeService.count("dinner3='2'"));
+    return "/stats/judger.jsp";
+  }
+
 }

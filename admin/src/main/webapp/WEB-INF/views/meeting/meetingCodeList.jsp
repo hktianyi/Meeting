@@ -40,7 +40,7 @@
         {"sTitle": "邀请码", "name": "meetcode", "data": "meetcode", "sWidth": "8%"},
         {
           "sTitle": "状态", "name": "bizStatus", "data": function (data) {
-          return data.bizStatus == '1' ? '未使用' : (data.name ? '已使用' : '未报名');
+          return data.bizStatus == '1' ? '未使用' : (data.name ? (data.status === 'VALID' ? '已签到' : '已报名') : '未报名');
         }, "sWidth": "8%"
         },
         {"sTitle": "姓名", "name": "name", "data": function (data) {
@@ -56,27 +56,27 @@
         },
         {
           "sTitle": "操作", "data": function (data) {
-          return '<a href="#" type="button" class="btn btn-primary btn-xs"></a>';
+          return '<a href="javascript:signIn(\''+data.meetcode+'\', \''+data.name+'\');" type="button" class="btn btn-primary btn-xs">签到</a>';
         }, "sWidth": "6%"
         }
       ]
     });
   }
-  function del(id, name) {
-    layer.confirm('确认删除【' + name + '】?？', {
-      btn: ['删除', '取消'] //按钮
+  function signIn(meetCode, name) {
+    layer.confirm('确认签到【' + (name || meetCode) + '】?', {
+      btn: ['签到', '取消'] //按钮
     }, function () {
-      $.ajax(_PATH + '/${MODULE_NAME}/delete?id=' + id, {
-        type: 'DELETE',
+      $.ajax(_PATH + '/invitationCode/signIn/' + meetCode, {
+        type: 'POST',
         success: function (resp) {
           if (resp.statusCode === 200) {
-            layer.msg('删除成功');
+            layer.msg('签到成功');
             getDataList();
           }
-          else  layer.msg('删除失败', {icon: 6});
+          else  layer.msg('签到失败', {icon: 6});
         },
         error: function () {
-          layer.msg('删除失败', {icon: 6});
+          layer.msg('签到失败', {icon: 6});
         }
       });
     });

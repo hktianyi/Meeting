@@ -23,4 +23,6 @@ public interface MeetingAttendeeMapper extends Mapper<MeetingAttendee> {
   @Select("SELECT t1.id FROM t_meeting_attendee t1, t_meeting_code t2 WHERE t1.operator = t2.id AND t2.meetCode = #{meetCode}")
   Long findattendeeIdByMeetCode(@Param("meetCode") String meetCode);
 
+  @Select("SELECT COUNT(1) FROM t_meeting_attendee t1 WHERE ${where}")
+  Long count(@Param("where") String where);
 }
