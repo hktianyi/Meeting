@@ -51,7 +51,7 @@ public class MessageCtrl extends BaseCtrl {
 	public RespBody unReadCount() {
 		int count = 0;
 		try {
-			count = messageService.unReadCount(((Member) session.getAttribute(GlobalConstant.KEY_SESSION_USER)).getId());
+			count = messageService.unReadCount(meetingAttendeeService.findattendeeIdByMeetCode(((Member) session.getAttribute(GlobalConstant.KEY_SESSION_USER)).getUserName()));
 		} catch (Exception e) {
 		}
 		return RespBody.ok(count);

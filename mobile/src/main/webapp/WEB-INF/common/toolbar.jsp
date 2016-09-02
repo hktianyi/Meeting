@@ -1,5 +1,17 @@
 <%@ page pageEncoding="UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<style>
+  .badge-danger:after{
+    position: absolute;
+    content: ' ';
+    height: 6px;
+    width: 6px;
+    border-radius: 3px;
+    background-color: red;
+    top: 1.2em;
+    right: -.1em;
+  }
+</style>
 <!-- Toolbar -->
 <div id="toolbar" class="primary-color">
   <%--<div class="open-left" id="open-left" data-activates="slide-out-left">--%>
@@ -7,7 +19,7 @@
   <%--</div>--%>
   <span class="title">${param.title}</span>
   <div class="open-right">
-    <a href="${_PATH}/message"><i class="ion-android-mail"></i></a>
+    <a href="${_PATH}/message"><i class="ion-android-mail"></i><span class="badge"></span></a>
   </div>
 </div>
 <c:if test="${empty param.isCommnoBanner}">
@@ -31,3 +43,10 @@
   </div>
 </div>
 </c:if>
+<script type="text/javascript">
+  $(function () {
+    $.getJSON(_PATH + '/message/unReadCount', function (resp) {
+      if(resp.data > 0) $('.badge').addClass('badge-danger');
+    })
+  })
+</script>
