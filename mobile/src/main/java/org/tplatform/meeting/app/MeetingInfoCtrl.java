@@ -4,15 +4,24 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.tplatform.common.BaseCtrl;
 import org.tplatform.constant.GlobalConstant;
+import org.tplatform.core.entity.DynamicForm;
 import org.tplatform.core.entity.RespBody;
 import org.tplatform.core.fsm.StatusEnum;
-import org.tplatform.meeting.entity.*;
-import org.tplatform.meeting.service.*;
+import org.tplatform.core.service.IDynamicFormService;
+import org.tplatform.meeting.entity.MeetingAttendee;
+import org.tplatform.meeting.entity.MeetingImg;
+import org.tplatform.meeting.entity.MeetingInfo;
+import org.tplatform.meeting.entity.MeetingSchedule;
+import org.tplatform.meeting.service.MeetingAttendeeService;
+import org.tplatform.meeting.service.MeetingInfoService;
+import org.tplatform.meeting.service.MeetingScheduleService;
 import org.tplatform.member.entity.Member;
 
 import java.util.HashMap;
@@ -32,6 +41,8 @@ public class MeetingInfoCtrl extends BaseCtrl {
 	private MeetingScheduleService meetingScheduleService;
 	@Autowired
 	private MeetingAttendeeService meetingAttendeeService;
+	@Autowired
+	private IDynamicFormService dynamicFormService;
 
 	/**
 	 * 会议列表
@@ -99,6 +110,7 @@ public class MeetingInfoCtrl extends BaseCtrl {
 		MeetingAttendee ma = meetingAttendeeService.findOne(maExample);
 		modelMap.put("ma",ma);
 		modelMap.put("meetingId",meetingId);
+//		modelMap.put("schedules", dynamicFormService.findElementsByFormId2Permission("meeting_attendee", currMember.getHierarchy()));
 		return "/meeting/attend.jsp";
 	}
 	@RequestMapping(value = "/sign",method = RequestMethod.POST)
@@ -109,6 +121,18 @@ public class MeetingInfoCtrl extends BaseCtrl {
 		if (i < 1){
 			return RespBody.error("个人信息处理失败");
 		}
+		return RespBody.ok();
+	}
+
+	/**
+	 * 保存媒体附录
+	 *
+	 * @return
+	 */
+	@RequestMapping("/saveSS")
+	@ResponseBody
+	public RespBody saveSS(@RequestParam("id") Long id, @RequestBody DynamicForm dynamicForm) {
+		dynamicFormService.saveRecords(dynamicForm.getElements());
 		return RespBody.ok();
 	}
 

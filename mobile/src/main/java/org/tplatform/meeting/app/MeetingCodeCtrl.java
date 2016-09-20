@@ -41,6 +41,7 @@ public class MeetingCodeCtrl extends BaseCtrl {
             Member member = new Member();
             member.setId(meetingCode.getId());
             member.setUserName(meetCode);
+            member.setHierarchy(meetingCode.getHierarchy());
             session.setAttribute(GlobalConstant.KEY_SESSION_USER, member);
             result.put("status", "1");
             result.put("meetingId", meetingCode.getMeetingId());

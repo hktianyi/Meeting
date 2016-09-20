@@ -52,7 +52,7 @@
         </div>
 
         <form id="form1" method="post">
-        <div id="test1" class="meetingDetail">
+          <div id="test1" class="meetingDetail">
             <div class="form-inputs">
               <div class="input-field animated fadeinright">
                 <input id="name" type="text" class="validate" name="name" value="${ma.name}" required>
@@ -60,8 +60,10 @@
               </div>
               <div class="input-field animated fadeinright sex">
                 <h5 class="active">称谓/Salutation:</h5>
-                <input id="salutation1" type="radio" name="salutation" value="1" ${ma.salutation eq '1' ? 'checked' : ''}><label for="salutation1">先生/Mr</label>
-                <input id="salutation2" type="radio" name="salutation" value="2" ${ma.salutation eq '2' ? 'checked' : ''}><label for="salutation2">女士/Ms</label>
+                <input id="salutation1" type="radio" name="salutation"
+                       value="1" ${ma.salutation eq '1' ? 'checked' : ''}><label for="salutation1">先生/Mr</label>
+                <input id="salutation2" type="radio" name="salutation"
+                       value="2" ${ma.salutation eq '2' ? 'checked' : ''}><label for="salutation2">女士/Ms</label>
               </div>
               <div class="input-field animated fadeinright">
                 <input id="company" type="text" class="validate" name="company" value="${ma.company}">
@@ -118,128 +120,30 @@
                    href="javascript:next();">下一步</a>
               </div>
             </div>
-        </div>
+          </div>
 
-        <div id="test2">
-          <!-- Form Inputs -->
-          <div class="form-inputs">
-            <c:if test="${_USER.hierarchy eq '1'}">
-            <div class="input-field animated fadeinright">
-              <h5>是否住宿/Accommodation:</h5>
-              <select class="browser-default" name="isStay" id="isStay" rid="1">
-                <option value="1" ${ma.isStay eq '1' ? 'selected' : ''}>是/YES</option>
-                <option value="0" ${ma.isStay eq '0' ? 'selected' : ''}>否/NO</option>
-              </select>
-            </div>
-            <div class="input-field animated fadeinright">
-              <h5>入住日期/Check-in:</h5>
-              <select class="browser-default" name="stayDate" id="stayDate" rid="2">
-                <option value="2016/10/21" ${ma.stayDate eq '2016/10/21' ? 'selected' : ''}>2016/10/21</option>
-                <option value="2016/10/22" ${ma.stayDate eq '2016/10/22' ? 'selected' : ''}>2016/10/22</option>
-                <option value="2016/10/23" ${ma.stayDate eq '2016/10/23' ? 'selected' : ''}>2016/10/23</option>
-              </select>
-            </div>
-            <div class="input-field animated fadeinright">
-              <h5>退房日期/Check-out:</h5>
-              <select class="browser-default" name="leaveDate" id="leaveDate" rid="3">
-                <option value="2016/10/22" ${ma.leaveDate eq '2016/10/22' ? 'selected' : ''}>2016/10/22</option>
-                <option value="2016/10/23" ${ma.leaveDate eq '2016/10/23' ? 'selected' : ''}>2016/10/23</option>
-                <option value="2016/10/24" ${ma.leaveDate eq '2016/10/24' ? 'selected' : ''}>2016/10/24</option>
-              </select>
-            </div>
-            </c:if>
-            <c:if test="${_USER.hierarchy eq '1' || _USER.hierarchy eq '2' || _USER.hierarchy eq '3' || _USER.hierarchy eq '4'}">
-            <div class="input-field animated fadeinright">
-              <h5>艾菲研讨会/Effie Seminar:</h5>
-              <select class="browser-default" name="schedule221" id="schedule221" rid="4">
-                <%--<option value="1">请选择...</option>--%>
-                <option value="1" ${ma.schedule221 eq '1' ? 'selected' : ''}>参加/YES</option>
-                <option value="0" ${ma.schedule221 eq '0' ? 'selected' : ''}>不参加/NO</option>
-              </select>
-            </div>
-            </c:if>
-            <c:if test="${_USER.hierarchy eq '1' || _USER.hierarchy eq '2' || _USER.hierarchy eq '3'}">
-            <div class="input-field animated fadeinright">
-              <h5>自助午餐/Buffet Lunch:</h5>
-              <select class="browser-default" name="schedule222" id="schedule222" rid="5">
-                <%--<option value="1">请选择...</option>--%>
-                <option value="1" ${ma.schedule222 eq '1' ? 'selected' : ''}>参加/YES</option>
-                <option value="0" ${ma.schedule222 eq '0' ? 'selected' : ''}>不参加/NO</option>
-              </select>
-            </div>
-            </c:if>
-            <c:if test="${_USER.hierarchy eq '1' || _USER.hierarchy eq '2'}">
-            <div class="input-field animated fadeinright">
-              <h5>VIP欢迎晚宴/VIP Welcome Dinner:</h5>
-              <select class="browser-default" name="schedule223" id="schedule223" rid="6">
-                <%--<option value="1">请选择...</option>--%>
-                <option value="1" ${ma.schedule223 eq '1' ? 'selected' : ''}>参加/YES</option>
-                <option value="0" ${ma.schedule223 eq '0' ? 'selected' : ''}>不参加/NO</option>
-              </select>
-            </div>
-            <div class="input-field animated fadeinright">
-              <h5>艾菲酒会/Effie Reception:</h5>
-              <select class="browser-default" name="schedule231" id="schedule231" rid="7">
-                <%--<option value="1">请选择...</option>--%>
-                <option value="1" ${ma.schedule231 eq '1' ? 'selected' : ''}>参加/YES</option>
-                <option value="0" ${ma.schedule231 eq '0' ? 'selected' : ''}>不参加/NO</option>
-              </select>
-            </div>
-            <div class="input-field animated fadeinright">
-              <h5>红毯秀/Red Carpet Show:</h5>
-              <select class="browser-default" name="schedule232" id="schedule232" rid="8">
-                <%--<option value="1">请选择...</option>--%>
-                <option value="1" ${ma.schedule232 eq '1' ? 'selected' : ''}>参加/YES</option>
-                <option value="0" ${ma.schedule232 eq '0' ? 'selected' : ''}>不参加/NO</option>
-              </select>
-            </div>
-            </c:if>
-            <c:if test="${_USER.hierarchy eq '1' || _USER.hierarchy eq '2' || _USER.hierarchy eq '3' || _USER.hierarchy eq '4'}">
-            <div class="input-field animated fadeinright">
-              <h5>艾菲颁奖典礼/Effie Awards Gala:</h5>
-              <select class="browser-default" name="schedule233" id="schedule233" rid="9">
-                <%--<option value="1">请选择...</option>--%>
-                <option value="1" ${ma.schedule233 eq '1' ? 'selected' : ''}>参加/YES</option>
-                <option value="0" ${ma.schedule233 eq '0' ? 'selected' : ''}>不参加/NO</option>
-              </select>
-            </div>
-            </c:if>
-            <c:if test="${_USER.hierarchy eq '1' || _USER.hierarchy eq '2' || _USER.hierarchy eq '3'}">
-            <div class="input-field animated fadeinright">
-              <h5>艾菲派对/Effie After Party:</h5>
-              <select class="browser-default" name="schedule234" id="schedule234" rid="10">
-                <%--<option value="1">请选择...</option>--%>
-                <option value="1" ${ma.schedule234 eq '1' ? 'selected' : ''}>参加/YES</option>
-                <option value="0" ${ma.schedule234 eq '0' ? 'selected' : ''}>不参加/NO</option>
-              </select>
-            </div>
-            </c:if>
-            <c:if test="${_USER.hierarchy eq '1' || _USER.hierarchy eq '2' || _USER.hierarchy eq '3' || _USER.hierarchy eq '4'}">
-            <div class="input-field animated fadeinright">
-              <h5>2016优秀案例赏析会/2016 Effie Forum:</h5>
-              <select class="browser-default" name="schedule241" id="schedule241" rid="11">
-                <%--<option value="1">请选择...</option>--%>
-                <option value="1" ${ma.schedule241 eq '1' ? 'selected' : ''}>参加/YES</option>
-                <option value="0" ${ma.schedule241 eq '0' ? 'selected' : ''}>不参加/NO</option>
-              </select>
-            </div>
-            </c:if>
-            <c:if test="${_USER.hierarchy eq '1' || _USER.hierarchy eq '2'}">
-            <div class="input-field animated fadeinright">
-              <h5>VIP午宴/VIP Luncheon:</h5>
-              <select class="browser-default" name="schedule242" id="schedule242" rid="12">
-                <%--<option value="1">请选择...</option>--%>
-                <option value="1" ${ma.schedule242 eq '1' ? 'selected' : ''}>参加/YES</option>
-                <option value="0" ${ma.schedule242 eq '0' ? 'selected' : ''}>不参加/NO</option>
-              </select>
-            </div>
-            </c:if>
+          <div id="test2">
+            <!-- Form Inputs -->
+            <div class="form-inputs">
+              <c:forEach items="${schedules}" var="schedule">
+                <div class="input-field animated fadeinright">
+                  <h5>${schedule.zhName}:</h5>
+                  <c:choose>
+                    <c:when test="${schedule.eleType eq 'select'}">
+                      <${schedule.eleType} ${schedule.eleAttr} name="${schedule.eleName}" id="${schedule.eleName}" rid="${schedule.id}">
+                      <c:forEach items="${schedule.dicList}" var="dic">
+                        <option value="${dic.value}" ${dic.value eq schedule.eleValue ? 'selected' : ''}>${dic.zhName}</option>
+                      </c:forEach>
+                    </${schedule.eleType}>
+                    </c:when>
+                  </c:choose>
+                </div>
+              </c:forEach>
           </div>
           <div style="padding: 20px 40px;">
             <a class="waves-effect waves-light btn-large primary-color width-100 animated bouncein delay-6"
                href="javascript:signUp();">提交</a>
           </div>
-        </div>
         </form>
       </div>
       <!-- Footer -->
@@ -249,50 +153,51 @@
     <script type="text/javascript">
       $(function () {
         $("#isStay").on('change', function () {
-          if($(this).val() == '0') {
+          if ($(this).val() == '0') {
             $("#stayDate").attr("disabled", "disabled");
             $("#leaveDate").attr("disabled", "disabled");
           } else {
             $("#stayDate").removeAttr("disabled");
             $("#leaveDate").removeAttr("disabled");
           }
-        });
-        $("#stayDate").on('change', function () {
-          $("#leaveDate").find('option').removeAttr("disabled");
-          if ($(this).val() == '2016/10/22') {
-            $("#leaveDate").find('option:eq(0)').attr("disabled", "disabled");
-            if($("#leaveDate").val() == '2016/10/22') $("#leaveDate").val('2016/10/23');
-          } else if ($(this).val() == '2016/10/23') {
-            $("#leaveDate").find('option:eq(0)').attr("disabled", "disabled");
-            $("#leaveDate").find('option:eq(1)').attr("disabled", "disabled");
-            if($("#leaveDate").val() == '2016/10/22' || $("#leaveDate").val() == '2016/10/23') $("#leaveDate").val('2016/10/24');
-          }
         })
       });
       function next() {
-        if(validate1()) {
+        if (validate1()) {
           $("#test3").click();
         }
       }
 
       function signUp() {
-        if(validate1()) {
-          $.ajax({
-            type: "post",
-            dataType: "json",
-            url: "${_PATH}/meeting/sign",
+        if (validate1()) {
+          var layerIndex = layer.load(1, {
+            shade: [0.3, '#fff'] //0.1透明度的白色背景
+          });
+          $.ajax(_PATH + '/meeting/sign', {
+            type: 'POST',
             data: $('#form1').serialize(),
             success: function (resp) {
               if (resp.statusCode === 200) {
-                window.location.href = "${_PATH}/meetingcode/qrcodecheck";
-              } else {
-                alert(resp.errorInfo);
+                $.ajax(_PATH + '/meeting/saveSS', {
+                  type: 'POST',
+                  contentType: 'application/json;charset=utf-8',
+                  data: JSON.stringify({'elements': serializeTable('', '${_USER.id}')}),
+                  success: function (resp) {
+                    if (resp.statusCode === 200) {
+                      window.location.href = "${_PATH}/meetingcode/qrcodecheck";
+                    }
+                    else alert('报名失败');
+                    layer.close(layerIndex);
+                  }
+                });
               }
+              else alert('报名失败');
             },
-            error: function (resp) {
+            error: function () {
               alert('报名失败');
+              layer.close(layerIndex);
             }
-          })
+          });
         }
       }
 

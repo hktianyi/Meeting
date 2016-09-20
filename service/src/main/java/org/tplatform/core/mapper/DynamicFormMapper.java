@@ -1,7 +1,10 @@
 package org.tplatform.core.mapper;
 
 import org.apache.ibatis.annotations.InsertProvider;
+import org.apache.ibatis.annotations.Many;
 import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.annotations.Result;
+import org.apache.ibatis.annotations.Results;
 import org.apache.ibatis.annotations.Select;
 import org.tplatform.core.entity.DFElementRecord;
 import org.tplatform.core.entity.DynamicForm;
@@ -19,7 +22,18 @@ public interface DynamicFormMapper extends Mapper<DynamicForm> {
   DynamicForm findByFormId(@Param("formId") String formId);
 
   @Select("select * from sys_df_element where formId = #{formId} order by sort")
+  @Results({
+    @Result(property = "dicList", column = "dicTypeId", javaType = List.class,
+        many = @Many(select = "org.tplatform.core.mapper.DictionaryMapper.findByDicTypeId"))
+  })
   List<DFElementRecord> findElementsByFormId(@Param("formId") String formId);
+
+  @Select("select * from sys_df_element where formId = #{formId} order by sort")
+  @Results({
+    @Result(property = "dicList", column = "dicTypeId", javaType = List.class,
+        many = @Many(select = "org.tplatform.core.mapper.DictionaryMapper.findByDicTypeId"))
+  })
+  List<DFElementRecord> findElementsByFormId2Permission(@Param("formId") String formId, @Param("hierarchy") String hierarchy);
 
   @Select("select t1.id eleId, t1.formId, t1.eleType, t1.eleAttr, t1.eleName, t1.eleClass, t1.zhName, t1.remark, t1.sort, " +
       " (select id from sys_df_record t0 where t0.eleName = t1.eleName and t0.recordId = #{recordId}) id, " +

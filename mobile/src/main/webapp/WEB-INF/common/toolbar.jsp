@@ -14,9 +14,9 @@
 </style>
 <!-- Toolbar -->
 <div id="toolbar" class="primary-color">
-  <%--<div class="open-left" id="open-left" data-activates="slide-out-left">--%>
-    <%--<i class="ion-android-menu"></i>--%>
-  <%--</div>--%>
+  <div class="open-left" id="open-left" data-activates="slide-out-left">
+    <i class="ion-android-menu"></i>
+  </div>
   <span class="title">${param.title}</span>
   <div class="open-right">
     <a href="${_PATH}/message"><i class="ion-android-mail"></i><span class="badge"></span></a>

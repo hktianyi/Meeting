@@ -20,4 +20,7 @@ public interface DictionaryMapper extends Mapper<Dictionary> {
 
   @Select("select zhName from sys_dictionary where dicTypeId = #{codeType} and value = #{codeValue}")
   String findDicNameByCode(@Param("codeType") String codeType,@Param("codeValue")String codeValue);
+
+  @Select("SELECT t1.* FROM sys_dictionary t1 WHERE t1.dicTypeId = #{dicTypeId} order by sort")
+  List<Dictionary> findByDicTypeId(@Param("dicTypeId") Long dicTypeId);
 }

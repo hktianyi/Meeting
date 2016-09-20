@@ -25,4 +25,20 @@
         }
         return true;
     }
+
+    function serializeTable(formId, recordId) {
+      var form = $('#plan_mtfl_cbqd');
+      var data = [];
+      var flag = true;
+      form.find('select').each(function (index, element) {
+        var param = {};
+        param.formId = formId;
+        param.recordId = recordId;
+        param.id = $(element).attr('rid');
+        param.eleName = element.name;
+        param.eleValue = $(element).is(':checked') ? (/\s*_other$/.test(input.name) ? ('checked ' + $('#' + input.name).val()) : 'checked') : '';
+        data.push(param);
+      });
+      return flag ? data : false;
+    }
 </script>

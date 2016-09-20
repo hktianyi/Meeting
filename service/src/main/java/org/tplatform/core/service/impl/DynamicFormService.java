@@ -29,6 +29,14 @@ public class DynamicFormService extends BaseService<DynamicForm> implements IDyn
   }
 
   @Override
+  @Cacheable(value = "_SYS", key = "'_DF_FORMID_' + #formId + #hierarchy")
+  public DynamicForm findElementsByFormId2Permission(String formId, String hierarchy) {
+    DynamicForm dynamicForm = dynamicFormMapper.findByFormId(formId);
+    if (dynamicForm != null) dynamicForm.setElements(dynamicFormMapper.findElementsByFormId2Permission(formId, hierarchy));
+    return dynamicForm;
+  }
+
+  @Override
   @Cacheable(value = "_SYS", key = "'_DF_FORMID_' + #formId")
   public List<DFElementRecord> findElementsByFormId(String formId) {
     return dynamicFormMapper.findElementsByFormId(formId);

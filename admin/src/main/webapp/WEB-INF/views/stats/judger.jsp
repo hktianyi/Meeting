@@ -144,7 +144,7 @@
       xAxis : [
         {
           type : 'category',
-          data : ['是否需要住宿','9月2日周五自助晚餐','9月3日周六答谢晚宴','9月4日周日搜狐之夜晚宴暨评委证书颁发仪式']
+          data : ["是否需要住宿","艾菲研讨会 Effie Seminar","自助午餐 Buffet Lunch","VIP欢迎晚宴 VIP Welcome Dinner","艾菲酒会 Effie Reception","红毯秀 Red Carpet Show","艾菲颁奖典礼 Effie Awards Gala","艾菲派对 Effie After Party","2016优秀案例赏析会 2016 Effie Forum","VIP午宴 VIP Luncheon"]
         }
       ],
       yAxis : [
@@ -158,13 +158,13 @@
           name:'是',
           type:'bar',
           stack: '广告',
-          data:['${countStay1}', '${countDinner11}', '${countDinner21}', '${countDinner31}']
+          data:['${countStay1}', '${countSchedule2211}', '${countSchedule2221}', '${countSchedule2231}', '${countSchedule2311}', '${countSchedule2321}', '${countSchedule2331}', '${countSchedule2341}', '${countSchedule2411}', '${countSchedule2421}']
         },
         {
           name:'否',
           type:'bar',
           stack: '广告',
-          data:['${countStay2}', '${countDinner12}', '${countDinner22}', '${countDinner32}']
+          data:['${countStay2}', '${countSchedule2212}', '${countSchedule2222}', '${countSchedule2232}', '${countSchedule2312}', '${countSchedule2322}', '${countSchedule2332}', '${countSchedule2342}', '${countSchedule2412}', '${countSchedule2422}']
         }
       ]
     };

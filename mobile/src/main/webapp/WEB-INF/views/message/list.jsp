@@ -55,20 +55,20 @@
                 </ul>
             </c:if>
         </div>
+        <script type="text/javascript">
+            $(function () {
+                $(document).on('click', '.collapsible .unread', function () {
+                    var _this = $(this);
+                    _this.removeClass('unread');
+                    $.post(_PATH + '/message/markRead/' + _this.data('id'));
+                })
+            });
+        </script>
 
     </div> <!-- End of Page Content -->
 
 </div> <!-- End of Page Container -->
 
 <%@include file="../../common/footer.jsp" %>
-<script type="text/javascript">
-    $(function () {
-        $(document).on('click', '.collapsible .unread', function () {
-            var _this = $(this);
-            _this.removeClass('unread');
-            $.post(_PATH + '/message/markRead/' + _this.data('id'));
-        })
-    });
-</script>
 </body>
 </html>

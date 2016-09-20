@@ -3,6 +3,8 @@ package org.tplatform.core.entity;
 import lombok.Data;
 
 import javax.persistence.Table;
+import javax.persistence.Transient;
+import java.util.List;
 
 /**
  * 动态表单元素
@@ -20,4 +22,8 @@ public class DFElement extends BaseEntity {
   private String zhName;//中文名
   private String remark;//备注
   private Integer sort; //排序
+  private Long dicTypeId; //字典类型
+
+  @Transient
+  private List<Dictionary> dicList; // 字典值
 }

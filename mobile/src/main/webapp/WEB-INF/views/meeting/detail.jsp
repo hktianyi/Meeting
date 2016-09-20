@@ -55,33 +55,27 @@
                             <p class="valueStyle">
                                 ${meeting.address}
                             </p>
-                            <label class="active">活动地址</label>
+                            <label class="active">活动地址一</label>
                         </div>
-                        <%--<div class="input-field animated fadeinright delay-4">
-                            <p class="valueStyle">
-                                ${meeting.meetingType}
-                            </p>
-                            <label class="active">活动类型</label>
-                        </div>--%>
-                        <%--<div class="input-field animated fadeinright delay-4">
-                            <p class="valueStyle">
-                                <c:choose>
-                                    <c:when test="${meeting.free eq '0' || meeting.free eq '0.00'}">
-                                       免费
-                                    </c:when>
-                                    <c:otherwise>
-                                        ${meeting.free}
-                                    </c:otherwise>
-                                </c:choose>
-
-                            </p>
-                            <label class="active">活动费用</label>
-                        </div>--%>
                         <div class="input-field animated fadeinright delay-5">
                             <p class="valueStyle">
                                 ${meeting.introduction}
                             </p>
-                            <label class="active">具体位置</label>
+                            <label class="active">具体位置一</label>
+                        </div>
+                        <div class="input-field animated fadeinright">
+                            <p class="valueStyle">
+                                海南国际会展中心<br/>&nbsp;&nbsp;
+                                Hainan International Convention & Exhibition Center
+                            </p>
+                            <label class="active">活动地址二</label>
+                        </div>
+                        <div class="input-field animated fadeinright delay-5">
+                            <p class="valueStyle">
+                                海南省海口市秀英区滨海大道258号<br/>&nbsp;&nbsp;
+                                No.258 Binhai Avenue, Xiuying District Haikou, Hainan 570311, China
+                            </p>
+                            <label class="active">具体位置二</label>
                         </div>
                     </div>
                 </div>
@@ -176,5 +170,10 @@
 </div> <!-- End of Page Container -->
 
 <%@include file="../../common/footer.jsp" %>
+<script>
+    $(function () {
+        layer.tips('上台演讲', 'test');
+    })
+</script>
 </body>
 </html>

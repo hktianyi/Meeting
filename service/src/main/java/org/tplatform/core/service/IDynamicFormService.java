@@ -17,6 +17,14 @@ public interface IDynamicFormService extends IBaseService<DynamicForm> {
    */
   DynamicForm findByFormId(String formId);
 
+  /**
+   * 根据表单ID查询被许可的表单
+   * @param formId
+   * @param hierarchy
+   * @return
+   */
+  DynamicForm findElementsByFormId2Permission(String formId, String hierarchy);
+
 
   /**
    * 根据表单ID，查询元素
