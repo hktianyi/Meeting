@@ -32,7 +32,7 @@
                 <div class="p-t-20">
                     <ul class="tabs">
                         <li class="tab"><a class="active" href="#test1">活动信息/Event Info</a></li>
-                        <li class="tab"><a href="#test2">实效节日程/Event Agenda</a></li>
+                        <li class="tab"><a href="#test2" id="eventAgenda">实效节日程/Event Agenda</a></li>
                     </ul>
                 </div>
 
@@ -84,49 +84,50 @@
                     <div class="container activity p-l-r-20" style=" padding-left: 100px !important;">
                         <div class="row m-l-0">
                             <div class="col">
-                                <c:forEach items="${schedules}" var="item" varStatus="status">
-                                    <c:if test="${status.first}">
+                                <c:forEach items="${meeting.detail}" var="item" varStatus="status">
+                                    <%--<c:if test="${status.first}">
                                         <c:set scope="page" var="t_index" value="0"></c:set>
                                         <c:set scope="page" var="t_now" value="${item.scheduleDate}"></c:set>
                                         <div class="contact" style="padding: 16px 0;">
                                         <span class="date" style=" left: -130px;">
-                                                ${item.scheduleDate}
+                                                ${item.scheduleDate}<br/>${item.timeOfDay}
                                         </span>
                                             <div class="dot z-depth-1" style="width: 50px;height: 50px;line-height: 42px;text-align: center;left: -56px;top: 0px;border: 4px solid #bbb;">
                                                 报到
                                             </div>
                                         </div>
-                                    </c:if>
+                                    </c:if>--%>
                                     <c:if test="${t_now ne item.scheduleDate}">
-                                        <c:if test="${item.scheduleDate eq '2016-09-05'}">
+                                        <%--<c:if test="${item.scheduleDate eq '2016-10-24'}">
                                             <div class="contact" style="padding: 16px 0;">
                                         <span class="date" style=" left: -130px;">
-                                                ${item.scheduleDate}
+                                                ${item.scheduleDate}<br/>${item.timeOfDay}
                                         </span>
                                                 <div class="dot z-depth-1" style="width: 50px;height: 50px;line-height: 42px;text-align: center;left: -56px;top: 0px;border: 4px solid #bbb;">
                                                     结束
                                                 </div>
                                             </div>
-                                        </c:if>
-                                    <c:if test="${item.scheduleDate ne '2016-09-05'}">
-                                        <c:set scope="page" var="t_index" value="${t_index+1}"></c:set>
-                                        <c:set scope="page" var="t_now" value="${item.scheduleDate}"></c:set>
-                                        <div class="contact" style="padding: 16px 0;">
-                                        <span class="date" style=" left: -130px;">
-                                                ${item.scheduleDate}
-                                        </span>
-                                            <div class="dot z-depth-1" style="width: 50px;height: 50px;line-height: 42px;text-align: center;left: -56px;top: 0px;border: 4px solid #bbb;">
-                                                Day${t_index}
+                                        </c:if>--%>
+                                        <%--<c:if test="${item.scheduleDate ne '2016-10-24'}">--%>
+                                            <c:set scope="page" var="t_index" value="${t_index+1}"></c:set>
+                                            <c:set scope="page" var="t_now" value="${item.scheduleDate}"></c:set>
+                                            <div class="contact" style="padding: 16px 0;">
+                                            <span class="date_double" style=" left: -130px;">
+                                                    ${item.scheduleDate}<br/>${item.timeOfDay}
+                                            </span>
+                                                <div class="dot z-depth-1" style="width: 50px;height: 50px;line-height: 42px;text-align: center;left: -56px;top: 0px;border: 4px solid #bbb;">
+                                                    Day${t_index}
+                                                </div>
                                             </div>
-                                        </div>
-                                        </c:if>
+                                        <%--</c:if>--%>
                                     </c:if>
+                                    <div class="tip" data-id="${item.id}">
                                     <div class="contact" style="padding: 16px 0;">
                                         <%--<span class="date" style=" left: -140px;top: 10px;">
                                         ${item.scheduleDate}
                                         </span>--%>
                                         <span class="date" style=" left: -120px;">
-                                        ${item.startTime} ${empty item.endTime ? '' : '-'} ${item.endTime}  ${item.timeOfDay}
+                                        ${item.startTime} ${empty item.endTime ? '' : '-'} ${item.endTime}
                                         </span>
                                         <div class="dot z-depth-1">
                                         </div>
@@ -139,6 +140,7 @@
                                             <img alt="" class="circle" src="../static/img/user.jpg">
                                         </div>--%>
                                         <span>${item.context}</span>
+                                    </div>
                                     </div>
                                 </c:forEach>
                             </div>
@@ -165,15 +167,71 @@
 
         </div> <!-- End of Main Contents -->
 
+        <script type="text/javascript">
+            $(function () {
+                <c:if test="${_USER.hierarchy eq '1'}">
+                $('#eventAgenda').qtip({
+                    content: { text: '可添加笔记' },
+                    position: {
+                        my: 'bottom center',  // Position my top left...
+                        at: 'bottom right', // at the bottom right of...
+                        adjust: {
+                            x: -90,
+                            y: -30
+                        }
+                    },
+                    show: {
+                        ready: true,
+                        delay: 500
+                    },
+                    hide: {
+                        event: 'click',
+                        delay: 3000
+                    }
+                });
+                $('.tip').each(function () {
+                    $(this).qtip({
+                        content: function(event, api) {
+                            var id = this.data("id");
+                            $.ajax({
+                                url: _PATH + '/meeting/postil/remark' + (id-1),
+                                type: 'GET'
+                            }).then(function(content) {
+                                // Set the tooltip content upon successful retrieval
+                                console.log(content);
+                                api.set('content.text', content.data || '点我 可添加笔记');
+                            }, function(xhr, status, error) {
+                                // Upon failure... set the tooltip content to error
+                                api.set('content.text', status + ': ' + error);
+                            });
+
+                            return 'Loading...'; // Set some initial text
+                        },
+                        position: {
+                            container: $('div.tooltips'),
+                            my: 'bottom center',  // Position my top left...
+                            at: 'bottom right', // at the bottom right of...
+                            target: $(this).find('.dot'), // my target
+                            adjust: {
+                                x: 30,
+                                y: -20
+                            }
+                        },
+                        show: {
+                            event: 'click', // Show it on click...
+                            solo: true, // ...and hide all other tooltips...
+                            modal: false // ...and make it modal
+                        },
+                        hide: false
+                    });
+                });
+                </c:if>
+            })
+        </script>
     </div> <!-- End of Page Content -->
 
 </div> <!-- End of Page Container -->
 
 <%@include file="../../common/footer.jsp" %>
-<script>
-//    $(function () {
-//        layer.tips('上台演讲', 'test');
-//    })
-</script>
 </body>
 </html>

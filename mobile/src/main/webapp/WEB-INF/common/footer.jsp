@@ -14,6 +14,7 @@
 <script src="${_PATH}/static/plugins/functions.js"></script>
 <script src="${_PATH}/static/plugins/layer/layer.js" type="text/javascript"></script>
 <script src="${_PATH}/static/plugins/layer/extend/layer.ext.js" type="text/javascript"></script>
+<script src="${_PATH}/static/plugins/qtip2/jquery.qtip.js" type="text/javascript"></script>
 
 <script src="${_PATH}/static/plugins/jquery-validation/jquery.validate.min.js"></script>
 <script src="${_PATH}/static/plugins/scrollpagination.js"></script>

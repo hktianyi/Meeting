@@ -27,6 +27,7 @@
 <link href="${_PATH}/static/css/swiper.css?${_VERSION}" rel="stylesheet" type="text/css">
 <link href="${_PATH}/static/css/swipebox.min.css?${_VERSION}" rel="stylesheet" type="text/css">
 <link href="${_PATH}/static/css/style.css?${_VERSION}" rel="stylesheet" type="text/css">
+<link href="${_PATH}/static/plugins/qtip2/jquery.qtip.min.css?${_VERSION}" rel="stylesheet" type="text/css">
 <%--<link rel="shortcut icon" href="${_PATH}/favicon.ico" type="image/x-icon" />--%>
 <script src="${_PATH}/static/plugins/jquery-2.2.2.min.js" type="text/javascript"></script>
 <%--<script src="https://code.jquery.com/jquery-migrate-1.4.1.js" type="text/javascript"></script>--%>

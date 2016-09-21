@@ -13,7 +13,9 @@ import java.util.List;
  */
 public interface MeetingScheduleMapper extends Mapper<MeetingSchedule> {
 
-  @Select("SELECT id,createTime,operator,status,meetingId,title,context,scheduleDate,timeOfDay,startTime,endTime FROM t_meeting_schedule WHERE meetingId = #{meetingSchedule.meetingId} order by sort")
+  @Select("SELECT id,createTime,operator,status,meetingId,title,context,scheduleDate,timeOfDay,startTime,endTime FROM t_meeting_schedule" +
+      " WHERE meetingId = #{meetingSchedule.meetingId} AND `status` = 'VALID' AND hierarchy like \"%\"#{meetingSchedule.hierarchy}\"%\"" +
+      " order by sort")
   List<MeetingSchedule> select(@Param("meetingSchedule") MeetingSchedule meetingSchedule);
 
 }

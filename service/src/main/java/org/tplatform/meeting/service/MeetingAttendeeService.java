@@ -49,4 +49,12 @@ public class MeetingAttendeeService extends BaseService<MeetingAttendee> {
     return meetingAttendeeMapper.signUp(meetingId, userId);
   }
 
+  public String getPostil(Long id, String key) {
+    return meetingAttendeeMapper.getPostil(id, key);
+  }
+
+  public int setPostil(Long id, String key, String value) {
+    return meetingAttendeeMapper.setPostil(id, key, value);
+  }
+
 }

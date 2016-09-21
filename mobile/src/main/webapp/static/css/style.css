@@ -2011,6 +2011,11 @@ ul.faq {
     top: 18px;
     left: 0;
 }
+.activity .date_double {
+    position: absolute;
+    top: 8px;
+    left: 0;
+}
 .friends img {
     display: inline-block;
     position: static;

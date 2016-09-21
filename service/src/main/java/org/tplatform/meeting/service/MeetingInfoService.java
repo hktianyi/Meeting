@@ -17,11 +17,11 @@ public class MeetingInfoService extends BaseService<MeetingInfo> {
   @Autowired
   private MeetingScheduleService meetingScheduleService;
 
-  @Override
-  public MeetingInfo find(Serializable id) {
+  public MeetingInfo find(Serializable id, String hierarchy) {
     MeetingInfo meetingInfo = super.find(id);
     MeetingSchedule schedule = new MeetingSchedule();
     schedule.setMeetingId(meetingInfo.getId());
+    schedule.setHierarchy(hierarchy);
     meetingInfo.setDetail(meetingScheduleService.find(schedule));
     return meetingInfo;
   }

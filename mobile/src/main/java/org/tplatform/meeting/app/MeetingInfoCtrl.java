@@ -18,7 +18,6 @@ import org.tplatform.core.service.IDynamicFormService;
 import org.tplatform.meeting.entity.MeetingAttendee;
 import org.tplatform.meeting.entity.MeetingImg;
 import org.tplatform.meeting.entity.MeetingInfo;
-import org.tplatform.meeting.entity.MeetingSchedule;
 import org.tplatform.meeting.service.MeetingAttendeeService;
 import org.tplatform.meeting.service.MeetingInfoService;
 import org.tplatform.meeting.service.MeetingScheduleService;
@@ -72,16 +71,38 @@ public class MeetingInfoCtrl extends BaseCtrl {
 	@RequestMapping(value = "/detail/{meetingId}", method = RequestMethod.GET)
 	public String detail(@PathVariable("meetingId") Long meetingId, ModelMap model) {
 
+		Member member = (Member)session.getAttribute(GlobalConstant.KEY_SESSION_USER);
 		//基本信息
-		model.put("meeting", meetingInfoService.find(meetingId));
+		model.put("meeting", meetingInfoService.find(meetingId, member.getHierarchy()));
 		//轮播图片
-		model.put("banner", meetingInfoService.find(meetingId));
-		//会议日程列表
-		MeetingSchedule schedule = new MeetingSchedule();
-		schedule.setMeetingId(meetingId);
-		model.put("schedules", meetingScheduleService.find(schedule));
-		model.put("signUp",meetingAttendeeService.signUp(meetingId, ((Member)session.getAttribute(GlobalConstant.KEY_SESSION_USER)).getId()) > 0);
+//		model.put("banner", meetingInfoService.find(meetingId));
+
+		model.put("signUp",meetingAttendeeService.signUp(meetingId, member.getId()) > 0);
 		return "/meeting/detail.jsp";
+	}
+
+	/**
+	 * 查看批注
+	 * @return
+   */
+	@RequestMapping(value = "/postil/{key}", method = RequestMethod.GET)
+	@ResponseBody
+	public RespBody postil(@PathVariable("key") String key) {
+		Member member = (Member)session.getAttribute(GlobalConstant.KEY_SESSION_USER);
+		return RespBody.ok(meetingAttendeeService.getPostil(meetingAttendeeService.findattendeeIdByMeetCode(member.getUserName()), key));
+	}
+
+	/**
+	 * 修改批注
+	 * @param key
+	 * @param value
+	 * @return
+   */
+	@RequestMapping(value = "/postil/{key}", method = RequestMethod.POST)
+	@ResponseBody
+	public RespBody postil(@PathVariable("key") String key, @RequestParam String value) {
+		Member member = (Member)session.getAttribute(GlobalConstant.KEY_SESSION_USER);
+		return RespBody.ok(meetingAttendeeService.setPostil(meetingAttendeeService.findattendeeIdByMeetCode(member.getUserName()), key, value));
 	}
 
 	/**

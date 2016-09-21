@@ -43,4 +43,15 @@ public class MeetingAttendee extends BaseEntity {
     private String schedule241; // 2016优秀案例赏析会 2016 Effie Forum
     private String schedule242; // VIP午宴 VIP Luncheon
 
+    private String remark0;
+    private String remark1;
+    private String remark2;
+    private String remark3;
+    private String remark4;
+    private String remark5;
+    private String remark6;
+    private String remark7;
+    private String remark8;
+    private String remark9;
+
 }

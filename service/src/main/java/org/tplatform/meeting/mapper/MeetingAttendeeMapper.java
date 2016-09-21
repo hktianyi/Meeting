@@ -2,6 +2,7 @@ package org.tplatform.meeting.mapper;
 
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
 import org.tplatform.meeting.entity.MeetingAttendee;
 import org.tplatform.meeting.entity.MeetingInfo;
 import tk.mybatis.mapper.common.Mapper;
@@ -25,4 +26,10 @@ public interface MeetingAttendeeMapper extends Mapper<MeetingAttendee> {
 
   @Select("SELECT COUNT(1) FROM t_meeting_attendee t1 WHERE ${where}")
   Long count(@Param("where") String where);
+
+  @Select("SELECT ${key} FROM t_meeting_attendee t1 WHERE id = #{id}")
+  String getPostil(@Param("id") Long id, @Param("key") String key);
+
+  @Update("UPDATE t_meeting_attendee t1 set `${key}` = #{value} WHERE id = #{id}")
+  int setPostil(@Param("id") Long id, @Param("key") String key, @Param("value") String value);
 }
