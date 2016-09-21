@@ -36,7 +36,7 @@
 
     <!-- Toolbar -->
     <jsp:include page="../../common/toolbar.jsp">
-      <jsp:param name="title" value="评委登记注册"></jsp:param>
+      <jsp:param name="title" value="登记注册 Registration"></jsp:param>
       <jsp:param name="isCommnoBanner" value="0"></jsp:param>
     </jsp:include>
 

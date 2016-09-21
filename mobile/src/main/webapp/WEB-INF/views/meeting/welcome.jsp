@@ -20,7 +20,7 @@
 
         <!-- Toolbar -->
         <jsp:include page="../../common/toolbar.jsp">
-            <jsp:param name="title" value="登陆成功，欢迎您！"></jsp:param>
+            <jsp:param name="title" value="欢迎您！"></jsp:param>
             <jsp:param name="isCommnoBanner" value="0"></jsp:param>
         </jsp:include>
 
@@ -33,6 +33,7 @@
                 <div class="form-inputs">
                     <center> <img src="${_PATH}/static/img/head-logo.png" style="width: 200px;" align="center"></center>
                     <h4>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;尊敬的来宾，感谢您拨冗参与2016艾菲实效节！请扫描右下角二维码关注大中华区艾菲奖官方微信公众号，以便随时了解最新活动信息。若有任何问题，欢迎联系Lily He: +86 186-3257-8088</h4>
+                    <h4>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Thank you for your participation in 2016 Effie Festival. Scan the QR code below to follow our WeChat account. Please feel free to contact Lily He: +86 186-3257-8088 for further questions.</h4>
                     <div class="input-field animated fadeinright">
                         <input id="meetCode"  name="meetCode" type="text" class="validate">
                         <label for="meetCode">请输入您的邀请码</label>

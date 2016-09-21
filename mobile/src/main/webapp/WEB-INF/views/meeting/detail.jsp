@@ -21,7 +21,7 @@
 
         <!-- Toolbar -->
         <jsp:include page="../../common/toolbar.jsp">
-            <jsp:param name="title" value="活动详情"></jsp:param>
+            <jsp:param name="title" value="活动详情/Event Detail"></jsp:param>
             <jsp:param name="isCommnoBanner" value="0"></jsp:param>
         </jsp:include>
 
@@ -31,8 +31,8 @@
             <div>
                 <div class="p-t-20">
                     <ul class="tabs">
-                        <li class="tab"><a class="active" href="#test1">活动信息</a></li>
-                        <li class="tab"><a href="#test2">评审会日程</a></li>
+                        <li class="tab"><a class="active" href="#test1">活动信息/Event Info</a></li>
+                        <li class="tab"><a href="#test2">实效节日程/Event Agenda</a></li>
                     </ul>
                 </div>
 
@@ -43,39 +43,39 @@
                             <p class="valueStyle">
                                 ${meeting.name}
                             </p>
-                            <label class="active">会议名称</label>
+                            <label class="active">会议名称/Event's Title</label>
                         </div>
                         <div class="input-field animated fadeinright delay-1">
                             <p class="valueStyle">
                                 ${meeting.startTime} - ${meeting.endTime}
                             </p>
-                            <label class="active">活动时间</label>
+                            <label class="active">活动时间/Date</label>
                         </div>
                         <div class="input-field animated fadeinright">
                             <p class="valueStyle">
                                 ${meeting.address}
                             </p>
-                            <label class="active">活动地址一</label>
+                            <label class="active">活动地址一/Address 1</label>
                         </div>
                         <div class="input-field animated fadeinright delay-5">
                             <p class="valueStyle">
                                 ${meeting.introduction}
                             </p>
-                            <label class="active">具体位置一</label>
+                            <label class="active">具体位置一/Location 1</label>
                         </div>
                         <div class="input-field animated fadeinright">
                             <p class="valueStyle">
                                 海南国际会展中心<br/>&nbsp;&nbsp;
                                 Hainan International Convention & Exhibition Center
                             </p>
-                            <label class="active">活动地址二</label>
+                            <label class="active">活动地址二/Address 2</label>
                         </div>
                         <div class="input-field animated fadeinright delay-5">
                             <p class="valueStyle">
                                 海南省海口市秀英区滨海大道258号<br/>&nbsp;&nbsp;
                                 No.258 Binhai Avenue, Xiuying District Haikou, Hainan 570311, China
                             </p>
-                            <label class="active">具体位置二</label>
+                            <label class="active">具体位置二/Location 2</label>
                         </div>
                     </div>
                 </div>
@@ -149,12 +149,12 @@
                      <c:choose>
                          <c:when test="${signUp}">
                              <a class="waves-effect waves-light btn-large primary-color width-100 animated bouncein delay-6" href="${_PATH}/meeting/join/${meeting.id}">
-                                 查看/修改个人信息
+                               编辑个人信息/Edit Personal Info
                              </a>
                          </c:when>
                          <c:otherwise>
                              <a class="waves-effect waves-light btn-large primary-color width-100 animated bouncein delay-6" href="${_PATH}/meeting/join/${meeting.id}">
-                                 评委登记注册
+                               登记注册/Registration
                              </a>
                          </c:otherwise>
                      </c:choose>
@@ -171,9 +171,9 @@
 
 <%@include file="../../common/footer.jsp" %>
 <script>
-    $(function () {
-        layer.tips('上台演讲', 'test');
-    })
+//    $(function () {
+//        layer.tips('上台演讲', 'test');
+//    })
 </script>
 </body>
 </html>

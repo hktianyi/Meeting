@@ -36,7 +36,7 @@
 
     <!-- Toolbar -->
     <jsp:include page="../../common/toolbar.jsp">
-      <jsp:param name="title" value="评委登记注册"></jsp:param>
+      <jsp:param name="title" value="登记注册/Registration"></jsp:param>
       <jsp:param name="isCommnoBanner" value="0"></jsp:param>
     </jsp:include>
 
@@ -46,8 +46,8 @@
       <div>
         <div class="p-t-20">
           <ul class="tabs">
-            <li class="tab"><a class="active" href="#test1">个人信息</a></li>
-            <li class="tab"><a href="#test2" id="test3">食宿信息</a></li>
+            <li class="tab"><a class="active" href="#test1">个人信息/Personal Info</a></li>
+            <li class="tab"><a href="#test2" id="test3">食宿信息/Accommodatio</a></li>
           </ul>
         </div>
 
@@ -82,13 +82,13 @@
               <div class="input-field animated fadeinright">
                 <h5 class="active">证件类型/Type of Travel Document:</h5>
                 <select class="browser-default" name="travelType" id="travelType">
-                  <option value="身份证" ${ma.travelType eq '身份证' ? 'selected' : ''}>身份证</option>
-                  <option value="护照" ${ma.travelType eq '护照' ? 'selected' : ''}>护照</option>
+                  <option value="身份证/ID" ${ma.travelType eq '身份证/ID' ? 'selected' : ''}>身份证/ID</option>
+                  <option value="护照/Passport" ${ma.travelType eq '护照/Passport' ? 'selected' : ''}>护照/Passport</option>
                   <option value="台胞证" ${ma.travelType eq '台胞证' ? 'selected' : ''}>台胞证</option>
-                  <option value="台胞证" ${ma.travelType eq '回乡证' ? 'selected' : ''}>回乡证</option>
+                  <option value="台胞证/MTP" ${ma.travelType eq '回乡证/MTP' ? 'selected' : ''}>回乡证/MTP</option>
                   <option value="台湾通行证" ${ma.travelType eq '台湾通行证' ? 'selected' : ''}>台湾通行证</option>
                   <option value="港澳通行证" ${ma.travelType eq '港澳通行证' ? 'selected' : ''}>港澳通行证</option>
-                  <option value="香港身份证" ${ma.travelType eq '香港身份证' ? 'selected' : ''}>香港身份证</option>
+                  <option value="香港身份证/Hong Kong ID" ${ma.travelType eq '香港身份证/Hong Kong ID' ? 'selected' : ''}>香港身份证/Hong Kong ID</option>
                 </select>
               </div>
               <div class="input-field animated fadeinright">
@@ -115,7 +115,7 @@
                 <input id="id" type="hidden" class="validate" name="id" value="${ma.id}">
                 <input id="meetingId" type="hidden" class="validate" name="meetingId" value="${meetingId}">
                 <a class="waves-effect waves-light btn-large primary-color width-100 animated bouncein delay-6"
-                   href="javascript:next();">下一步</a>
+                   href="javascript:next();">下一步/Next</a>
               </div>
             </div>
         </div>
@@ -237,7 +237,7 @@
           </div>
           <div style="padding: 20px 40px;">
             <a class="waves-effect waves-light btn-large primary-color width-100 animated bouncein delay-6"
-               href="javascript:signUp();">提交</a>
+               href="javascript:signUp();">提交/Submit</a>
           </div>
         </div>
         </form>
