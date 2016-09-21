@@ -21,7 +21,7 @@
 
         <!-- Toolbar -->
         <jsp:include page="../../common/toolbar.jsp">
-            <jsp:param name="title" value="活动详情/Event Detail"></jsp:param>
+            <jsp:param name="title" value="活动详情/Event Details"></jsp:param>
             <jsp:param name="isCommnoBanner" value="0"></jsp:param>
         </jsp:include>
 
@@ -150,13 +150,14 @@
                  <div style="padding: 20px 40px;">
                      <c:choose>
                          <c:when test="${signUp}">
-                             <a class="waves-effect waves-light btn-large primary-color width-100 animated bouncein delay-6" href="${_PATH}/meeting/join/${meeting.id}">
+                             <a class="waves-effect waves-light btn-large primary-color width-100 animated bouncein delay-6" href="${_PATH}/meeting/join/${meeting.id}"
+                             style="font-size: 6px;">
                                编辑个人信息/Edit Personal Info
                              </a>
                          </c:when>
                          <c:otherwise>
                              <a class="waves-effect waves-light btn-large primary-color width-100 animated bouncein delay-6" href="${_PATH}/meeting/join/${meeting.id}">
-                               登记注册/Registration
+                               登记注册/Register
                              </a>
                          </c:otherwise>
                      </c:choose>

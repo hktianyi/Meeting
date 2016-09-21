@@ -20,7 +20,7 @@
 
         <!-- Toolbar -->
         <jsp:include page="../../common/toolbar.jsp">
-            <jsp:param name="title" value="欢迎您！"></jsp:param>
+            <jsp:param name="title" value="欢迎您/Welecome！"></jsp:param>
             <jsp:param name="isCommnoBanner" value="0"></jsp:param>
         </jsp:include>
 
@@ -40,7 +40,7 @@
                     </div>
                     <a class="waves-effect waves-light btn-large primary-color width-100 animated bouncein delay-6"
                        href="javascript:checkCode();">
-                        查询会议
+                        查询会议/Enter
                     </a>
 
                 </div>
