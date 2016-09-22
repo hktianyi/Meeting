@@ -12,7 +12,8 @@
       </div>
     </div>
   </li>
-  <li><a href="${_PATH}/meeting/detail/2" class="no-child">我的活动</a></li>
+  <li><a href="${_PATH}/meeting/detail/2" class="no-child">消息/Message</a></li>
+  <li><a href="${_PATH}/meeting/detail/2" class="no-child">我的活动/My Event</a></li>
   <%--<li><a href="${_PATH}/member/attendeeList" class="no-child">活动详情</a></li>--%>
   <%--<li>
     <div class="collapsible-header">
@@ -30,6 +31,6 @@
   <li><a href="${_PATH}/message" class="no-child">活动通知</a></li>
   <li><a href="${_PATH}/feedback" class="no-child">用户反馈</a></li>
   <li><a href="tel:18511696693" class="no-child">联系我们</a></li>--%>
-  <li><a href="${_PATH}/logout" class="no-child">退出登录</a></li>
+  <li><a href="${_PATH}/logout" class="no-child">退出登录/Logout</a></li>
 </ul>
 <!-- End of Sidebars -->

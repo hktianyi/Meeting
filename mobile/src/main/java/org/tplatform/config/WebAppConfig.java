@@ -57,7 +57,7 @@ public class WebAppConfig implements WebApplicationInitializer {
 
     // 权限过滤   微信过滤器
     FilterRegistration.Dynamic authenticationFilter = servletContext.addFilter("authenticationFilter", new WXFilter());
-    authenticationFilter.setInitParameter("urlRegex", "^/(login|static|signup|wx|meeting|meetingcode|favicon\\.ico)+.*$");
+    authenticationFilter.setInitParameter("urlRegex", "^/(login|static|signup|wx|meetingcode|favicon\\.ico)+.*$");
     authenticationFilter.addMappingForServletNames(EnumSet.of(DispatcherType.REQUEST), true, GlobalConstant.SYSTEM_SERVLET_NAME_SPRINGMVC);
 
   }

@@ -66,4 +66,8 @@ public class WXUserService extends BaseService<WXUser> {
   public void bindMember(String appId, String openId, Long memberId) {
     wxUserMapper.bindMember(appId, openId, memberId);
   }
+
+  public void unBindMember(String appId, String openId) {
+    wxUserMapper.unBindMember(appId, openId);
+  }
 }

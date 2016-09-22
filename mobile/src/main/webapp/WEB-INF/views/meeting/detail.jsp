@@ -31,8 +31,8 @@
             <div>
                 <div class="p-t-20">
                     <ul class="tabs">
-                        <li class="tab"><a class="active" href="#test1">活动信息/Event Info</a></li>
-                        <li class="tab"><a href="#test2" id="eventAgenda">实效节日程/Event Agenda</a></li>
+                        <li class="tab" style="line-height: 20px !important;"><a class="active" href="#test1">活动信息<br/>Event Info</a></li>
+                        <li class="tab" style="line-height: 20px !important;"><a href="#test2" id="eventAgenda">实效节日程<br/>Event Agenda</a></li>
                     </ul>
                 </div>
 
@@ -43,7 +43,7 @@
                             <p class="valueStyle">
                                 ${meeting.name}
                             </p>
-                            <label class="active">会议名称/Event's Title</label>
+                            <label class="active">活动名称/Event's Title</label>
                         </div>
                         <div class="input-field animated fadeinright delay-1">
                             <p class="valueStyle">
@@ -150,9 +150,8 @@
                  <div style="padding: 20px 40px;">
                      <c:choose>
                          <c:when test="${signUp}">
-                             <a class="waves-effect waves-light btn-large primary-color width-100 animated bouncein delay-6" href="${_PATH}/meeting/join/${meeting.id}"
-                             style="font-size: 6px;">
-                               编辑个人信息/Edit Personal Info
+                             <a class="waves-effect waves-light btn-large primary-color width-100 animated bouncein delay-6" href="${_PATH}/meeting/join/${meeting.id}">
+                               编辑个人信息/Edit
                              </a>
                          </c:when>
                          <c:otherwise>
@@ -172,7 +171,7 @@
             $(function () {
                 <c:if test="${_USER.hierarchy eq '1'}">
                 $('#eventAgenda').qtip({
-                    content: { text: '可添加笔记' },
+                    content: { text: '点击日程 可添加笔记' },
                     position: {
                         my: 'bottom center',  // Position my top left...
                         at: 'bottom right', // at the bottom right of...
@@ -184,10 +183,6 @@
                     show: {
                         ready: true,
                         delay: 500
-                    },
-                    hide: {
-                        event: 'click',
-                        delay: 3000
                     }
                 });
                 $('.tip').each(function () {

@@ -10,6 +10,7 @@ import org.tplatform.constant.GlobalConstant;
 import org.tplatform.framework.util.StringUtil;
 import org.tplatform.member.entity.Member;
 import org.tplatform.member.service.MemberService;
+import org.weixin.user.service.WXUserService;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -27,6 +28,8 @@ public class LoginCtrl {
 
 	@Autowired
 	private MemberService memberService;
+	@Autowired
+	private WXUserService wxUserService;
 
 	/**
 	 * 登录页
@@ -74,6 +77,10 @@ public class LoginCtrl {
 	 */
 	@RequestMapping(value = "/logout", method = RequestMethod.GET)
 	public String logout() {
+		String ua = request.getHeader("user-agent").toLowerCase();
+		if(ua.contains("micromessenger"))
+			wxUserService.unBindMember(String.valueOf(session.getAttribute(GlobalConstant.KEY_SESSION_APPID)), String.valueOf(session.getAttribute(GlobalConstant.KEY_SESSION_OPENID)));
+
 		session.removeAttribute(GlobalConstant.KEY_SESSION_USER);
 		return InternalResourceViewResolver.REDIRECT_URL_PREFIX + "/login";
 	}

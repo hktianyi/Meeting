@@ -22,6 +22,17 @@
       transition: all 0.3s ease-in;
       -webkit-transition: all 0.3s ease-in;
     }
+    .note.note-info {
+      background-color: #f5f8fd;
+      border-color: #8bb4e7;
+      color: #010407;
+    }
+    .note {
+      margin: 0 0 20px;
+      padding: 15px 30px 15px 15px;
+      border-left: 5px solid #eee;
+      border-radius: 0 4px 4px 0;
+    }
   </style>
 </head>
 <body>
@@ -46,8 +57,8 @@
       <div>
         <div class="p-t-20">
           <ul class="tabs">
-            <li class="tab"><a class="active" href="#test1">个人信息/Personal Info</a></li>
-            <li class="tab"><a href="#test2" id="test3">食宿信息/Accommodatio</a></li>
+            <li class="tab" style="line-height: 20px !important;"><a class="active" href="#test1">个人信息<br/>Personal Info</a></li>
+            <li class="tab" style="line-height: 20px !important;"><a href="#test2" id="test3">食宿信息<br/>Accommodation</a></li>
           </ul>
         </div>
 
@@ -79,6 +90,7 @@
                 <input id="mobile" type="text" class="validate" name="mobile" value="${ma.mobile}">
                 <label class="active">手机/Mobile:</label>
               </div>
+              <c:if test="${_USER.hierarchy eq '1'}">
               <div class="input-field animated fadeinright">
                 <h5 class="active">证件类型/Type of Travel Document:</h5>
                 <select class="browser-default" name="travelType" id="travelType">
@@ -99,6 +111,7 @@
                 <input id="travelNo" type="text" class="validate" name="travelNo" value="${ma.travelNo}">
                 <label class="active">证件号码/Travel Document No.：</label>
               </div>
+              </c:if>
               <div class="input-field animated fadeinright">
                 <input id="contactName" type="text" class="validate" name="contactName" value="${ma.contactName}">
                 <label class="active">联系人姓名/Contact Name:</label>
@@ -123,6 +136,10 @@
         <div id="test2">
           <!-- Form Inputs -->
           <div class="form-inputs">
+            <div class="note note-info">
+              <h5>请选择以下项目</h5>
+              <h5>Please select the options below</h5>
+            </div>
             <c:if test="${_USER.hierarchy eq '1'}">
             <div class="input-field animated fadeinright">
               <h5>是否住宿/Accommodation:</h5>
@@ -333,6 +350,7 @@
           alert('请填写手机号!');
           return false;
         }
+        <c:if test="${_USER.hierarchy eq '1'}">
         if (!isNotNull(travelType)) {
           alert('请选择证件类型!');
           return false;
@@ -345,6 +363,7 @@
           alert('请填写证件号码!');
           return false;
         }
+        </c:if>
         if (!isNotNull(contactName)) {
           alert('请填写联系人姓名!');
           return false;

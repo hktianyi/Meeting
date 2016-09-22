@@ -82,6 +82,10 @@ dependencies {
             "org.apache.httpcomponents:httpclient:4.3.6",
             "redis.clients:jedis:2.6.2",
 
+            "com.itextpdf:itextpdf:5.5.9",
+            "com.itextpdf:itext-asian:5.2.0",
+            "com.itextpdf.tool:xmlworker:5.5.9",
+
             "com.foxinmy:weixin4j-mp:1.7.0",
             "com.google.zxing:core:3.2.1"
 

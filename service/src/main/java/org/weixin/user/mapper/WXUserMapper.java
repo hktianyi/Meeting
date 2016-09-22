@@ -51,4 +51,13 @@ public interface WXUserMapper extends Mapper<WXUser> {
    */
   @Update("UPDATE t_wx_user SET memberId = #{memberId} WHERE appId = #{appId} and openId = #{openId}")
   int bindMember(@Param("appId") String appId, @Param("openId") String openId, @Param("memberId") Long memberId);
+
+  /**
+   * 微信用户解绑系统用户
+   * @param appId
+   * @param openId
+   * @return
+   */
+  @Update("UPDATE t_wx_user SET memberId = null WHERE appId = #{appId} and openId = #{openId}")
+  int unBindMember(@Param("appId") String appId, @Param("openId") String openId);
 }

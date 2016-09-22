@@ -32,4 +32,5 @@ public interface MeetingAttendeeMapper extends Mapper<MeetingAttendee> {
 
   @Update("UPDATE t_meeting_attendee t1 set `${key}` = #{value} WHERE id = #{id}")
   int setPostil(@Param("id") Long id, @Param("key") String key, @Param("value") String value);
+
 }

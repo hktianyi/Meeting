@@ -1,6 +1,7 @@
 package org.tplatform.filters;
 
 import org.tplatform.constant.GlobalConstant;
+import org.tplatform.core.entity.BaseEntity;
 import org.tplatform.framework.util.SpringContextUtil;
 import org.tplatform.framework.util.StringUtil;
 
@@ -42,7 +43,7 @@ public class AuthenticationFilter implements Filter {
 
       //2，登录判断
       Object so = req.getSession().getAttribute(GlobalConstant.KEY_SESSION_USER);
-      if (so == null || so.equals("")) {
+      if (so == null || so.equals("") || ((BaseEntity)so).getId() == null) {
         this.forword(req, res, req.getContextPath() + "/meetingcode/welcome");
         return;
       } else {
