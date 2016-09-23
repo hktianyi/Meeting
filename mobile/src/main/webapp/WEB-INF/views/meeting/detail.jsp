@@ -146,6 +146,16 @@
                             </div>
                         </div>
                     </div>
+                    <div style="padding: 20px 40px;">
+                    <a target="_blank" class="waves-effect waves-light btn-large primary-color width-100 animated bouncein delay-6" href="${_PATH}/meeting/export/${meeting.id}">
+                        下载日程
+                    </a>
+                    <div style="padding: 20px 40px;">
+                    </div>
+                    <a class="waves-effect waves-light btn-large primary-color width-100 animated bouncein delay-6" href="javascript:sendToMail();" disabled="disabled">
+                        发送到邮箱
+                    </a>
+                    </div>
                 </div>
                  <div style="padding: 20px 40px;">
                      <c:choose>
@@ -198,7 +208,7 @@
                                 api.set('content.text', content.data || '点我 可添加笔记');
                             }, function(xhr, status, error) {
                                 // Upon failure... set the tooltip content to error
-                                api.set('content.text', status + ': ' + error);
+                                api.set('content.text', '');
                             });
 
                             return 'Loading...'; // Set some initial text
@@ -222,7 +232,23 @@
                     });
                 });
                 </c:if>
-            })
+            });
+            function sendToMail() {
+                var index = layer.load(1, {
+                    shade: [0.3,'#fff'] //0.1透明度的白色背景
+                });
+                $.ajax('${_PATH}/meeting/export/${meeting.id}?type=mail', {
+                    type: 'GET',
+                    success: function (resp) {
+                        layer.close(index);
+                        layer.msg("发送成功");
+                    },
+                    error: function (resp) {
+                        layer.close(index);
+                        layer.msg("发送失败");
+                    }
+                });
+            }
         </script>
     </div> <!-- End of Page Content -->
 

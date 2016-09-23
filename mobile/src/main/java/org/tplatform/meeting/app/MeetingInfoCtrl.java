@@ -24,8 +24,11 @@ import org.tplatform.meeting.entity.MeetingSchedule;
 import org.tplatform.meeting.service.MeetingAttendeeService;
 import org.tplatform.meeting.service.MeetingInfoService;
 import org.tplatform.member.entity.Member;
+import org.tplatform.util.MailUtil;
 
 import javax.servlet.http.HttpServletResponse;
+import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -234,7 +237,8 @@ public class MeetingInfoCtrl extends BaseCtrl {
 	 * @return
 	 */
 	@RequestMapping(value = "/export/{meetingId}", method = RequestMethod.GET)
-	public void export(@PathVariable("meetingId") Long meetingId, HttpServletResponse response) {
+	@ResponseBody
+	public RespBody export(@PathVariable("meetingId") Long meetingId, @RequestParam(value = "type", required = false) String type, HttpServletResponse response) {
 
 		Member member = (Member)session.getAttribute(GlobalConstant.KEY_SESSION_USER);
 		MeetingInfo meetingInfo = meetingInfoService.find(meetingId, member.getHierarchy());
@@ -332,18 +336,25 @@ public class MeetingInfoCtrl extends BaseCtrl {
 		});
 
 		try {
-			//设置ContentType
-			response.setContentType("application/octet-stream; charset=utf-8");
-			//处理中文文件名中文乱码问题
-			response.setHeader("Content-Disposition", "attachment; filename=" + new String((meetingAttendee.getName() + " 实效节日程.pdf").getBytes("utf-8"),"ISO-8859-1"));
+			if ("mail".equalsIgnoreCase(type)) {
+				File pdf = File.createTempFile((meetingAttendee.getName() + " 实效节日程"), ".pdf");
+				FileOutputStream fos = new FileOutputStream(pdf);
+				PDFUtil.create(params, fos, hasRemark);
+				MailUtil.sendWithAttachment("support@effie-greaterchina.org", meetingAttendee.getEmail(), "2016 实效节行程", "", pdf);
+			} else {
+				//设置ContentType
+				response.setContentType("application/octet-stream; charset=utf-8");
+				//处理中文文件名中文乱码问题
+				response.setHeader("Content-Disposition", "attachment; filename=" + new String((meetingAttendee.getName() + " 实效节日程.pdf").getBytes("utf-8"),"ISO-8859-1"));
 
-			PDFUtil.create(params, response.getOutputStream(), hasRemark);
+				PDFUtil.create(params, response.getOutputStream(), hasRemark);
+			}
 		} catch (IOException e) {
 			e.printStackTrace();
 		} catch (DocumentException e) {
 			e.printStackTrace();
 		}
-
+		return RespBody.ok();
 	}
 
 }
