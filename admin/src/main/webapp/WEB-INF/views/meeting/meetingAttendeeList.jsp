@@ -40,10 +40,12 @@
       },
       "columns": [
         {"sTitle": "序号", "sWidth": "3%", "defaultContent": ''},
+        {"sTitle": "邀请码", "name": "id", "data": "id", "sWidth": "8%"},
         {"sTitle": "姓名", "name": "name", "data": "name", "sWidth": "8%"},
         {
           "sTitle": "称谓", "name": "salutation", "data": function (data) {
-          return data.salutation == '1' ? '先生' : '女士';
+          if(data.salutation) return data.salutation == '1' ? '先生' : '女士';
+          else return '';
         }, "sWidth": "8%"
         },
         {"sTitle": "公司", "name": "company", "data": "company", "sWidth": "6%"},
@@ -56,7 +58,8 @@
         },
         {
           "sTitle": "状态", "name": "createTime", "data": function (data) {
-          return data.status === 'VALID' ? '已签到' : '已报名';
+            if(data.status) return data.status === 'VALID' ? '已签到' : '已报名';
+            else return '';
         }, "sWidth": "6%"
         },
         {

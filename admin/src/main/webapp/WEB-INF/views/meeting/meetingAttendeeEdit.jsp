@@ -26,10 +26,22 @@
             <div class="row">
               <div class="col-md-6">
                 <div class="form-group">
+                  <label class="control-label col-md-3">邀请码:</label>
+                  <div class="col-md-9">
+                    <p class="form-control-static">
+                    ${data.id}
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group">
                   <label class="control-label col-md-3">姓名:</label>
                   <div class="col-md-9">
                     <p class="form-control-static">
-                    ${data.name} &nbsp;&nbsp;&nbsp;&nbsp;${data.status eq 'VALID' ? '<span class="label label-sm label-info">已签到</span>' : '<span class="label label-sm label-default">已报名</span>'}
+                    ${data.name} &nbsp;&nbsp;&nbsp;&nbsp;${empty data.status ? '' : (data.status eq 'VALID' ? '<span class="label label-sm label-info">已签到</span>' : '<span class="label label-sm label-default">已报名</span>')}
                     </p>
                   </div>
                 </div>
