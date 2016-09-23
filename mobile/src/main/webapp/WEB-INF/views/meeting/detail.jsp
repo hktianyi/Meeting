@@ -146,12 +146,12 @@
                             </div>
                         </div>
                     </div>
-                    <div style="padding: 20px 40px;">
+                    <%--<div style="padding: 20px 40px;">
                     <a target="_blank" class="waves-effect waves-light btn-large primary-color width-100 animated bouncein delay-6" href="${_PATH}/meeting/export/${meeting.id}">
                         下载日程
                     </a>
+                    </div>--%>
                     <div style="padding: 20px 40px;">
-                    </div>
                     <a class="waves-effect waves-light btn-large primary-color width-100 animated bouncein delay-6" href="javascript:sendToMail();" disabled="disabled">
                         发送到邮箱
                     </a>
@@ -187,13 +187,16 @@
                         at: 'bottom right', // at the bottom right of...
                         adjust: {
                             x: -90,
-                            y: -30
+                            y: -40
                         }
                     },
                     show: {
                         ready: true,
                         delay: 500
                     }
+                });
+                $(document).on('click', 'body', function () {
+                    $('.tip').qtip('toggle', false);
                 });
                 $('.tip').each(function () {
                     $(this).qtip({
@@ -204,7 +207,6 @@
                                 type: 'GET'
                             }).then(function(content) {
                                 // Set the tooltip content upon successful retrieval
-                                console.log(content);
                                 api.set('content.text', content.data || '点我 可添加笔记');
                             }, function(xhr, status, error) {
                                 // Upon failure... set the tooltip content to error
@@ -228,7 +230,40 @@
                             solo: true, // ...and hide all other tooltips...
                             modal: false // ...and make it modal
                         },
-                        hide: false
+                        hide: false,
+                        events: {
+                            render: function(event, api) {
+                                api.elements.tooltip.bind('click', function() {
+                                    layer.prompt({
+                                        title: '编辑笔记',
+                                        value: $(this).text(),
+                                        maxlength: 30,
+                                        formType: 0,
+                                        btn: ['保存', '取消'],
+                                        btn2: function(){
+                                            console.log(111);
+                                            api.show();
+                                        }
+                                    }, function(pass){
+                                        $.ajax(_PATH + '/meeting/postil/remark' + (api.elements.target.data('id')-1), {
+                                            type: 'POST',
+                                            data: {
+                                                value: pass
+                                            },
+                                            success: function () {
+                                                layer.msg('保存成功');
+                                                api.set('content.text', pass);
+                                                api.show();
+                                            },
+                                            error: function () {
+                                                layer.msg('保存失败');
+                                                api.show();
+                                            }
+                                        });
+                                    });
+                                });
+                            }
+                        }
                     });
                 });
                 </c:if>

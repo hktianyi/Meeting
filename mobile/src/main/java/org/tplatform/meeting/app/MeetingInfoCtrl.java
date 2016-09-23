@@ -148,7 +148,14 @@ public class MeetingInfoCtrl extends BaseCtrl {
 	@ResponseBody
 	public RespBody join(ModelMap modelMap,MeetingAttendee meetingAttendee) {
 		meetingAttendee.setStatus(StatusEnum.COMMIT);
-		int i = meetingAttendeeService.saveOrUpdate(meetingAttendee);
+		int i;
+		if (meetingAttendee.getId() != null && meetingAttendee.getId() > 0) {
+			i = meetingAttendeeService.update(meetingAttendee);
+		} else {
+			Member currMember = (Member) session.getAttribute(GlobalConstant.KEY_SESSION_USER);
+			meetingAttendee.setId(Long.valueOf(currMember.getUserName()));
+			i = meetingAttendeeService.save(meetingAttendee);
+		}
 		if (i < 1){
 			return RespBody.error("个人信息处理失败");
 		}
@@ -341,6 +348,7 @@ public class MeetingInfoCtrl extends BaseCtrl {
 				FileOutputStream fos = new FileOutputStream(pdf);
 				PDFUtil.create(params, fos, hasRemark);
 				MailUtil.sendWithAttachment("support@effie-greaterchina.org", meetingAttendee.getEmail(), "2016 实效节行程", "", pdf);
+				pdf.delete();
 			} else {
 				//设置ContentType
 				response.setContentType("application/octet-stream; charset=utf-8");

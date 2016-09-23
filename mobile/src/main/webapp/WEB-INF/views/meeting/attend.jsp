@@ -292,7 +292,12 @@
         }
       }
 
+      var index = 0;
       function signUp() {
+        if(index !== 0) return;
+        index = layer.load(1, {
+          shade: [0.3,'#fff'] //0.1透明度的白色背景
+        });
         if(validate1()) {
           $.ajax({
             type: "post",
@@ -303,13 +308,18 @@
               if (resp.statusCode === 200) {
                 window.location.href = "${_PATH}/meetingcode/qrcodecheck";
               } else {
-                alert(resp.errorInfo);
+                layer.close(index);
+                layer.alert(resp.errorInfo);
               }
             },
             error: function (resp) {
-              alert('报名失败');
+              layer.close(index);
+              layer.alert('报名失败');
             }
           })
+        } else {
+          layer.close(index);
+          index = 0;
         }
       }
 

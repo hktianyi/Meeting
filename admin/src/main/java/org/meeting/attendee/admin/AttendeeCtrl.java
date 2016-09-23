@@ -95,4 +95,18 @@ public class AttendeeCtrl extends BaseCtrl<MeetingAttendee> {
     return "/stats/judger.jsp";
   }
 
+
+//  /**
+//   * 保存数据
+//   *
+//   * @param attendee 实体对象
+//   * @return
+//   */
+//  @RequestMapping(value = "/save", method = RequestMethod.POST)
+//  @ResponseBody
+//  public RespBody save(MeetingAttendee attendee) {
+//    meetingAttendeeService.saveRemark(attendee);
+//    return RespBody.ok();
+//  }
+
 }

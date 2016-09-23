@@ -57,4 +57,7 @@ public class MeetingAttendeeService extends BaseService<MeetingAttendee> {
     return meetingAttendeeMapper.setPostil(id, key, value);
   }
 
+  public int saveRemark(MeetingAttendee attendee) {
+    return meetingAttendeeMapper.saveRemark(attendee);
+  }
 }

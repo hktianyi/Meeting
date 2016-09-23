@@ -21,7 +21,7 @@
         </div>
       </div>
       <div class="portlet-body form">
-        <form class="form-horizontal" role="form">
+        <form class="form-horizontal" role="form" id="form1">
           <div class="form-body">
             <div class="row">
               <div class="col-md-6">
@@ -154,17 +154,9 @@
             <div class="row">
               <div class="col-md-6">
                 <div class="form-group">
-                  <label class="control-label col-md-3">是否需要住宿:</label>
-                  <div class="col-md-9">
-                    <p class="form-control-static">${data.isStay eq '1' ? '需要' : '不需要'}</p>
-                  </div>
-                </div>
-              </div>
-              <div class="col-md-6">
-                <div class="form-group">
-                  <label class="control-label col-md-3">9月4日周日搜狐之夜晚宴暨评委证书颁发仪式:</label>
-                  <div class="col-md-9">
-                    <p class="form-control-static">${data.dinner3 eq '1' ? '参加' : '不参加'}</p>
+                  <label class="control-label col-md-8">是否住宿/Accommodation:</label>
+                  <div class="col-md-4">
+                    <p class="form-control-static">${data.isStay eq '1' ? '是/YES' : '否/NO'}</p>
                   </div>
                 </div>
               </div>
@@ -172,17 +164,164 @@
             <div class="row">
               <div class="col-md-6">
                 <div class="form-group">
-                  <label class="control-label col-md-3">9月2日周五自助晚餐:</label>
-                  <div class="col-md-9">
-                    <p class="form-control-static">${data.dinner1 eq '1' ? '需要' : '不需要'}</p>
+                  <label class="control-label col-md-8">艾菲研讨会 Effie Seminar:</label>
+                  <div class="col-md-4">
+                    <p class="form-control-static">${data.schedule221 eq '1' ? '参加/YES' : '不参加/NO'}</p>
                   </div>
                 </div>
               </div>
               <div class="col-md-6">
                 <div class="form-group">
-                  <label class="control-label col-md-3">9月3日周六答谢晚宴:</label>
+                  <label class="control-label col-md-2">备注:</label>
+                  <div class="col-md-4">
+                    <input type="text" class="form-control" name="remark0" value="${data.remark0}">
+                  </div>
+                  <div class="col-md-4">
+                    <input type="text" class="form-control" name="remark2" value="${data.remark2}">
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label class="control-label col-md-8">自助午餐 Buffet Lunch:</label>
+                  <div class="col-md-4">
+                    <p class="form-control-static">${data.schedule222 eq '1' ? '参加/YES' : '不参加/NO'}</p>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label class="control-label col-md-2">备注:</label>
                   <div class="col-md-9">
-                    <p class="form-control-static">${data.dinner2 eq '1' ? '参加' : '不参加'}</p>
+                    <input type="text" class="form-control" name="remark1" value="${data.remark1}">
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label class="control-label col-md-8">VIP欢迎晚宴 VIP Welcome Dinner:</label>
+                  <div class="col-md-4">
+                    <p class="form-control-static">${data.schedule223 eq '1' ? '参加/YES' : '不参加/NO'}</p>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label class="control-label col-md-2">备注:</label>
+                  <div class="col-md-9">
+                    <input type="text" class="form-control" name="remark3" value="${data.remark3}">
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label class="control-label col-md-8">艾菲酒会 Effie Reception:</label>
+                  <div class="col-md-4">
+                    <p class="form-control-static">${data.schedule231 eq '1' ? '参加/YES' : '不参加/NO'}</p>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label class="control-label col-md-2">备注:</label>
+                  <div class="col-md-9">
+                    <input type="text" class="form-control" name="remark4" value="${data.remark4}">
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label class="control-label col-md-8">红毯秀 Red Carpet Show:</label>
+                  <div class="col-md-4">
+                    <p class="form-control-static">${data.schedule232 eq '1' ? '参加/YES' : '不参加/NO'}</p>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label class="control-label col-md-2">备注:</label>
+                  <div class="col-md-9">
+                    <input type="text" class="form-control" name="remark5" value="${data.remark5}">
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label class="control-label col-md-8">艾菲颁奖典礼 Effie Awards Gala:</label>
+                  <div class="col-md-4">
+                    <p class="form-control-static">${data.schedule233 eq '1' ? '参加/YES' : '不参加/NO'}</p>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label class="control-label col-md-2">备注:</label>
+                  <div class="col-md-9">
+                    <input type="text" class="form-control" name="remark6" value="${data.remark6}">
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label class="control-label col-md-8">艾菲派对 Effie After Party:</label>
+                  <div class="col-md-4">
+                    <p class="form-control-static">${data.schedule234 eq '1' ? '参加/YES' : '不参加/NO'}</p>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label class="control-label col-md-2">备注:</label>
+                  <div class="col-md-9">
+                    <input type="text" class="form-control" name="remark7" value="${data.remark7}">
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label class="control-label col-md-8">2016优秀案例赏析会 2016 Effie Forum:</label>
+                  <div class="col-md-4">
+                    <p class="form-control-static">${data.schedule241 eq '1' ? '参加/YES' : '不参加/NO'}</p>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label class="control-label col-md-2">备注:</label>
+                  <div class="col-md-9">
+                    <input type="text" class="form-control" name="remark8" value="${data.remark8}">
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label class="control-label col-md-8">VIP午宴 VIP Luncheon:</label>
+                  <div class="col-md-4">
+                    <p class="form-control-static">${data.schedule242 eq '1' ? '参加/YES' : '不参加/NO'}</p>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label class="control-label col-md-2">备注:</label>
+                  <div class="col-md-9">
+                    <input type="text" class="form-control" name="remark9" value="${data.remark9}">
                   </div>
                 </div>
               </div>
@@ -193,9 +332,9 @@
               <div class="col-md-6">
                 <div class="row">
                   <div class="col-md-offset-3 col-md-9">
-                    <%--<button type="submit" class="btn green">
-                      <i class="fa fa-pencil"></i> Edit
-                    </button>--%>
+                    <button type="button" class="btn green" onclick="saveRemark();">
+                      <i class="fa fa-save"></i> 保存笔记
+                    </button>
                     <button type="button" class="btn default" onclick="history.back()">返回</button>
                   </div>
                 </div>
@@ -203,8 +342,35 @@
               <div class="col-md-6"></div>
             </div>
           </div>
+          <input type="hidden" name="id" value="${data.id}">
         </form>
       </div>
     </div>
   </div>
 </div>
+<script type="text/javascript">
+  var index = 0;
+  function saveRemark() {
+    if(index !== 0) return;
+    index = layer.load(1, {
+      shade: [0.3,'#fff'] //0.1透明度的白色背景
+    });
+    $.ajax(_PATH + '/attendee/save', {
+      type: 'POST',
+      data: $('#form1').serialize(),
+      success: function (resp) {
+        if (resp.statusCode === 200) {
+          layer.msg('保存成功');
+          window.location.href = _PATH + "/attendee/list";
+        } else {
+          layer.close(index);
+          layer.alert(resp.errorInfo);
+        }
+      },
+      error: function (resp) {
+        layer.close(index);
+        layer.alert('保存失败');
+      }
+    });
+  }
+</script>

@@ -19,7 +19,7 @@
   </div>
   <span class="title">${param.title}</span>
   <div class="open-right">
-    <a href="${_PATH}/message"><i class="ion-android-mail"></i><span class="badge"></span></a>
+    <a href="${_PATH}/message" class="menuItem"><i class="ion-android-mail"></i><span class="badge"></span></a>
   </div>
 </div>
 <c:if test="${empty param.isCommnoBanner}">
