@@ -38,6 +38,17 @@
                             <h3>Your registration is now complete! Please save your exclusive QR code ID below to present at our sign-up desk to collect your event pass.</h3>
                             <img src="${qrCodeUrl}" style="width: 200px;" align="center" onerror="${_PATH}/static/img/qru6.jpg">
                         </center>
+                          <div style="padding: 10px 40px;">
+                            <a class="waves-effect waves-light btn-large primary-color width-100 animated bouncein delay-6" href="javascript:sendToMail();"
+                               style="line-height:20px !important;padding-top:8px">
+                              发送行程单至邮箱<br>Email me agenda
+                            </a>
+                          </div>
+                          <div style="padding: 5px 40px;">
+                            <a class="waves-effect waves-light btn-large primary-color width-100 animated bouncein delay-6" href="${_PATH}/meeting/detail/2">
+                              返回编辑/Back to edit
+                            </a>
+                          </div>
                             <h4>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;大中华区艾菲奖再次感谢您的参与和支持。若有问题，欢迎联系Hawk Zhou.</h4>
                             <h4>Thanks for your participation and support! Please contact Hawk Zhou if there is any problem.</h4>
                             <h4>Email: hawk.zhou@greaterchinaeffie.org</h4>
@@ -50,6 +61,17 @@
                             <h3>Your registration info has been successfully submitted! Please save the QR code for further entry use.</h3>
                             <img src="${qrCodeUrl}" style="width: 200px;" align="center" onerror="${_PATH}/static/img/qru6.jpg">
                         </center>
+                          <div style="padding: 10px 40px;">
+                            <a class="waves-effect waves-light btn-large primary-color width-100 animated bouncein delay-6" href="javascript:sendToMail();"
+                               style="line-height:20px !important;padding-top:8px">
+                              发送行程单至邮箱<br>Email me agenda
+                            </a>
+                          </div>
+                          <div style="padding: 5px 40px;">
+                            <a class="waves-effect waves-light btn-large primary-color width-100 animated bouncein delay-6" href="${_PATH}/meeting/detail/2">
+                              返回编辑/Back to edit
+                            </a>
+                          </div>
                             <h4>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;大中华区艾菲奖再次感谢您的参与和支持。若有问题，欢迎联系Lily He.</h4>
                             <h4>Thanks for your participation and support! Please contact Lily He if there is any problem.</h4>
                             <h4>Email: lily.he@greaterchinaeffie.org</h4>
@@ -64,17 +86,6 @@
                   查看定制化行程单/Check customized schedule
                 </a>
               </div>--%>
-              <div style="padding: 20px 40px;">
-                <a class="waves-effect waves-light btn-large primary-color width-100 animated bouncein delay-6" href="javascript:sendToMail();"
-                style="line-height:20px !important;padding-top:8px">
-                  发送行程单至邮箱<br>Email me agenda
-                </a>
-              </div>
-              <div style="padding: 20px 40px;">
-                <a class="waves-effect waves-light btn-large primary-color width-100 animated bouncein delay-6" href="${_PATH}/meeting/detail/2">
-                  返回编辑/Back to edit
-                </a>
-              </div>
             </div>
 
             <!-- Footer -->

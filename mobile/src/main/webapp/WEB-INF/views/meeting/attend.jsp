@@ -32,7 +32,7 @@
         <div class="p-t-20">
           <ul class="tabs">
             <li class="tab" style="line-height: 20px !important;"><a class="active" href="#test1">个人信息<br/>Personal Info</a></li>
-            <li class="tab" style="line-height: 20px !important;"><a href="#test2" id="test3">食宿信息<br/>Accommodation</a></li>
+            <li class="tab" style="line-height: 20px !important;"><a href="#test2" id="test3">活动注册<br/>EVENT REGIST</a></li>
           </ul>
         </div>
 

@@ -447,7 +447,9 @@ public class MeetingInfoCtrl extends BaseCtrl {
 
 		boolean hasRemark = "1".equals(member.getHierarchy());
 
-		MeetingAttendee finalMeetingAttendee = meetingAttendee;
+		meetingAttendee = new MeetingAttendee();
+		meetingAttendee.setOperator(member.getId() + "");
+		MeetingAttendee finalMeetingAttendee = meetingAttendeeService.findOne(meetingAttendee);
 		list.forEach(meetingSchedule -> {
 			List list1 = params.get(meetingSchedule.getScheduleDate());
 			if(list1==null) list1 = new ArrayList();
