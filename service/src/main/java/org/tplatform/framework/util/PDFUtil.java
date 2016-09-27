@@ -74,7 +74,7 @@ public class PDFUtil {
 
       PdfPCell cellHeader1 = new PdfPCell();
       cellHeader1.setBackgroundColor(new BaseColor(164, 134, 72));
-      Paragraph para1 = new Paragraph("日期", FontCN);
+      Paragraph para1 = new Paragraph("日期/Date", FontCN);
       para1.setAlignment(Element.ALIGN_CENTER);
       cellHeader1.addElement(para1);
       cellHeader1.setUseAscender(true);
@@ -89,7 +89,7 @@ public class PDFUtil {
 //      cellHeader2.setHorizontalAlignment(Element.ALIGN_CENTER);
       cellHeader2.setVerticalAlignment(Element.ALIGN_MIDDLE);
       cellHeader2.setBackgroundColor(new BaseColor(164, 134, 72));
-      Paragraph para2 = new Paragraph("时间", FontCN);
+      Paragraph para2 = new Paragraph("时间/Time", FontCN);
       para2.setAlignment(Element.ALIGN_CENTER);
       cellHeader2.addElement(para2);
       table.addCell(cellHeader2);
@@ -100,7 +100,7 @@ public class PDFUtil {
 //      cellHeader3.setHorizontalAlignment(Element.ALIGN_CENTER);
       cellHeader3.setVerticalAlignment(Element.ALIGN_MIDDLE);
       cellHeader3.setBackgroundColor(new BaseColor(164, 134, 72));
-      Paragraph para3 = new Paragraph("议程", FontCN);
+      Paragraph para3 = new Paragraph("议程/Schedule", FontCN);
       para3.setAlignment(Element.ALIGN_CENTER);
       cellHeader3.addElement(para3);
       table.addCell(cellHeader3);
@@ -111,7 +111,7 @@ public class PDFUtil {
 //      cellHeader4.setHorizontalAlignment(Element.ALIGN_CENTER);
       cellHeader4.setVerticalAlignment(Element.ALIGN_MIDDLE);
       cellHeader4.setBackgroundColor(new BaseColor(164, 134, 72));
-      Paragraph para4 = new Paragraph("地点", FontCN);
+      Paragraph para4 = new Paragraph("地点/Location", FontCN);
       para4.setAlignment(Element.ALIGN_CENTER);
       cellHeader4.addElement(para4);
       table.addCell(cellHeader4);
@@ -123,7 +123,7 @@ public class PDFUtil {
 //        cellHeader5.setHorizontalAlignment(Element.ALIGN_CENTER);
         cellHeader5.setVerticalAlignment(Element.ALIGN_MIDDLE);
         cellHeader5.setBackgroundColor(new BaseColor(164, 134, 72));
-        Paragraph para5 = new Paragraph("备注", FontCN);
+        Paragraph para5 = new Paragraph("备注/comment", FontCN);
         para5.setAlignment(Element.ALIGN_CENTER);
         cellHeader5.addElement(para5);
         table.addCell(cellHeader5);

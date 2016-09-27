@@ -16,10 +16,31 @@
   </div>--%>
   <div class="footer-copyright blue darken-1">
     <div class="container" style="font-size: 12px">
+      <%--扫码关注大中华区艾菲奖微信公众号<br/>--%>
+      <%----%>
       版权所有 大中华区艾菲奖工作组
       <%--<p class="center-align grey-text text-lighten-4"></p>--%>
-      <img class="grey-text text-lighten-4 right" src="${_PATH}/static/img/qrcode.jpeg" style="width: 3em;padding-top: .3em;">
+      <img id="qrcode_footer" class="grey-text text-lighten-4 right" src="${_PATH}/static/img/qrcode.jpeg" style="width: 3em;padding-top: .3em;">
       <%--<a class="grey-text text-lighten-4 right" href="javascript:;"></a>--%>
     </div>
   </div>
 </footer>
+<script type="text/javascript">
+  $(function () {
+    $('#qrcode_footer').qtip({
+      content: { text: '扫码关注大中华区艾菲奖微信公众号<br/>Scan to follow Effie GC on WeChat' },
+      position: {
+        my: 'bottom right',  // Position my top left...
+        at: 'bottom right', // at the bottom right of...
+        adjust: {
+          x: 0,
+          y: -30
+        }
+      },
+      show: {
+        ready: true,
+        delay: 500
+      }
+    });
+  });
+</script>

@@ -87,7 +87,12 @@ public class MeetingInfoCtrl extends BaseCtrl {
 		//轮播图片
 //		model.put("banner", meetingInfoService.find(meetingId));
 
-		model.put("signUp",meetingAttendeeService.signUp(meetingId, member.getId()) > 0);
+		MeetingAttendee maExample = new MeetingAttendee();
+		maExample.setMeetingId(meetingId);
+		maExample.setOperator(String.valueOf(member.getId()));
+		MeetingAttendee ma = meetingAttendeeService.findOne(maExample);
+
+		model.put("signUp", ma);
 		return "/meeting/detail.jsp";
 	}
 
@@ -238,6 +243,9 @@ public class MeetingInfoCtrl extends BaseCtrl {
 		return null;
 	}
 
+	private static final String mailInfo = "感谢您注册2016艾菲实效节！请下载附件定制化日程表。Thank you for your registration! Please download the attached schedule for your private use. <br/><br/><br/>大中华区艾菲奖工作组 Effie Greater China";
+	private static final String tmpdir = System.getProperty("java.io.tmpdir");
+
 	/**
 	 * 活动详情信息
 	 *
@@ -344,10 +352,12 @@ public class MeetingInfoCtrl extends BaseCtrl {
 
 		try {
 			if ("mail".equalsIgnoreCase(type)) {
-				File pdf = File.createTempFile((meetingAttendee.getName() + " 实效节日程"), ".pdf");
+//				File pdf = File.createTempFile((meetingAttendee.getName() + " 实效节日程"), ".pdf");
+				File pdf = new File(tmpdir + File.separator + (meetingAttendee.getName() + "_实效节日程_Effie Festival Schedule.pdf"));
 				FileOutputStream fos = new FileOutputStream(pdf);
 				PDFUtil.create(params, fos, hasRemark);
-				MailUtil.sendWithAttachment("support@effie-greaterchina.org", meetingAttendee.getEmail(), "2016 实效节行程", "", pdf);
+
+				MailUtil.sendWithAttachment("support@effie-greaterchina.org", meetingAttendee.getEmail(), "2016实效节日程/Effie Festival Schedule", mailInfo, pdf);
 				pdf.delete();
 			} else {
 				//设置ContentType

@@ -34,8 +34,8 @@
                     <c:choose>
                         <c:when test="${_USER.hierarchy eq '1'}">
                         <center>
-                            <h3>提交成功！请您妥善保存下方二维码，此码将是您参会的重要信息。</h3>
-                            <h3>Your registration info has been successfully submitted! Please save the QR code for further entry use.</h3>
+                            <h3>注册成功！请您妥善保存下方您的专属身份二维码，并于活动签到时出示以获得入场证。</h3>
+                            <h3>Your registration is now complete! Please save below your exclusive QR code ID to present at our sign-up desk to collect your event pass.</h3>
                             <img src="${qrCodeUrl}" style="width: 200px;" align="center" onerror="${_PATH}/static/img/qru6.jpg">
                         </center>
                             <h4>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;大中华区艾菲奖再次感谢您的参与和支持。若有问题，欢迎联系Hawk Zhou.</h4>

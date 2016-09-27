@@ -3,7 +3,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%
-    request.setAttribute("FILE_DOMAIN", "http://f.changdiyun.cn");
+    request.setAttribute("FILE_DOMAIN", "http://effie.china-caa.org:81/");
 %>
 <meta charset="utf-8" />
 <%--<title>${APP_NAME}</title>--%>

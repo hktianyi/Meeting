@@ -8,6 +8,13 @@
 <!--<![endif]-->
 <head>
     <%@include file="../../common/common.jsp" %>
+    <style>
+        .layui-layer-btn2 {
+            background-color: #d9534f !important;
+            border: 1px solid #d9534f !important;
+            color: #fff !important;
+        }
+    </style>
 </head>
 <body>
 <div class="m-scene" id="main"> <!-- Main Container -->
@@ -43,11 +50,12 @@
                             <p class="valueStyle">
                                 ${meeting.name}
                             </p>
-                            <label class="active">活动名称/Event's Title</label>
+                            <label class="active">活动名称/Event Name</label>
                         </div>
                         <div class="input-field animated fadeinright delay-1">
                             <p class="valueStyle">
-                                ${meeting.startTime} - ${meeting.endTime}
+                                10.22 - 10.24<br/>&nbsp;&nbsp;
+                                Oct.22 - Oct.24
                             </p>
                             <label class="active">活动时间/Date</label>
                         </div>
@@ -55,27 +63,27 @@
                             <p class="valueStyle">
                                 ${meeting.address}
                             </p>
-                            <label class="active">活动地址一/Address 1</label>
+                            <label class="active">活动地址一/Venue 1</label>
                         </div>
                         <div class="input-field animated fadeinright delay-5">
                             <p class="valueStyle">
                                 ${meeting.introduction}
                             </p>
-                            <label class="active">具体位置一/Location 1</label>
+                            <label class="active">具体位置一/Address 1</label>
                         </div>
                         <div class="input-field animated fadeinright">
                             <p class="valueStyle">
                                 海南国际会展中心<br/>&nbsp;&nbsp;
                                 Hainan International Convention & Exhibition Center
                             </p>
-                            <label class="active">活动地址二/Address 2</label>
+                            <label class="active">活动地址二/Venue 2</label>
                         </div>
                         <div class="input-field animated fadeinright delay-5">
                             <p class="valueStyle">
                                 海南省海口市秀英区滨海大道258号<br/>&nbsp;&nbsp;
                                 No.258 Binhai Avenue, Xiuying District Haikou, Hainan 570311, China
                             </p>
-                            <label class="active">具体位置二/Location 2</label>
+                            <label class="active">具体位置二/Address 2</label>
                         </div>
                     </div>
                 </div>
@@ -129,7 +137,7 @@
                                         <span class="date" style=" left: -120px;">
                                         ${item.startTime} ${empty item.endTime ? '' : '-'} ${item.endTime}
                                         </span>
-                                        <div class="dot z-depth-1">
+                                        <div class="dot z-depth-1 <c:if test="${status.first}">current</c:if> ">
                                         </div>
                                         <p>
                                             ${item.title}
@@ -153,13 +161,13 @@
                     </div>--%>
                     <div style="padding: 20px 40px;">
                     <a class="waves-effect waves-light btn-large primary-color width-100 animated bouncein delay-6" href="javascript:sendToMail();" disabled="disabled">
-                        发送到邮箱
+                        发送行程单至邮箱/Email me agenda
                     </a>
                     </div>
                 </div>
                  <div style="padding: 20px 40px;">
                      <c:choose>
-                         <c:when test="${signUp}">
+                         <c:when test="${not empty signUp.name}">
                              <a class="waves-effect waves-light btn-large primary-color width-100 animated bouncein delay-6" href="${_PATH}/meeting/join/${meeting.id}">
                                编辑个人信息/Edit
                              </a>
@@ -181,7 +189,7 @@
             $(function () {
                 <c:if test="${_USER.hierarchy eq '1'}">
                 $('#eventAgenda').qtip({
-                    content: { text: '点击日程 可添加笔记' },
+                    content: { text: '进入日程添加笔记<br/>Add notes in agenda' },
                     position: {
                         my: 'bottom center',  // Position my top left...
                         at: 'bottom right', // at the bottom right of...
@@ -195,6 +203,12 @@
                         delay: 500
                     }
                 });
+                $('#eventAgenda').click(function () {
+                    $('.current').trigger('click');
+//                    if(!localStorage.getItem('eventAgenda')) {
+//                        localStorage.setItem('eventAgenda', 'true');
+//                    }
+                });
                 $(document).on('click', 'body', function () {
                     $('.tip').qtip('toggle', false);
                 });
@@ -207,7 +221,7 @@
                                 type: 'GET'
                             }).then(function(content) {
                                 // Set the tooltip content upon successful retrieval
-                                api.set('content.text', content.data || '点我 可添加笔记');
+                                api.set('content.text', content.data || '点击添加笔记\\Click to add notes');
                             }, function(xhr, status, error) {
                                 // Upon failure... set the tooltip content to error
                                 api.set('content.text', '');
@@ -238,11 +252,28 @@
                                         title: '编辑笔记',
                                         value: $(this).text(),
                                         maxlength: 30,
-                                        formType: 0,
-                                        btn: ['保存', '取消'],
+                                        formType: 2,
+                                        btn: ['保存', '取消', '删除'],
                                         btn2: function(){
-                                            console.log(111);
                                             api.show();
+                                        },
+                                        btn3: function(i){
+                                            $.ajax(_PATH + '/meeting/postil/remark' + (api.elements.target.data('id')-1), {
+                                                type: 'POST',
+                                                data: {
+                                                    value: ''
+                                                },
+                                                success: function () {
+                                                    layer.msg('删除成功');
+                                                    api.set('content.text', '点击添加笔记\\Click to add notes');
+                                                    layer.close(i);
+                                                    api.show();
+                                                },
+                                                error: function () {
+                                                    layer.msg('删除失败');
+                                                    api.show();
+                                                }
+                                            });
                                         }
                                     }, function(pass){
                                         $.ajax(_PATH + '/meeting/postil/remark' + (api.elements.target.data('id')-1), {
