@@ -32,8 +32,9 @@ public class PDFUtil {
 
   public static void create(Map<String, List> params, OutputStream os, boolean hasRemark) throws IOException, DocumentException {
 
-    BaseFont bfCN = BaseFont.createFont("STSong-Light", "UniGB-UCS2-H", BaseFont.NOT_EMBEDDED);
-    Font FontCN = new Font(bfCN, 12, Font.NORMAL);
+//    BaseFont bfCN = BaseFont.createFont("STSong-Light", "UniGB-UCS2-H", BaseFont.NOT_EMBEDDED);
+//    Font FontCN = new Font(bfCN, 12, Font.NORMAL);
+    Font FontCN = createFont();
 
     // 第一步，创建document对象
     Rectangle rectPageSize = new Rectangle(PageSize.A4);
@@ -54,7 +55,7 @@ public class PDFUtil {
       //第3步,打开文档
       document.open();
       //第3步,向文档添加文字. 文档由段组成
-      Paragraph title = new Paragraph("2016艾菲实效节", FontCN);
+      Paragraph title = new Paragraph("2016艾菲实效节\n2016 Effie Festival", FontCN);
       title.setAlignment(Element.ALIGN_CENTER);
       document.add(title);
 
@@ -193,6 +194,14 @@ public class PDFUtil {
       //关闭document
       document.close();
     }
+  }
+
+  private static Font createFont() throws IOException, DocumentException {
+    //创建基础字体
+    BaseFont bf = BaseFont.createFont("/fonts/msyh.ttf",BaseFont.IDENTITY_H,BaseFont.EMBEDDED);
+    //自定义字体属性
+    Font font = new Font(bf,10,Font.NORMAL);
+    return font;
   }
 
 }

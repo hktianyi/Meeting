@@ -12,7 +12,7 @@
       </div>
     </div>
   </li>
-  <li><a href="${_PATH}/meeting/detail/2" class="no-child menuItem">消息/Message</a></li>
+  <li><a href="${_PATH}/message" class="no-child menuItem">消息/Message</a></li>
   <%--<li><a target="_blank" href="${FILE_DOMAIN}/effie/艾菲国际研讨会.pdf" class="no-child menuItem">活动内容/Event Contents</a></li>--%>
   <li><a href="${_PATH}/meeting/detail/2" class="no-child menuItem">我的活动/My Event</a></li>
   <%--<li><a href="${_PATH}/member/attendeeList" class="no-child">活动详情</a></li>--%>

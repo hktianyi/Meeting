@@ -29,6 +29,36 @@
 <link href="${_PATH}/static/css/style.css?${_VERSION}" rel="stylesheet" type="text/css">
 <link href="${_PATH}/static/plugins/qtip2/jquery.qtip.min.css?${_VERSION}" rel="stylesheet" type="text/css">
 <%--<link rel="shortcut icon" href="${_PATH}/favicon.ico" type="image/x-icon" />--%>
+<style>
+    .sex input {
+        display: inline-block;
+        padding: 7px 12px;
+        font-size: 14px;
+        background: #eee;
+        border: 0;
+        color: inherit;
+        border-radius: 2px;
+        cursor: pointer;
+        color: inherit;
+        transition: all 0.3s ease-in;
+        -webkit-transition: all 0.3s ease-in;
+    }
+    .note.note-info {
+        background-color: #f5f8fd;
+        border-color: #8bb4e7;
+        color: #010407;
+    }
+    .note {
+        margin: 0 0 20px;
+        padding: 15px 30px 15px 15px;
+        border-left: 5px solid #eee;
+        border-radius: 0 4px 4px 0;
+    }
+    .qtip-custom {
+        background-color: lightblue;
+        border: 1px solid lightblue;
+    }
+</style>
 <script src="${_PATH}/static/plugins/jquery-2.2.2.min.js" type="text/javascript"></script>
 <%--<script src="https://code.jquery.com/jquery-migrate-1.4.1.js" type="text/javascript"></script>--%>
 <script type="text/javascript">

@@ -8,32 +8,6 @@
 <!--<![endif]-->
 <head>
   <%@include file="../../common/common.jsp" %>
-  <style>
-    .sex input {
-      display: inline-block;
-      padding: 7px 12px;
-      font-size: 14px;
-      background: #eee;
-      border: 0;
-      color: inherit;
-      border-radius: 2px;
-      cursor: pointer;
-      color: inherit;
-      transition: all 0.3s ease-in;
-      -webkit-transition: all 0.3s ease-in;
-    }
-    .note.note-info {
-      background-color: #f5f8fd;
-      border-color: #8bb4e7;
-      color: #010407;
-    }
-    .note {
-      margin: 0 0 20px;
-      padding: 15px 30px 15px 15px;
-      border-left: 5px solid #eee;
-      border-radius: 0 4px 4px 0;
-    }
-  </style>
 </head>
 <body>
 <div class="m-scene" id="main"> <!-- Main Container -->
@@ -137,8 +111,8 @@
           <!-- Form Inputs -->
           <div class="form-inputs">
             <div class="note note-info">
-              <h5>请选择以下项目</h5>
-              <h5>Please select the options below</h5>
+              <p style="font-size: 10px !important; margin: 0 !important;">请选择以下选项注册活动</p>
+              <p style="font-size: 10px !important; margin: 0 !important;">please signup for events you'd like to attend</p>
             </div>
             <c:if test="${_USER.hierarchy eq '1'}">
             <div class="input-field animated fadeinright">
@@ -253,9 +227,16 @@
             </c:if>
           </div>
           <div style="padding: 20px 40px;">
+            <a class="waves-effect waves-light btn-large primary-color width-100 animated bouncein delay-6" href="javascript:previewSchedule();" target="_blank"
+               style="line-height:20px !important;padding-top:8px">
+              预览个人行程<br/>preview my agenda
+            </a>
+          </div>
+          <div style="padding: 20px 40px;">
             <a class="waves-effect waves-light btn-large primary-color width-100 animated bouncein delay-6"
                href="javascript:signUp();">提交/Submit</a>
           </div>
+          提交后仍可修改/you can still edit after submission
         </div>
         </form>
       </div>
@@ -265,6 +246,10 @@
     </div> <!-- End of Main Contents -->
     <script type="text/javascript">
       $(function () {
+        if(window.sessionStorage && sessionStorage.getItem("dis") == 'ss') {
+          sessionStorage.removeItem("dis");
+          $("#test3").click();
+        }
         $("#isStay").on('change', function () {
           if($(this).val() == '0') {
             $("#stayDate").attr("disabled", "disabled");
@@ -284,12 +269,18 @@
             $("#leaveDate").find('option:eq(1)').attr("disabled", "disabled");
             if($("#leaveDate").val() == '2016/10/22' || $("#leaveDate").val() == '2016/10/23') $("#leaveDate").val('2016/10/24');
           }
-        })
+        });
       });
       function next() {
         if(validate1()) {
           $("#test3").click();
+          $(window).scrollTop(0);
         }
+      }
+
+      function previewSchedule() {
+        window.sessionStorage && sessionStorage.setItem("dis", "ss");
+        window.open(_PATH + '/meeting/previewSchedule/2?' + $('#form1').serialize());
       }
 
       var index = 0;

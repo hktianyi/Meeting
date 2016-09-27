@@ -360,13 +360,126 @@ public class MeetingInfoCtrl extends BaseCtrl {
 				MailUtil.sendWithAttachment("support@effie-greaterchina.org", meetingAttendee.getEmail(), "2016实效节日程/Effie Festival Schedule", mailInfo, pdf);
 				pdf.delete();
 			} else {
-				//设置ContentType
-				response.setContentType("application/octet-stream; charset=utf-8");
-				//处理中文文件名中文乱码问题
-				response.setHeader("Content-Disposition", "attachment; filename=" + new String((meetingAttendee.getName() + " 实效节日程.pdf").getBytes("utf-8"),"ISO-8859-1"));
-
+				// android 手机,提示下载
+				String ua = request.getHeader("user-agent").toLowerCase();
+				if(ua.contains("android") || ua.contains("linux")) {
+					//设置ContentType
+					response.setContentType("application/octet-stream; charset=utf-8");
+					//处理中文文件名中文乱码问题
+					response.setHeader("Content-Disposition", "attachment; filename=" + new String((meetingAttendee.getName() + "_实效节日程_Effie Festival Schedule.pdf").getBytes("utf-8"),"ISO-8859-1"));
+				}
 				PDFUtil.create(params, response.getOutputStream(), hasRemark);
 			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (DocumentException e) {
+			e.printStackTrace();
+		}
+		return RespBody.ok();
+	}
+
+	@RequestMapping(value = "/previewSchedule/{meetingId}")
+	public RespBody previewSchedule(@PathVariable("meetingId") Long meetingId, MeetingAttendee meetingAttendee, HttpServletResponse response) {
+		Member member = (Member)session.getAttribute(GlobalConstant.KEY_SESSION_USER);
+		MeetingInfo meetingInfo = meetingInfoService.find(meetingId, member.getHierarchy());
+
+		List<MeetingSchedule> list = new LinkedList<>(meetingInfo.getDetail());
+
+		// 过滤掉不参加的项目
+		if("0".equals(meetingAttendee.getSchedule221())) {
+			List list1 = list.stream().filter((obj) -> (obj.getId() == 1 || obj.getId() == 3)).collect(Collectors.toList());
+			if(list1 != null && list1.size() > 0) {
+				list1.forEach((obj) -> list.remove(obj));
+			}
+		}
+		if("0".equals(meetingAttendee.getSchedule222())) {
+			List list1 = list.stream().filter((obj) -> obj.getId() == 2).collect(Collectors.toList());
+			if(list1 != null && list1.size() > 0) {
+				list1.forEach((obj) -> list.remove(obj));
+			}
+		}
+		if("0".equals(meetingAttendee.getSchedule223())) {
+			List list1 = list.stream().filter((obj) -> obj.getId() == 4).collect(Collectors.toList());
+			if(list1 != null && list1.size() > 0) {
+				list1.forEach((obj) -> list.remove(obj));
+			}
+		}
+
+		if("0".equals(meetingAttendee.getSchedule231())) {
+			List list1 = list.stream().filter((obj) -> obj.getId() == 5).collect(Collectors.toList());
+			if(list1 != null && list1.size() > 0) {
+				list1.forEach((obj) -> list.remove(obj));
+			}
+		}
+		if("0".equals(meetingAttendee.getSchedule232())) {
+			List list1 = list.stream().filter((obj) -> obj.getId() == 6).collect(Collectors.toList());
+			if(list1 != null && list1.size() > 0) {
+				list1.forEach((obj) -> list.remove(obj));
+			}
+		}
+		if("0".equals(meetingAttendee.getSchedule233())) {
+			List list1 = list.stream().filter((obj) -> obj.getId() == 7).collect(Collectors.toList());
+			if(list1 != null && list1.size() > 0) {
+				list1.forEach((obj) -> list.remove(obj));
+			}
+		}
+		if("0".equals(meetingAttendee.getSchedule234())) {
+			List list1 = list.stream().filter((obj) -> obj.getId() == 8).collect(Collectors.toList());
+			if(list1 != null && list1.size() > 0) {
+				list1.forEach((obj) -> list.remove(obj));
+			}
+		}
+
+		if("0".equals(meetingAttendee.getSchedule241())) {
+			List list1 = list.stream().filter((obj) -> obj.getId() == 9).collect(Collectors.toList());
+			if(list1 != null && list1.size() > 0) {
+				list1.forEach((obj) -> list.remove(obj));
+			}
+		}
+		if("0".equals(meetingAttendee.getSchedule242())) {
+			List list1 = list.stream().filter((obj) -> obj.getId() == 10).collect(Collectors.toList());
+			if(list1 != null && list1.size() > 0) {
+				list1.forEach((obj) -> list.remove(obj));
+			}
+		}
+
+		Map<String, List> params = new LinkedHashMap<>();
+
+		boolean hasRemark = "1".equals(member.getHierarchy());
+
+		MeetingAttendee finalMeetingAttendee = meetingAttendee;
+		list.forEach(meetingSchedule -> {
+			List list1 = params.get(meetingSchedule.getScheduleDate());
+			if(list1==null) list1 = new ArrayList();
+
+			// VVIP添加笔记
+			if (hasRemark) {
+				if (meetingSchedule.getId() == 1) meetingSchedule.setHierarchy(finalMeetingAttendee.getRemark0());
+				else if (meetingSchedule.getId() == 2) meetingSchedule.setHierarchy(finalMeetingAttendee.getRemark1());
+				else if (meetingSchedule.getId() == 3) meetingSchedule.setHierarchy(finalMeetingAttendee.getRemark2());
+				else if (meetingSchedule.getId() == 4) meetingSchedule.setHierarchy(finalMeetingAttendee.getRemark3());
+				else if (meetingSchedule.getId() == 5) meetingSchedule.setHierarchy(finalMeetingAttendee.getRemark4());
+				else if (meetingSchedule.getId() == 6) meetingSchedule.setHierarchy(finalMeetingAttendee.getRemark5());
+				else if (meetingSchedule.getId() == 7) meetingSchedule.setHierarchy(finalMeetingAttendee.getRemark6());
+				else if (meetingSchedule.getId() == 8) meetingSchedule.setHierarchy(finalMeetingAttendee.getRemark7());
+				else if (meetingSchedule.getId() == 9) meetingSchedule.setHierarchy(finalMeetingAttendee.getRemark8());
+				else if (meetingSchedule.getId() == 10) meetingSchedule.setHierarchy(finalMeetingAttendee.getRemark9());
+			}
+
+			list1.add(meetingSchedule);
+			params.put(meetingSchedule.getScheduleDate(), list1);
+		});
+
+		try {
+				// android 手机,提示下载
+				String ua = request.getHeader("user-agent").toLowerCase();
+				if(ua.contains("android") || ua.contains("linux")) {
+					//设置ContentType
+					response.setContentType("application/octet-stream; charset=utf-8");
+					//处理中文文件名中文乱码问题
+					response.setHeader("Content-Disposition", "attachment; filename=" + new String((meetingAttendee.getName() + "_实效节日程_Effie Festival Schedule.pdf").getBytes("utf-8"),"ISO-8859-1"));
+				}
+				PDFUtil.create(params, response.getOutputStream(), hasRemark);
 		} catch (IOException e) {
 			e.printStackTrace();
 		} catch (DocumentException e) {

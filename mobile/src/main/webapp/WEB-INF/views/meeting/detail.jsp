@@ -85,10 +85,14 @@
                             </p>
                             <label class="active">具体位置二/Address 2</label>
                         </div>
+                        <div class="note note-info" onclick="toEventAgenda()">
+                            <p style="font-size: 10px !important; margin: 0 !important;">进入实效节日程查看具体时间表</p>
+                            <p style="font-size: 10px !important; margin: 0 !important;">See detailed schedule in Event agenda</p>
+                        </div>
                     </div>
                 </div>
 
-                <div id="test2">
+                <div id="test2" style="display: none;">
                     <div class="container activity p-l-r-20" style=" padding-left: 100px !important;">
                         <div class="row m-l-0">
                             <div class="col">
@@ -159,26 +163,27 @@
                         下载日程
                     </a>
                     </div>--%>
-                    <div style="padding: 20px 40px;">
-                    <a class="waves-effect waves-light btn-large primary-color width-100 animated bouncein delay-6" href="javascript:sendToMail();" disabled="disabled">
+                    <%--<div style="padding: 20px 40px;">
+                    <a class="waves-effect waves-light btn-large primary-color width-100 animated bouncein delay-6" href="javascript:sendToMail();">
                         发送行程单至邮箱/Email me agenda
                     </a>
+                    </div>--%>
+                    <div style="padding: 20px 40px;">
+                        <c:choose>
+                            <c:when test="${not empty signUp.name}">
+                                <a class="waves-effect waves-light btn-large primary-color width-100 animated bouncein delay-6" href="${_PATH}/meeting/join/${meeting.id}" id="toJoin">
+                                    编辑个人信息/Edit
+                                </a>
+                            </c:when>
+                            <c:otherwise>
+                                <a class="waves-effect waves-light btn-large primary-color width-100 animated bouncein delay-6" href="${_PATH}/meeting/join/${meeting.id}" id="toJoin">
+                                    登记注册/Register
+                                </a>
+                            </c:otherwise>
+                        </c:choose>
                     </div>
                 </div>
-                 <div style="padding: 20px 40px;">
-                     <c:choose>
-                         <c:when test="${not empty signUp.name}">
-                             <a class="waves-effect waves-light btn-large primary-color width-100 animated bouncein delay-6" href="${_PATH}/meeting/join/${meeting.id}">
-                               编辑个人信息/Edit
-                             </a>
-                         </c:when>
-                         <c:otherwise>
-                             <a class="waves-effect waves-light btn-large primary-color width-100 animated bouncein delay-6" href="${_PATH}/meeting/join/${meeting.id}">
-                               登记注册/Register
-                             </a>
-                         </c:otherwise>
-                     </c:choose>
-                 </div>
+
             </div>
             <!-- Footer -->
             <jsp:include page="../../common/pageFooter.jsp"></jsp:include>
@@ -186,15 +191,24 @@
         </div> <!-- End of Main Contents -->
 
         <script type="text/javascript">
+            function toEventAgenda() {
+                $('#eventAgenda').click();
+                $(window).scrollTop(0);
+            }
             $(function () {
+                if(window.sessionStorage && sessionStorage.getItem("dis2") == 'ss2') {
+                    sessionStorage.removeItem("dis2");
+                    setTimeout(toEventAgenda, 500);
+                }
+                $.fn.qtip.zindex = 100;
                 <c:if test="${_USER.hierarchy eq '1'}">
                 $('#eventAgenda').qtip({
-                    content: { text: '进入日程添加笔记<br/>Add notes in agenda' },
+                    content: { text: '添加笔记生成定制化日程/add notes to create customized schedule' },
                     position: {
                         my: 'bottom center',  // Position my top left...
                         at: 'bottom right', // at the bottom right of...
                         adjust: {
-                            x: -90,
+                            x: -96,
                             y: -40
                         }
                     },
@@ -204,12 +218,11 @@
                     }
                 });
                 $('#eventAgenda').click(function () {
-                    $('.current').trigger('click');
-//                    if(!localStorage.getItem('eventAgenda')) {
-//                        localStorage.setItem('eventAgenda', 'true');
-//                    }
+                    setTimeout(function () {
+                        $('.dot').trigger('click');
+                    },500);
                 });
-                $(document).on('click', 'body', function () {
+                $('a:not("#eventInfo")').click(function () {
                     $('.tip').qtip('toggle', false);
                 });
                 $('.tip').each(function () {
@@ -241,17 +254,20 @@
                         },
                         show: {
                             event: 'click', // Show it on click...
-                            solo: true, // ...and hide all other tooltips...
+                            solo: false, // ...and hide all other tooltips...
                             modal: false // ...and make it modal
                         },
                         hide: false,
+                        style: {
+                            classes: 'qtip-custom'
+                        },
                         events: {
                             render: function(event, api) {
                                 api.elements.tooltip.bind('click', function() {
                                     layer.prompt({
                                         title: '编辑笔记',
                                         value: $(this).text(),
-                                        maxlength: 30,
+                                        maxlength: 100,
                                         formType: 2,
                                         btn: ['保存', '取消', '删除'],
                                         btn2: function(){
