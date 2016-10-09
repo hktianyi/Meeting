@@ -36,7 +36,7 @@
                     <h4>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Thank you for your participation in 2016 Effie Festival. Scan the QR code below to follow our WeChat account. Please feel free to contact Lily He: +86 186-3257-8088 for further questions.</h4>
                     <div class="input-field animated fadeinright">
                         <input id="meetCode"  name="meetCode" type="text" class="validate">
-                        <label for="meetCode">请输入您的邀请码</label>
+                        <label for="meetCode">请输入您的邀请码/Please Enter Invitation Code</label>
                     </div>
                     <a class="waves-effect waves-light btn-large primary-color width-100 animated bouncein delay-6"
                        href="javascript:checkCode();">

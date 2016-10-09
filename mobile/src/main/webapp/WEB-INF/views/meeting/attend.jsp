@@ -149,7 +149,7 @@
               </select>
             </div>
             </c:if>
-            <c:if test="${_USER.hierarchy eq '1' || _USER.hierarchy eq '2' || _USER.hierarchy eq '3'}">
+            <c:if test="${_USER.hierarchy eq '1' || _USER.hierarchy eq '2'}">
             <div class="input-field animated fadeinright">
               <h5>自助午餐/Buffet Lunch:</h5>
               <select class="browser-default" name="schedule222" id="schedule222" rid="5">
@@ -168,6 +168,8 @@
                 <option value="0" ${ma.schedule223 eq '0' ? 'selected' : ''}>不参加/NO</option>
               </select>
             </div>
+            </c:if>
+            <c:if test="${_USER.hierarchy eq '1' || _USER.hierarchy eq '2' || _USER.hierarchy eq '3'}">
             <div class="input-field animated fadeinright">
               <h5>艾菲酒会/Effie Reception:</h5>
               <select class="browser-default" name="schedule231" id="schedule231" rid="7">
@@ -176,6 +178,8 @@
                 <option value="0" ${ma.schedule231 eq '0' ? 'selected' : ''}>不参加/NO</option>
               </select>
             </div>
+            </c:if>
+            <c:if test="${_USER.hierarchy eq '1' || _USER.hierarchy eq '2'}">
             <div class="input-field animated fadeinright">
               <h5>红毯秀/Red Carpet Show:</h5>
               <select class="browser-default" name="schedule232" id="schedule232" rid="8">
