@@ -144,7 +144,7 @@
       xAxis : [
         {
           type : 'category',
-          data : ["是否需要住宿","艾菲研讨会 Effie Seminar","自助午餐 Buffet Lunch","VIP欢迎晚宴 VIP Welcome Dinner","艾菲酒会 Effie Reception","红毯秀 Red Carpet Show","艾菲颁奖典礼 Effie Awards Gala","艾菲派对 Effie After Party","2016优秀案例赏析会 2016 Effie Forum","VIP午宴 VIP Luncheon"]
+          data : ["是否需要住宿","艾菲研讨会 Effie Seminar","自助午餐 Buffet Lunch","VIP欢迎晚宴 VIP Welcome Dinner","VIP自助午餐 VIP Buffet Lunch","艾菲酒会 Effie Reception","红毯秀 Red Carpet Show","艾菲颁奖典礼 Effie Awards Gala","艾菲派对 Effie After Party","2016优秀案例赏析会 2016 Effie Forum","VIP午宴 VIP Luncheon"]
         }
       ],
       yAxis : [
@@ -158,13 +158,13 @@
           name:'是',
           type:'bar',
           stack: '广告',
-          data:['${countStay1}', '${countSchedule2211}', '${countSchedule2221}', '${countSchedule2231}', '${countSchedule2311}', '${countSchedule2321}', '${countSchedule2331}', '${countSchedule2341}', '${countSchedule2411}', '${countSchedule2421}']
+          data:['${countStay1}', '${countSchedule2211}', '${countSchedule2221}', '${countSchedule2231}', '${countSchedule2301}', '${countSchedule2311}', '${countSchedule2321}', '${countSchedule2331}', '${countSchedule2341}', '${countSchedule2411}', '${countSchedule2421}']
         },
         {
           name:'否',
           type:'bar',
           stack: '广告',
-          data:['${countStay2}', '${countSchedule2212}', '${countSchedule2222}', '${countSchedule2232}', '${countSchedule2312}', '${countSchedule2322}', '${countSchedule2332}', '${countSchedule2342}', '${countSchedule2412}', '${countSchedule2422}']
+          data:['${countStay0}', '${countSchedule2210}', '${countSchedule2220}', '${countSchedule2230}', '${countSchedule2300}', '${countSchedule2310}', '${countSchedule2320}', '${countSchedule2330}', '${countSchedule2340}', '${countSchedule2410}', '${countSchedule2420}']
         }
       ]
     };

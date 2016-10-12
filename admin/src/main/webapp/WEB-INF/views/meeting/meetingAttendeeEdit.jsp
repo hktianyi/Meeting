@@ -230,6 +230,24 @@
                 </div>
               </div>
             </div>
+              <div class="row">
+                  <div class="col-md-6">
+                      <div class="form-group">
+                          <label class="control-label col-md-8">VIP自助午餐 VIP Buffet Lunch:</label>
+                          <div class="col-md-4">
+                              <p class="form-control-static">${data.schedule230 eq '1' ? '参加/YES' : '不参加/NO'}</p>
+                          </div>
+                      </div>
+                  </div>
+                  <div class="col-md-6">
+                      <div class="form-group">
+                          <label class="control-label col-md-2">备注:</label>
+                          <div class="col-md-9">
+                              <input type="text" class="form-control" name="remark10" value="${data.remark10}">
+                          </div>
+                      </div>
+                  </div>
+              </div>
             <div class="row">
               <div class="col-md-6">
                 <div class="form-group">

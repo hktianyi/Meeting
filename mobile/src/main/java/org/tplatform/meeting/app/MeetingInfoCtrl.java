@@ -285,6 +285,12 @@ public class MeetingInfoCtrl extends BaseCtrl {
 			}
 		}
 
+		if("0".equals(meetingAttendee.getSchedule230())) {
+			List list1 = list.stream().filter((obj) -> obj.getId() == 11).collect(Collectors.toList());
+			if(list1 != null && list1.size() > 0) {
+				list1.forEach((obj) -> list.remove(obj));
+			}
+		}
 		if("0".equals(meetingAttendee.getSchedule231())) {
 			List list1 = list.stream().filter((obj) -> obj.getId() == 5).collect(Collectors.toList());
 			if(list1 != null && list1.size() > 0) {
@@ -344,6 +350,7 @@ public class MeetingInfoCtrl extends BaseCtrl {
 				else if (meetingSchedule.getId() == 8) meetingSchedule.setHierarchy(finalMeetingAttendee.getRemark7());
 				else if (meetingSchedule.getId() == 9) meetingSchedule.setHierarchy(finalMeetingAttendee.getRemark8());
 				else if (meetingSchedule.getId() == 10) meetingSchedule.setHierarchy(finalMeetingAttendee.getRemark9());
+				else if (meetingSchedule.getId() == 11) meetingSchedule.setHierarchy(finalMeetingAttendee.getRemark10());
 			}
 
 			list1.add(meetingSchedule);
@@ -405,6 +412,12 @@ public class MeetingInfoCtrl extends BaseCtrl {
 			}
 		}
 
+    if("0".equals(meetingAttendee.getSchedule230())) {
+      List list1 = list.stream().filter((obj) -> obj.getId() == 11).collect(Collectors.toList());
+      if(list1 != null && list1.size() > 0) {
+        list1.forEach((obj) -> list.remove(obj));
+      }
+    }
 		if("0".equals(meetingAttendee.getSchedule231())) {
 			List list1 = list.stream().filter((obj) -> obj.getId() == 5).collect(Collectors.toList());
 			if(list1 != null && list1.size() > 0) {
@@ -466,6 +479,7 @@ public class MeetingInfoCtrl extends BaseCtrl {
 				else if (meetingSchedule.getId() == 8) meetingSchedule.setHierarchy(finalMeetingAttendee.getRemark7());
 				else if (meetingSchedule.getId() == 9) meetingSchedule.setHierarchy(finalMeetingAttendee.getRemark8());
 				else if (meetingSchedule.getId() == 10) meetingSchedule.setHierarchy(finalMeetingAttendee.getRemark9());
+				else if (meetingSchedule.getId() == 11) meetingSchedule.setHierarchy(finalMeetingAttendee.getRemark10());
 			}
 
 			list1.add(meetingSchedule);

@@ -168,6 +168,14 @@
                 <option value="0" ${ma.schedule223 eq '0' ? 'selected' : ''}>不参加/NO</option>
               </select>
             </div>
+              <div class="input-field animated fadeinright">
+                <h5>VIP自助午餐/VIP Buffet Lunch:</h5>
+                <select class="browser-default" name="schedule230" id="schedule230">
+                    <%--<option value="1">请选择...</option>--%>
+                  <option value="1" ${ma.schedule230 eq '1' ? 'selected' : ''}>参加/YES</option>
+                  <option value="0" ${ma.schedule230 eq '0' ? 'selected' : ''}>不参加/NO</option>
+                </select>
+              </div>
             </c:if>
             <c:if test="${_USER.hierarchy eq '1' || _USER.hierarchy eq '2' || _USER.hierarchy eq '3'}">
             <div class="input-field animated fadeinright">

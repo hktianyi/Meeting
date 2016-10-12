@@ -35,6 +35,7 @@ public class MeetingAttendee extends BaseEntity {
     private String schedule222; // 自助午餐 Buffet Lunch
     private String schedule223; // VIP欢迎晚宴 VIP Welcome Dinner
 
+    private String schedule230; // 艾菲酒会 Effie Reception
     private String schedule231; // 艾菲酒会 Effie Reception
     private String schedule232; // 红毯秀 Red Carpet Show
     private String schedule233; // 艾菲颁奖典礼 Effie Awards Gala
@@ -53,5 +54,6 @@ public class MeetingAttendee extends BaseEntity {
     private String remark7;
     private String remark8;
     private String remark9;
+    private String remark10;
 
 }

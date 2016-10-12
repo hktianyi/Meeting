@@ -36,6 +36,6 @@ public interface MeetingAttendeeMapper extends Mapper<MeetingAttendee> {
   @Update("UPDATE t_meeting_attendee SET remark0 = #{attendee.remark0}, remark1 = #{attendee.remark1}," +
       " remark2 = #{attendee.remark2}, remark3 = #{attendee.remark3}, remark4 = #{attendee.remark4}," +
       " remark5 = #{attendee.remark5}, remark6 = #{attendee.remark6}, remark7 = #{attendee.remark7}," +
-      " remark8 = #{attendee.remark8}, remark9 = #{attendee.remark9} WHERE id = #{attendee.id}")
+      " remark8 = #{attendee.remark8}, remark9 = #{attendee.remark9}, remark10 = #{attendee.remark10} WHERE id = #{attendee.id}")
   int saveRemark(@Param("attendee") MeetingAttendee attendee);
 }
