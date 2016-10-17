@@ -1,12 +1,17 @@
-var code = '';
-var $tips = $('#tips'), $name = $('#name'), $job = $('#job'), $company = $('#company'), $level = $('#level');
+var code = '', actionType = 'level';
+var $tips = $('#tips'), $name = $('#name'), $job = $('#job'), $company = $('#company'), $level = $('#level'), $schedule222 = $('#schedule222'), $schedule230 = $('#schedule230'), $schedule242 = $('#schedule242');
 var $qrcodeName = $('#qrcodeName'), $qrcodeImg = $('#qrcodeImg');
 $(function () {
     document.onkeypress = function (event) {
         if(event.code === 'Enter') {
+            if(code.length !== 6) {
+                code = '';
+                layer.msg('请重新扫码', {time:1000});
+                return;
+            }
             clearMemberInfo();
             console.info('扫码成功：' + code);
-            $.ajax(_PATH + '/attendee/viewData/' + code, {
+            $.ajax(_PATH + '/attendee/viewData/' + actionType + '/' + code, {
                 type: 'GET',
                 dataType: 'json',
                 success: function (resp) {
@@ -36,6 +41,9 @@ function clearMemberInfo() {
     $job.text(' ');
     $company.text(' ');
     $level.text('0');
+    $schedule222.text('0');
+    $schedule230.text('0');
+    $schedule242.text('0');
     $qrcodeImg.attr('src', _PATH + '/static/common/img/logo.png');
 }
 
@@ -51,6 +59,9 @@ function fillMemberInfo(member) {
 
             $qrcodeName.text(n_c(level) + ' ' + member.name);
             $level.text(level);
+            $schedule222.text(member.schedule222_c);
+            $schedule230.text(member.schedule230_c);
+            $schedule242.text(member.schedule242_c);
             $qrcodeImg.attr('src', 'http://effie.china-caa.org:81/qrcode/' + member.operator + '.jpg');
         } catch (e) {
             $company.text('嘉宾信息不完整');
@@ -60,6 +71,9 @@ function fillMemberInfo(member) {
     }
 }
 
+/**
+ * 打印二维码
+ */
 function printQRCode() {
     $("#qrCodePrintArea").show().print({
         globalStyles: false,
@@ -75,6 +89,16 @@ function printQRCode() {
         title: null,
         doctype: '<!doctype html>'
     });
+}
+
+/**
+ * 扫码行为切换
+ * @param type
+ */
+function ct(type) {
+    actionType = type;
+    $('#header nav a').removeClass('curr');
+    $('#'+actionType).parent().addClass('curr');
 }
 
 function n_c(level) {

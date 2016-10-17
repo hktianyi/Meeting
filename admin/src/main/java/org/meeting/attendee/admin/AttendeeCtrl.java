@@ -51,9 +51,14 @@ public class AttendeeCtrl extends BaseCtrl<MeetingAttendee> {
     return super.dir + "/view_" + type + ".jsp";
   }
 
-  @RequestMapping("/viewData/{id}")
+  @RequestMapping("/viewData/{actionType}/{id}")
   @ResponseBody
-  public RespBody viewData(@PathVariable("id") Long id) {
+  public RespBody viewData(@PathVariable("actionType") String actionType, @PathVariable("id") Long id) {
+    if("level".equalsIgnoreCase(actionType)) {
+      meetingCodeService.updateCodeAndAttendee(id.toString());
+    } else {
+      meetingAttendeeService.update(actionType, id);
+    }
     return RespBody.ok(baseService.find(id));
   }
 

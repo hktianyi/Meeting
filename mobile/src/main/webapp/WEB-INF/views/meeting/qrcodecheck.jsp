@@ -36,7 +36,7 @@
                         <center>
                             <h3>注册成功！请您妥善保存下方您的专属身份二维码，并于活动签到时出示以获得入场证。</h3>
                             <h3>Your registration is now complete! Please save your exclusive QR code ID below to present at our sign-up desk to collect your event pass.</h3>
-                            <img src="${qrCodeUrl}" style="width: 200px;" align="center" onerror="${_PATH}/static/img/qru6.jpg">
+                            <img src="${FILE_DOMAIN}/qrcode/${_USER.userName}.jpg" style="width: 200px;" align="center" onerror="${_PATH}/static/common/img/logo.png">
                         </center>
                           <div style="padding: 10px 40px;">
                             <a class="waves-effect waves-light btn-large primary-color width-100 animated bouncein delay-6" href="javascript:sendToMail();"
@@ -59,7 +59,7 @@
                         <center>
                             <h3>提交成功！请您妥善保存下方二维码，此码将是您参会的重要信息。</h3>
                             <h3>Your registration info has been successfully submitted! Please save the QR code for further entry use.</h3>
-                            <img src="${qrCodeUrl}" style="width: 200px;" align="center" onerror="${_PATH}/static/img/qru6.jpg">
+                            <img src="${FILE_DOMAIN}/qrcode/${_USER.userName}.jpg" style="width: 200px;" align="center" onerror="${_PATH}/static/common/img/logo.png">
                         </center>
                           <div style="padding: 10px 40px;">
                             <a class="waves-effect waves-light btn-large primary-color width-100 animated bouncein delay-6" href="javascript:sendToMail();"

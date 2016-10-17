@@ -5,7 +5,7 @@
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
-		<link rel="stylesheet" href="assets/css/main.css" />
+		<link rel="stylesheet" href="assets/css/main.css?v=10175" />
 		<!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
 		<!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
 		<style>
@@ -25,6 +25,9 @@
 				top: 0;
 				width: 2.5em;
 			}
+			.curr {
+				font-size: 1.2em
+			}
 		</style>
 	</head>
 	<body class="loading">
@@ -40,9 +43,10 @@
 						<p id="company">公司</p>
 						<nav>
 							<ul>
-								<li><a href="#" class="icon" title="VIP等级"><em id="level">0</em></a></li>
-								<li><a href="#" class="icon" title="22日自助餐次数"><em id="wc22">0</em></a></li>
-								<li><a href="#" class="icon" title="23日自助餐次数"><em id="wc23">0</em></a></li>
+								<li><a href="javascript:ct('level');" class="icon curr" title="VIP等级"><em id="level" style="border: dashed 2px #3f4136;">0</em></a></li>
+								<li><a href="javascript:ct('schedule222');" class="icon" title="22日自助餐次数"><em id="schedule222" style="border: solid 1px #f0e5a5;">0</em></a></li>
+								<li><a href="javascript:ct('schedule230');" class="icon" title="23日自助餐次数"><em id="schedule230" style="border: solid 1px #ebece1;">0</em></a></li>
+								<li><a href="javascript:ct('schedule242');" class="icon" title="24日自助餐次数"><em id="schedule242" style="border: solid 1px #dfbb7d;">0</em></a></li>
 								<li><a href="javascript:printQRCode();" class="icon fa-print" title="打印二维码"></a></li>
 								<li><a id="fullscreen" href="javascript:fullscreen();" class="icon fa-expand" title="全屏"></a></li>
 							</ul>
@@ -51,18 +55,19 @@
 
 				<!-- Footer -->
 					<footer id="footer">
-						<span class="copyright">&copy; 艾菲奖大中华区 2016实效节 <!--&nbsp;&nbsp;&nbsp;&nbsp;技术支持: 场地云--></span>
+						<span class="copyright">&copy; 艾菲奖大中华区 2016实效系列活动 <!--&nbsp;&nbsp;&nbsp;&nbsp;技术支持: 场地云--></span>
 					</footer>
 
 			</div>
 		</div>
-		<div id="qrCodePrintArea" style="display: none;width: 40mm;height: 30mm;">
+		<div id="qrCodePrintArea" style="display: none;">
 			<p style="margin: 0;padding: 0;"><img id="qrcodeImg" src="/admin/static/common/img/logo.png" width="80px" height="80px"></p>
-			<p id="qrcodeName" style="margin-top: -5px;padding-top: -5px;height: 10px;"></p>
+			<p id="qrcodeName" style="margin-top: -5px;padding-top: -5px;height: 10px;font-size: .2em"></p>
 		</div>
 		<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
 		<script src="../../plugins/jquery/jquery-2.2.2.min.js"></script>
 		<script src="../../plugins/jquery/jquery.print.js"></script>
+		<script src="../../plugins/layer/layer.js"></script>
 		<!--<script src="../../plugins/qtip2/jquery.qtip.min.js"></script>-->
 		<script src="../js/qrcode.js?v=10171"></script>
 		<script src="../js/fullscreen.js?v=10171"></script>

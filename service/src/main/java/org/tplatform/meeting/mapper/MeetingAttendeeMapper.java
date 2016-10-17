@@ -38,4 +38,7 @@ public interface MeetingAttendeeMapper extends Mapper<MeetingAttendee> {
       " remark5 = #{attendee.remark5}, remark6 = #{attendee.remark6}, remark7 = #{attendee.remark7}," +
       " remark8 = #{attendee.remark8}, remark9 = #{attendee.remark9}, remark10 = #{attendee.remark10} WHERE id = #{attendee.id}")
   int saveRemark(@Param("attendee") MeetingAttendee attendee);
+
+  @Update({"UPDATE t_meeting_attendee set ${actionType}_c = ${actionType}_c+1 where id = #{id}"})
+  int update(@Param("actionType") String actionType, @Param("id") Long id);
 }

@@ -36,6 +36,10 @@ public class MeetingAttendeeService extends BaseService<MeetingAttendee> {
     return meetingAttendeeMapper.count("status = '"+status.name()+"'");
   }
 
+  public boolean update(String actionType, Long id) {
+    return meetingAttendeeMapper.update(actionType, id) > 0;
+  }
+
   /**
    * 统计数量
    * @param where
