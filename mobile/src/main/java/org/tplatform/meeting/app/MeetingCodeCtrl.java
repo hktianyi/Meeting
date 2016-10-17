@@ -6,6 +6,7 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.tplatform.common.BaseCtrl;
 import org.tplatform.constant.GlobalConstant;
@@ -63,6 +64,12 @@ public class MeetingCodeCtrl extends BaseCtrl {
     }
 
 
+    /**
+     * 管理员使用微信扫码
+     * @param meetCode
+     * @param model
+     * @return
+     */
     @RequestMapping(value = "/validate/qrCode/{meetCode}")
     public String validate(@PathVariable String meetCode, ModelMap model){
         model.put("meetCode", meetCode);
@@ -77,6 +84,33 @@ public class MeetingCodeCtrl extends BaseCtrl {
             Logger.i("请管理员扫码签到: " + meetCode);
             return "/meeting/admin.jsp";
         }
+    }
+
+    /**
+     * 扫码器扫码
+     *
+     * @param meetCode
+     * @return
+     */
+    @RequestMapping(value = "/validateWGHL/qrCode")
+    @ResponseBody
+    public Map<String, Object> validateWGHL(@RequestParam(value = "vgdecoderesult", required = false) String meetCode, @RequestParam(value = "devicenumber", required = false) String devicenumber){
+        Map<String, Object> resp = new HashMap<>();
+        Logger.i("通过扫码器扫码签到: " + meetCode + ",  devicenumber: " + devicenumber);
+        meetCode = meetCode.replace("http://effie.china-caa.org/m/meetingcode/validate/qrCode/", "");
+        try {
+            if(meetingCodeService.updateCodeAndAttendee(meetCode)) {
+                Logger.i("签到成功:" + meetCode + ",  devicenumber: " + devicenumber);
+                resp.put("code", "0000");
+            } else {
+                Logger.i("签到失败:" + meetCode + ",  devicenumber: " + devicenumber);
+                resp.put("code", "400");
+            }
+        } catch (Exception e) {
+            Logger.e("签到异常" + meetCode + ",  devicenumber: " + devicenumber, e);
+            resp.put("code", "500");
+        }
+        return resp;
     }
 
 

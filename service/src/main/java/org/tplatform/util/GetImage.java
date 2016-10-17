@@ -35,9 +35,9 @@ public class GetImage {
    */
   public static void writeImageToDisk(byte[] img, String fileName) {
     try {
-      File file = new File("D:\\upload\\" + fileName);
+      File file = new File("/Users/tianyi/qrcodes/" + fileName);
       if(!file.exists()) {
-        new File("D:\\upload\\" + fileName.split("/")[1]).mkdir();
+        new File("/Users/tianyi/qrcodes").mkdir();
         file.createNewFile();
       }
       FileOutputStream fops = new FileOutputStream(file);

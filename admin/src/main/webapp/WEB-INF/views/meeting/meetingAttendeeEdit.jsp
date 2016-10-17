@@ -11,6 +11,9 @@
       <span>嘉宾信息</span>
     </li>
   </ul>
+  <div class="page-toolbar">
+    <a href="javascript:printQRCode();" class="btn btn-circle blue btn-outline btn-xs">打印二维码</a>
+  </div>
 </div>
 <div class="row">
   <div class="col-md-12">
@@ -356,6 +359,19 @@
                 </div>
               </div>
             </div>
+            <div class="row">
+              <div class="col-md-12">
+                <div class="form-group">
+                  <label class="control-label col-md-4">二维码:</label>
+                  <div class="col-md-8" id="qrCode">
+                    <p class="form-control-static">
+                      <img src="${qrCodeUrl}" width="80px"/>
+                      ${data.name}
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
           <div class="form-actions">
             <div class="row">
@@ -401,6 +417,22 @@
         layer.close(index);
         layer.alert('保存失败');
       }
+    });
+  }
+  function printQRCode() {
+    $("#qrCode").print({
+      globalStyles: false,
+      mediaPrint: false,
+      stylesheet: null,
+      noPrintSelector: ".no-print",
+      iframe: true,
+      append: null,
+      prepend: null,
+      manuallyCopyFormValues: false,
+      deferred: $.Deferred(),
+      timeout: 750,
+      title: null,
+      doctype: '<!doctype html>'
     });
   }
 </script>

@@ -19,7 +19,7 @@ public interface MeetingCodeMapper extends Mapper<MeetingCode> {
   @Select("SELECT * from t_meeting_code where meetCode = #{meetCode}")
   List<MeetingCode> findMeetByCode(@Param("meetCode") String meetCode);
 
-  @Select("select t1.id, t1.meetcode, t1.bizStatus, t2.status, t2.name, t2.mobile, t2.createTime from t_meeting_code t1 left join t_meeting_attendee t2 on t1.id = t2.operator order by t1.bizStatus desc, t1.id")
+  @Select("select t1.id, t1.meetcode, t1.bizStatus, t2.status, t2.name, t2.mobile, t2.createTime from t_meeting_code t1 left join t_meeting_attendee t2 on t1.id = t2.operator order by t2.status desc, t1.bizStatus desc, t1.id")
   List<Map<String, Object>> selectForAttendee();
 
   @Update({"UPDATE t_meeting_code set status = #{status} where meetcode = #{meetCode};",

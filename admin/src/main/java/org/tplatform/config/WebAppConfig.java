@@ -57,7 +57,7 @@ public class WebAppConfig implements WebApplicationInitializer {
 
     // 权限过滤
     FilterRegistration.Dynamic authenticationFilter = servletContext.addFilter("authenticationFilter", new AuthenticationFilter());
-    authenticationFilter.setInitParameter("urlRegex", "^/(login|static)+.*$");
+    authenticationFilter.setInitParameter("urlRegex", "^/(login|static|attendee/view)+.*$");
     authenticationFilter.addMappingForServletNames(EnumSet.of(DispatcherType.REQUEST), true, GlobalConstant.SYSTEM_SERVLET_NAME_SPRINGMVC);
 
     // druid数据源监控

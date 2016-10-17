@@ -5,12 +5,15 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import org.tplatform.common.BaseCtrl;
 import org.tplatform.common.ViewExcelXls;
+import org.tplatform.core.entity.RespBody;
 import org.tplatform.core.fsm.StatusEnum;
 import org.tplatform.meeting.entity.MeetingAttendee;
 import org.tplatform.meeting.service.MeetingAttendeeService;
+import org.tplatform.meeting.service.MeetingCodeService;
 
 import java.util.stream.Collectors;
 
@@ -23,6 +26,36 @@ public class AttendeeCtrl extends BaseCtrl<MeetingAttendee> {
 
   @Autowired
   private MeetingAttendeeService meetingAttendeeService;
+  @Autowired
+  private MeetingCodeService meetingCodeService;
+
+  @Override
+  protected void editHook(Long id, ModelMap modelMap) {
+    if (id != null) {
+      MeetingAttendee meetingAttendee = baseService.find(id);
+      modelMap.put("data", meetingAttendee);
+      modelMap.put("qrCodeUrl", meetingCodeService.geneQrcode(id.toString()));
+    }
+  }
+
+  @RequestMapping("/viewAll")
+  public String viewAll(ModelMap modelMap) {
+    MeetingAttendee meetingAttendee = new MeetingAttendee();
+    meetingAttendee.setStatus(StatusEnum.COMMIT);
+    modelMap.addAttribute("dataList", meetingAttendeeService.find(meetingAttendee));
+    return super.dir + "/view_all.jsp";
+  }
+
+  @RequestMapping("/view/{type}")
+  public String view(@PathVariable("type") String type) {
+    return super.dir + "/view_" + type + ".jsp";
+  }
+
+  @RequestMapping("/viewData/{id}")
+  @ResponseBody
+  public RespBody viewData(@PathVariable("id") Long id) {
+    return RespBody.ok(baseService.find(id));
+  }
 
   /**
    * 导出

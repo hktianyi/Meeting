@@ -1,0 +1,97 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>艾菲大中华区 2016实效节</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
+		<!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
+		<style>
+			#header nav a em {
+				-moz-transition: all 0.2s ease-in-out;
+				-webkit-transition: all 0.2s ease-in-out;
+				-ms-transition: all 0.2s ease-in-out;
+				transition: all 0.2s ease-in-out;
+				border-radius: 100%;
+				border: solid 1px #fff;
+				display: block;
+				font-size: 1.75em;
+				height: 2.5em;
+				line-height: 2.5em;
+				position: relative;
+				text-align: center;
+				top: 0;
+				width: 2.5em;
+			}
+		</style>
+	</head>
+	<body class="loading">
+		<div id="wrapper">
+			<div id="bg" class="bganimation"></div>
+			<!--<div id="overlay"></div>-->
+			<div id="main">
+
+				<!-- Header -->
+					<header id="header">
+						<h1 id="name">嘉宾姓名</h1>
+						<p id="job">职称</p>
+						<p id="company">公司</p>
+						<nav>
+							<ul>
+								<li><a href="#" class="icon" title="VIP等级"><em id="level">0</em></a></li>
+								<li><a href="#" class="icon" title="22日自助餐次数"><em id="wc22">0</em></a></li>
+								<li><a href="#" class="icon" title="23日自助餐次数"><em id="wc23">0</em></a></li>
+								<li><a href="javascript:printQRCode();" class="icon fa-print" title="打印二维码"></a></li>
+								<li><a id="fullscreen" href="javascript:fullscreen();" class="icon fa-expand" title="全屏"></a></li>
+							</ul>
+						</nav>
+					</header>
+
+				<!-- Footer -->
+					<footer id="footer">
+						<span class="copyright">&copy; 艾菲奖大中华区 2016实效节 <!--&nbsp;&nbsp;&nbsp;&nbsp;技术支持: 场地云--></span>
+					</footer>
+
+			</div>
+		</div>
+		<div id="qrCodePrintArea" style="display: none;width: 40mm;height: 30mm;">
+			<p style="margin: 0;padding: 0;"><img id="qrcodeImg" src="/admin/static/common/img/logo.png" width="80px" height="80px"></p>
+			<p id="qrcodeName" style="margin-top: -5px;padding-top: -5px;height: 10px;"></p>
+		</div>
+		<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
+		<script src="../../plugins/jquery/jquery-2.2.2.min.js"></script>
+		<script src="../../plugins/jquery/jquery.print.js"></script>
+		<!--<script src="../../plugins/qtip2/jquery.qtip.min.js"></script>-->
+		<script src="../js/qrcode.js?v=10171"></script>
+		<script src="../js/fullscreen.js?v=10171"></script>
+		<script>
+			var _PATH = '/admin';
+			var bg = $('#bg');
+			$(function () {
+//				$('a[title]').qtip();
+				$(window).blur(function(){
+					bg.removeClass('bganimation');
+				});
+				$(window).focus(function(){
+					bg.addClass('bganimation');
+				});
+			});
+			function fullscreen() {
+				var btn = $('#fullscreen');
+				if(btn.hasClass('fa-expand')) {
+					btn.removeClass('fa-expand').addClass('fa-compress');
+					$(document.documentElement).fullscreen();
+				} else {
+					btn.removeClass('fa-compress').addClass('fa-expand');
+					$(document.documentElement).exitFullscreen();
+				}
+			}
+
+			window.onload = function() { document.body.className = ''; }
+			window.ontouchmove = function() { return false; }
+			window.onorientationchange = function() { document.body.scrollTop = 0; }
+		</script>
+	</body>
+</html>

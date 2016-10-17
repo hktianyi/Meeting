@@ -37,6 +37,7 @@
 <script src="${_PATH}/static/common/js/layout.min.js" type="text/javascript"></script>
 <script src="${_PATH}/static/common/js/demo.min.js" type="text/javascript"></script>
 <script src="${_PATH}/static/common/js/quick-sidebar.js" type="text/javascript"></script>
+<script src="${_PATH}/static/plugins/jquery/jquery.print.js" type="text/javascript"></script>
 <!-- END THEME LAYOUT SCRIPTS -->
 <script src="${_PATH}/static/plugins/jquery-validation/jquery.validate.min.js" type="text/javascript"></script>
 <script src="${_PATH}/static/plugins/jquery-validation/additional-methods.min.js" type="text/javascript"></script>

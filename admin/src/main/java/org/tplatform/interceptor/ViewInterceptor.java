@@ -38,7 +38,8 @@ public class ViewInterceptor {
   public Object after(ProceedingJoinPoint pjp) throws Throwable {
     HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
     String viewName = String.valueOf(pjp.proceed());
-    if (viewName != null && !"/login.jsp".equals(viewName) && !"/main.jsp".equals(viewName) && viewName.matches("^/.*\\.jsp$")) {
+    if (viewName != null && !"/login.jsp".equals(viewName) && !"/main.jsp".equals(viewName) && viewName.matches("^/.*\\.jsp$")
+        && !viewName.startsWith("/meeting/view_")) {
       request.setAttribute("body", viewName);
       String layer = request.getParameter("layer");
       if (StringUtil.isEmpty(layer)) viewName = "/main.jsp";
