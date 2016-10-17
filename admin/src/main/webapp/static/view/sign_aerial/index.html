@@ -5,7 +5,7 @@
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
-		<link rel="stylesheet" href="assets/css/main.css?v=10175" />
+		<link rel="stylesheet" href="assets/css/main.css?v=10176" />
 		<!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
 		<!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
 		<style>
@@ -60,16 +60,16 @@
 
 			</div>
 		</div>
-		<div id="qrCodePrintArea" style="display: none;">
-			<p style="margin: 0;padding: 0;"><img id="qrcodeImg" src="/admin/static/common/img/logo.png" width="80px" height="80px"></p>
-			<p id="qrcodeName" style="margin-top: -5px;padding-top: -5px;height: 10px;font-size: .2em"></p>
+		<div id="qrCodePrintArea" style="display: none;height: 10px">
+			<img id="qrcodeImg" src="/admin/static/common/img/logo.png" width="80px" height="80px" style="clear: both;display: block;margin:auto;margin-top:-10px;z-index: -2;">
+			<span id="qrcodeName" style="font-size: .2em;color: #333;display: block;text-align: center;margin-top:0;z-index: -1;"></span>
 		</div>
 		<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
 		<script src="../../plugins/jquery/jquery-2.2.2.min.js"></script>
 		<script src="../../plugins/jquery/jquery.print.js"></script>
 		<script src="../../plugins/layer/layer.js"></script>
 		<!--<script src="../../plugins/qtip2/jquery.qtip.min.js"></script>-->
-		<script src="../js/qrcode.js?v=10171"></script>
+		<script src="../js/qrcode.js?v=10172"></script>
 		<script src="../js/fullscreen.js?v=10171"></script>
 		<script>
 			var _PATH = '/admin';
@@ -82,8 +82,21 @@
 				$(window).focus(function(){
 					bg.addClass('bganimation');
 				});
+				bg.click(function () {
+					bg.addClass('bganimation');
+				});
+				$('#header p').click(function () {
+					bg.addClass('bganimation');
+				});
+				$('#footer').click(function () {
+					bg.addClass('bganimation');
+				});
+				$('#name').click(function () {
+					bg.addClass('bganimation');
+				});
 			});
 			function fullscreen() {
+				bg.removeClass('bganimation');
 				var btn = $('#fullscreen');
 				if(btn.hasClass('fa-expand')) {
 					btn.removeClass('fa-expand').addClass('fa-compress');

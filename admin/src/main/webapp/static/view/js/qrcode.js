@@ -75,6 +75,7 @@ function fillMemberInfo(member) {
  * 打印二维码
  */
 function printQRCode() {
+    bg.removeClass('bganimation');
     $("#qrCodePrintArea").show().print({
         globalStyles: false,
         mediaPrint: false,
@@ -97,6 +98,7 @@ function printQRCode() {
  */
 function ct(type) {
     actionType = type;
+    bg.removeClass('bganimation');
     $('#header nav a').removeClass('curr');
     $('#'+actionType).parent().addClass('curr');
 }
