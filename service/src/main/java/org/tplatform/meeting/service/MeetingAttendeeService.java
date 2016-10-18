@@ -40,6 +40,10 @@ public class MeetingAttendeeService extends BaseService<MeetingAttendee> {
     return meetingAttendeeMapper.update(actionType, id) > 0;
   }
 
+  public List<MeetingAttendee> search(String keyword) {
+    return meetingAttendeeMapper.search(keyword);
+  }
+
   /**
    * 统计数量
    * @param where

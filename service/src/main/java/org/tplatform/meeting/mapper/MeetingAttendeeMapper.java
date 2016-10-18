@@ -41,4 +41,7 @@ public interface MeetingAttendeeMapper extends Mapper<MeetingAttendee> {
 
   @Update({"UPDATE t_meeting_attendee set ${actionType}_c = ${actionType}_c+1 where id = #{id}"})
   int update(@Param("actionType") String actionType, @Param("id") Long id);
+
+  @Select("SELECT * FROM t_meeting_attendee WHERE id LIKE \"%\"#{keyword}\"%\" OR name LIKE \"%\"#{keyword}\"%\" OR mobile LIKE \"%\"#{keyword}\"%\"")
+  List<MeetingAttendee> search(@Param("keyword") String keyword);
 }

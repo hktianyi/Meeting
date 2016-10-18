@@ -5,6 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import org.tplatform.common.BaseCtrl;
@@ -60,6 +61,12 @@ public class AttendeeCtrl extends BaseCtrl<MeetingAttendee> {
       meetingAttendeeService.update(actionType, id);
     }
     return RespBody.ok(baseService.find(id));
+  }
+
+  @RequestMapping("/search")
+  @ResponseBody
+  public RespBody search(@RequestParam("keyword") String keyword) {
+    return RespBody.ok(meetingAttendeeService.search(keyword));
   }
 
   /**

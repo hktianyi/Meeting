@@ -4,21 +4,12 @@ var $qrcodeName = $('#qrcodeName'), $qrcodeImg = $('#qrcodeImg');
 $(function () {
     document.onkeypress = function (event) {
         if(event.code === 'Enter') {
-            if(code.length !== 6) {
+            if(!isOpen && code.length !== 6) {
                 code = '';
                 layer.msg('请重新扫码', {time:1000});
                 return;
             }
-            clearMemberInfo();
-            console.info('扫码成功：' + code);
-            $.ajax(_PATH + '/attendee/viewData/' + actionType + '/' + code, {
-                type: 'GET',
-                dataType: 'json',
-                success: function (resp) {
-                    fillMemberInfo(resp.data);
-                }
-            });
-            code = '';
+            search(event);
         } else if(/^Digit\d$/.test(event.code)) {
             code += event.key;
         // } else if(event.keyCode === 99) {
@@ -34,6 +25,20 @@ $(function () {
     //     $tips.removeClass('note-danger').addClass('note-info').text('嘉宾信息');
     // });
 });
+
+function search(event){
+    if(event) event.preventDefault();
+    clearMemberInfo();
+    console.info('扫码成功：' + code);
+    $.ajax(_PATH + '/attendee/viewData/' + actionType + '/' + code, {
+        type: 'GET',
+        dataType: 'json',
+        success: function (resp) {
+            fillMemberInfo(resp.data);
+        }
+    });
+    code = '';
+}
 
 function clearMemberInfo() {
     $name.text('扫码成功，正在加载嘉宾信息...');
