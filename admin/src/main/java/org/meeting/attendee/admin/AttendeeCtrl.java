@@ -63,7 +63,7 @@ public class AttendeeCtrl extends BaseCtrl<MeetingAttendee> {
     return RespBody.ok(baseService.find(id));
   }
 
-  @RequestMapping("/search")
+  @RequestMapping("/view_s")
   @ResponseBody
   public RespBody search(@RequestParam("keyword") String keyword) {
     return RespBody.ok(meetingAttendeeService.search(keyword));

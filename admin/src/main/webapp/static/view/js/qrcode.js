@@ -9,7 +9,7 @@ $(function () {
                 layer.msg('请重新扫码', {time:1000});
                 return;
             }
-            search(event);
+            viewData(event);
         } else if(/^Digit\d$/.test(event.code)) {
             code += event.key;
         // } else if(event.keyCode === 99) {
@@ -26,7 +26,7 @@ $(function () {
     // });
 });
 
-function search(event){
+function viewData(event){
     if(event) event.preventDefault();
     clearMemberInfo();
     console.info('扫码成功：' + code);
@@ -38,6 +38,26 @@ function search(event){
         }
     });
     code = '';
+}
+
+function search(keyword){
+    code = '';
+    clearMemberInfo();
+    $.ajax(_PATH + '/attendee/view_s?keyword=' + keyword, {
+        type: 'GET',
+        dataType: 'json',
+        success: function (resp) {
+            if (!resp.data) {
+                $name.text('未搜索到嘉宾');
+            } else if (resp.data.length === 0) {
+                $name.text('未搜索到嘉宾');
+            } else if (resp.data.length === 1) {
+                fillMemberInfo(resp.data[0]);
+            } else {
+                $name.text('搜索到多位嘉宾，请从搜索狂下方的搜索结果中选择一位');
+            }
+        }
+    });
 }
 
 function clearMemberInfo() {
@@ -69,7 +89,7 @@ function fillMemberInfo(member) {
             $schedule242.text(member.schedule242_c);
             $qrcodeImg.attr('src', 'http://effie.china-caa.org:81/qrcode/' + member.operator + '.jpg');
         } catch (e) {
-            $company.text('嘉宾信息不完整');
+            $name.text('嘉宾信息不完整');
         }
     } else {
         $name.text('无信息');

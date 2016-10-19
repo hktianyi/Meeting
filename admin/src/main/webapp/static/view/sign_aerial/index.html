@@ -98,6 +98,11 @@
             .searchbox-open{
                 width:100%;
             }
+
+			.autocomplete-suggestions {
+				background:#dcddd8;
+				color: #a48648;
+			}
         </style>
 	</head>
 	<body class="loading">
@@ -123,8 +128,7 @@
 						</nav>
                         <div class="container">
                             <form class="searchbox">
-                                <input type="search" placeholder="邀请码 | 姓名 | 手机号" name="search" class="searchbox-input" onkeyup="buttonUp();">
-                                <span class="searchbox-submit" onclick="search();"><i class="fa fa-send"></i></span>
+                                <input type="search" placeholder="邀请码 | 姓名 | 手机号" name="search" class="searchbox-input">
                                 <span class="searchbox-icon"><i class="fa fa-search"></i></span>
                             </form>
                         </div>
@@ -139,8 +143,8 @@
 			</div>
 		</div>
 		<div id="qrCodePrintArea" style="display: none;height: 10px">
-			<img id="qrcodeImg" src="/admin/static/common/img/logo.png" width="80px" height="80px" style="clear: both;display: block;margin:auto;margin-top:-10px;z-index: -2;">
-			<span id="qrcodeName" style="font-size: .2em;color: #333;display: block;text-align: center;margin-top:0;z-index: -1;"></span>
+			<img id="qrcodeImg" src="/admin/static/common/img/logo.png" width="80px" height="80px" style="clear: both;display: block;margin:auto;margin-top:-5px;z-index: -2;">
+			<span id="qrcodeName" style="font-size: .2em;color: #333;display: block;text-align: center;margin-top:-3px;z-index: -1;"></span>
 		</div>
 		<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
 		<script src="../../plugins/jquery/jquery-2.2.2.min.js"></script>
@@ -161,18 +165,18 @@
 				$(window).focus(function(){
 					bg.addClass('bganimation');
 				});
-				bg.click(function () {
-					bg.addClass('bganimation');
-				});
-				$('#header p').click(function () {
-					bg.addClass('bganimation');
-				});
-				$('#footer').click(function () {
-					bg.addClass('bganimation');
-				});
-				$('#name').click(function () {
-					bg.addClass('bganimation');
-				});
+//				bg.click(function () {
+//					bg.addClass('bganimation');
+//				});
+//				$('#header p').click(function () {
+//					bg.addClass('bganimation');
+//				});
+//				$('#footer').click(function () {
+//					bg.addClass('bganimation');
+//				});
+//				$('#name').click(function () {
+//					bg.addClass('bganimation');
+//				});
 			});
 
             var isOpen = false;
@@ -181,56 +185,56 @@
                 var inputBox = $('.searchbox-input');
                 var searchBox = $('.searchbox');
                 submitIcon.click(function(){
-                    code = '';
                     if(isOpen == false){
                         searchBox.addClass('searchbox-open');
                         inputBox.focus();
                         isOpen = true;
+						// 暂停背景滚动
+						bg.removeClass('bganimation');
                     } else {
-                        searchBox.removeClass('searchbox-open');
-                        inputBox.focusout();
-                        isOpen = false;
+						if(inputBox.val()) {
+							if(code.length !== 6) search(inputBox.val());
+							else viewData();
+						} else {
+							searchBox.removeClass('searchbox-open');
+							inputBox.focusout();
+							isOpen = false;
+							// 滚动背景
+							bg.addClass('bganimation');
+						}
                     }
                 });
-                submitIcon.mouseup(function(){
-                    return false;
-                });
-                searchBox.mouseup(function(){
-                    return false;
-                });
-                $(document).mouseup(function(){
+                $(document).mouseup(function(e){
+					// 点击输入框区域 不做任何动作
+					if(e.target.className && (e.target.className.indexOf('search')>-1 || e.target.className.indexOf('autocomplete-suggestion')>-1)) return;
                     if(isOpen == true){
-                        $('.searchbox-icon').css('display','block');
-                        submitIcon.click();
+						code = '';
+						inputBox.val('');
+						searchBox.removeClass('searchbox-open');
+						inputBox.focusout();
+						isOpen = false;
                     }
+					// 滚动背景
+					var tagName = e.target.tagName.toLocaleLowerCase();
+					if(tagName !== 'em' && tagName !== 'a') bg.addClass('bganimation');
                 });
                 inputBox.autocomplete({
-                    serviceUrl: _PATH + '/attendee/search',
+                    serviceUrl: _PATH + '/attendee/view_s',
                     paramName: 'keyword',
+					dataType: 'json',
                     transformResult: function(resp) {
-                        console.log(resp);
                         return {
                             suggestions: $.map(resp.data, function(dataItem) {
-                                console.log(dataItem);
-                                return { value: dataItem.valueField, data: dataItem.dataField };
+                                return { value: dataItem.name, data: dataItem.operator };
                             })
                         };
                     },
                     onSelect: function (suggestion) {
-                        alert('You selected: ' + suggestion.value + ', ' + suggestion.data);
+						code = suggestion.data;
+                        console.log('You selected: ' + suggestion.value + ', ' + suggestion.data);
                     }
                 });
             });
-            function buttonUp(){
-                var inputVal = $('.searchbox-input').val();
-                inputVal = $.trim(inputVal).length;
-                if( inputVal !== 0){
-                    $('.searchbox-icon').css('display','none');
-                } else {
-                    $('.searchbox-input').val('');
-                    $('.searchbox-icon').css('display','block');
-                }
-            }
 
 			function fullscreen() {
 				bg.removeClass('bganimation');
