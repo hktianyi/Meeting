@@ -1,15 +1,23 @@
 var code = '', actionType = 'level';
-var $tips = $('#tips'), $name = $('#name'), $job = $('#job'), $company = $('#company'), $level = $('#level'), $schedule222 = $('#schedule222'), $schedule230 = $('#schedule230'), $schedule242 = $('#schedule242');
+var $name = $('#name'), $job = $('#job'), $company = $('#company'), $level = $('#level'), $schedule222 = $('#schedule222'), $schedule230 = $('#schedule230'), $schedule242 = $('#schedule242');
 var $qrcodeName = $('#qrcodeName'), $qrcodeImg = $('#qrcodeImg');
 $(function () {
     document.onkeypress = function (event) {
-        if(event.code === 'Enter') {
-            if(!isOpen && code.length !== 6) {
+        if(event.keyCode === 13) {
+            event.preventDefault();
+            if (isOpen) {
+                if(code || inputBox.val()) {
+                    if(code.length !== 6) search(inputBox.val());
+                    else viewData();
+                } else {
+                    layer.msg('请输入查询内容', {time:1000});
+                }
+            } else if (code.length !== 6) {
                 code = '';
                 layer.msg('请重新扫码', {time:1000});
-                return;
+            } else {
+                viewData(event);
             }
-            viewData(event);
         } else if(/^Digit\d$/.test(event.code)) {
             code += event.key;
         // } else if(event.keyCode === 99) {
@@ -18,12 +26,6 @@ $(function () {
         //     alert(code);
         }
     };
-    // $(window).blur(function(){
-    //     $tips.removeClass('note-info').addClass('note-danger').text('请注意！！！ 当前窗口不是激活窗口，无法正常扫码，请点击一下浏览器。');
-    // });
-    // $(window).focus(function(){
-    //     $tips.removeClass('note-danger').addClass('note-info').text('嘉宾信息');
-    // });
 });
 
 function viewData(event){
@@ -100,7 +102,7 @@ function fillMemberInfo(member) {
  * 打印二维码
  */
 function printQRCode() {
-    bg.removeClass('bganimation');
+    $('#btnPrint').blur();
     $("#qrCodePrintArea").show().print({
         globalStyles: false,
         mediaPrint: false,
@@ -122,8 +124,8 @@ function printQRCode() {
  * @param type
  */
 function ct(type) {
+    $('#btn' + type).blur();
     actionType = type;
-    bg.removeClass('bganimation');
     $('#header nav a').removeClass('curr');
     $('#'+actionType).parent().addClass('curr');
 }

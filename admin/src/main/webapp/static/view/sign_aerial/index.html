@@ -5,7 +5,7 @@
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
-		<link rel="stylesheet" href="assets/css/main.css?v=10176" />
+		<link rel="stylesheet" href="assets/css/main.css?v=10201" />
 		<!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
 		<!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
 		<style>
@@ -118,11 +118,11 @@
 						<p id="company">公司</p>
 						<nav>
 							<ul>
-								<li><a href="javascript:ct('level');" class="icon curr" title="VIP等级"><em id="level" style="border: dashed 2px #3f4136;">0</em></a></li>
-								<li><a href="javascript:ct('schedule222');" class="icon" title="22日自助餐次数"><em id="schedule222" style="border: solid 1px #f0e5a5;">0</em></a></li>
-								<li><a href="javascript:ct('schedule230');" class="icon" title="23日自助餐次数"><em id="schedule230" style="border: solid 1px #ebece1;">0</em></a></li>
-								<li><a href="javascript:ct('schedule242');" class="icon" title="24日自助餐次数"><em id="schedule242" style="border: solid 1px #dfbb7d;">0</em></a></li>
-								<li><a href="javascript:printQRCode();" class="icon fa-print" title="打印二维码"></a></li>
+								<li><a id="btnlevel" href="javascript:ct('level');" class="icon curr" title="VIP等级"><em id="level" style="border: dashed 2px #3f4136;">0</em></a></li>
+								<li><a id="btnschedule222" href="javascript:ct('schedule222');" class="icon" title="22日自助餐次数"><em id="schedule222" style="border: solid 1px #f0e5a5;">0</em></a></li>
+								<li><a id="btnschedule230" href="javascript:ct('schedule230');" class="icon" title="23日自助餐次数"><em id="schedule230" style="border: solid 1px #ebece1;">0</em></a></li>
+								<li><a id="btnschedule242" href="javascript:ct('schedule242');" class="icon" title="24日自助餐次数"><em id="schedule242" style="border: solid 1px #dfbb7d;">0</em></a></li>
+								<li><a id="btnPrint" href="javascript:printQRCode();" class="icon fa-print" title="打印二维码"></a></li>
 								<li><a id="fullscreen" href="javascript:fullscreen();" class="icon fa-expand" title="全屏"></a></li>
 							</ul>
 						</nav>
@@ -151,7 +151,7 @@
 		<script src="../../plugins/jquery/jquery.print.js"></script>
 		<script src="../../plugins/layer/layer.js"></script>
 		<!--<script src="../../plugins/qtip2/jquery.qtip.min.js"></script>-->
-		<script src="../js/qrcode.js?v=10172"></script>
+		<script src="../js/qrcode.js?v=10201"></script>
 		<script src="../js/fullscreen.js?v=10171"></script>
 		<script src="../js/jquery.autocomplete.js"></script>
 		<script>
@@ -180,10 +180,10 @@
 			});
 
             var isOpen = false;
+			var submitIcon = $('.searchbox-icon');
+			var inputBox = $('.searchbox-input');
+			var searchBox = $('.searchbox');
             $(document).ready(function(){
-                var submitIcon = $('.searchbox-icon');
-                var inputBox = $('.searchbox-input');
-                var searchBox = $('.searchbox');
                 submitIcon.click(function(){
                     if(isOpen == false){
                         searchBox.addClass('searchbox-open');
@@ -237,8 +237,8 @@
             });
 
 			function fullscreen() {
-				bg.removeClass('bganimation');
 				var btn = $('#fullscreen');
+				btn.blur();
 				if(btn.hasClass('fa-expand')) {
 					btn.removeClass('fa-expand').addClass('fa-compress');
 					$(document.documentElement).fullscreen();

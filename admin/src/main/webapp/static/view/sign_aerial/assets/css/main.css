@@ -172,10 +172,10 @@
 /* BG */
 
 	.bganimation {
-		-moz-animation: bg 60s linear infinite;
-		-webkit-animation: bg 60s linear infinite;
-		-ms-animation: bg 60s linear infinite;
-		animation: bg 60s linear infinite;
+		-moz-animation: bg 20s linear infinite;
+		-webkit-animation: bg 20s linear infinite;
+		-ms-animation: bg 20s linear infinite;
+		animation: bg 20s linear infinite;
 	}
 
 	#bg {
