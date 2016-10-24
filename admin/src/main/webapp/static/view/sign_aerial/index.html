@@ -122,6 +122,7 @@
 								<li><a id="btnschedule222" href="javascript:ct('schedule222');" class="icon" title="22日自助餐次数"><em id="schedule222" style="border: solid 1px #f0e5a5;">0</em></a></li>
 								<li><a id="btnschedule230" href="javascript:ct('schedule230');" class="icon" title="23日自助餐次数"><em id="schedule230" style="border: solid 1px #ebece1;">0</em></a></li>
 								<li><a id="btnschedule242" href="javascript:ct('schedule242');" class="icon" title="24日自助餐次数"><em id="schedule242" style="border: solid 1px #dfbb7d;">0</em></a></li>
+								<li><a id="btnPrintCount" href="javascript:;" class="icon" title="24日自助餐次数"><em id="emPrintCount" style="border: solid 1px #dfbb7d;">0</em></a></li>
 								<li><a id="btnPrint" href="javascript:printQRCode();" class="icon fa-print" title="打印二维码"></a></li>
 								<li><a id="fullscreen" href="javascript:fullscreen();" class="icon fa-expand" title="全屏"></a></li>
 							</ul>
@@ -151,7 +152,7 @@
 		<script src="../../plugins/jquery/jquery.print.js"></script>
 		<script src="../../plugins/layer/layer.js"></script>
 		<!--<script src="../../plugins/qtip2/jquery.qtip.min.js"></script>-->
-		<script src="../js/qrcode.js?v=10201"></script>
+		<script src="../js/qrcode.js?v=10221"></script>
 		<script src="../js/fullscreen.js?v=10171"></script>
 		<script src="../js/jquery.autocomplete.js"></script>
 		<script>
@@ -165,6 +166,14 @@
 				$(window).focus(function(){
 					bg.addClass('bganimation');
 				});
+				if(new Date().getHours() > 10 || new Date().getHours() < 14) {
+					switch (new Date().getDate()) {
+						case 22: ct('schedule222'); break;
+						case 23: ct('schedule230'); break;
+						case 24: ct('schedule242'); break;
+						default: break;
+					}
+				}
 //				bg.click(function () {
 //					bg.addClass('bganimation');
 //				});

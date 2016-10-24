@@ -1,5 +1,5 @@
-var code = '', actionType = 'level';
-var $name = $('#name'), $job = $('#job'), $company = $('#company'), $level = $('#level'), $schedule222 = $('#schedule222'), $schedule230 = $('#schedule230'), $schedule242 = $('#schedule242');
+var code = '', actionType = 'level', attend_id = 0;
+var $name = $('#name'), $job = $('#job'), $company = $('#company'), $level = $('#level'), $schedule222 = $('#schedule222'), $schedule230 = $('#schedule230'), $schedule242 = $('#schedule242'), $emPrintCount = $('#emPrintCount');
 var $qrcodeName = $('#qrcodeName'), $qrcodeImg = $('#qrcodeImg');
 $(function () {
     document.onkeypress = function (event) {
@@ -71,13 +71,14 @@ function clearMemberInfo() {
     $schedule222.text('0');
     $schedule230.text('0');
     $schedule242.text('0');
+    $emPrintCount.text('0');
     $qrcodeImg.attr('src', _PATH + '/static/common/img/logo.png');
 }
 
 function fillMemberInfo(member) {
     if(member) {
-        console.info(member);
         try {
+            attend_id = member.id;
             $name.text(member.name);
             $job.text(member.title);
             $company.text(member.company);
@@ -89,7 +90,8 @@ function fillMemberInfo(member) {
             $schedule222.text(member.schedule222_c);
             $schedule230.text(member.schedule230_c);
             $schedule242.text(member.schedule242_c);
-            $qrcodeImg.attr('src', 'http://effie.china-caa.org:81/qrcode/' + member.operator + '.jpg');
+            $emPrintCount.text(member.print_c);
+            $qrcodeImg.attr('src', 'http://192.168.0.101/qrcode/' + member.operator + '.jpg');
         } catch (e) {
             $name.text('嘉宾信息不完整');
         }
@@ -116,6 +118,14 @@ function printQRCode() {
         timeout: 750,
         title: null,
         doctype: '<!doctype html>'
+    });
+    $.ajax(_PATH + '/attendee/view_pc/' + attend_id, {
+        type: 'GET',
+        dataType: 'json',
+        success: function (resp) {
+            // fillMemberInfo(resp.data);
+            $emPrintCount.text(resp.data.print_c);
+        }
     });
 }
 

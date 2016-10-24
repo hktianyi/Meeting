@@ -63,6 +63,14 @@ public class AttendeeCtrl extends BaseCtrl<MeetingAttendee> {
     return RespBody.ok(baseService.find(id));
   }
 
+
+  @RequestMapping("/view_pc/{id}")
+  @ResponseBody
+  public RespBody printCount(@PathVariable("id") Long id) {
+    meetingAttendeeService.update("print", id);
+    return RespBody.ok(baseService.find(id));
+  }
+
   @RequestMapping("/view_s")
   @ResponseBody
   public RespBody search(@RequestParam("keyword") String keyword) {

@@ -48,6 +48,7 @@ public class MeetingAttendee extends BaseEntity {
     private String schedule222_c;
     private String schedule230_c;
     private String schedule242_c;
+    private String print_c;
 
     // 日程笔记
     private String remark0;
